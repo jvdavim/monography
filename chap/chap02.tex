@@ -1,0 +1,55 @@
+\chapter{Previsão de Séries Temporais}
+
+\section{Definição do problema}
+Previsão de séries temporais é uma solução adotada para muitos problemas da vida real com o objetivo de, a partir de dados observados, realizar extrapolações para o futuro. Esse tipo de abordagem é muito eficaz quando há poucos dados disponíveis dentro do escopo do problema, pois permite realizar inferências que utilizam dados históricos da própria variável, e podem ser essenciais para o auxílio à tomada de decisão.
+
+% Formalização...
+
+% Principais dificuldades...
+
+\section{Modelos}
+Existem muitos modelos que são frequentemente utilizados para tarefas de predição de séries temporais. Dentre estes, podemos citar desde modelos estatísticos como ARMA \cite{box2015time} e suas variações \cite{ALZAHRANI2020914} até métodos com modelos aditivos como o Prophet \cite{fbprophet}. Além desses, existem muitos estudos que fazem adaptações de Redes Neurais para esta tarefa como em \cite{ZHANG2005501} e até mesmo modelos misturados de Redes Neurais com ARIMA como apresentado em \cite{ZHANG2003159}.
+
+Os modelos utilizados para os experimentos deste trabalho foram escolhidos com base em estudos paralelos realizados com os dados do Covid-19, e serão descritos nas subseções seguintes com suas respectivas formalizações.
+\subsection{ARMA}
+O modelo ARMA é uma combinação dos modelos auto-regressivo (AR) e de médias móveis (MA). O modelo auto regressivo puro de ordem $p$, ou seja, $AR(p)$, pode ser formalizado como:
+
+\[X_{t}=c+\sum ^{p}_{i=1}\rho _{i}X_{t-i}+\varepsilon _{t}\]
+
+onde $\rho _{1}\ldots \rho _{p}$ são os parâmetros, $c$ é uma constante e $\varepsilon _{t}$ representa um ruído branco.
+
+O ajuste de parâmetros a ser realizado na etapa de treinamento do modelo pode ser feito utilizando o método dos mínimos quadrados ou método dos momentos através das equações de Yule-Walker.
+
+O modelo de médias móveis (MA) é utilizado junto com o modelo auto regressivo, e é uma abordagem comum para modelagem de séries temporais univariadas. Este modelo estabelece uma dependência linear entre os valores atuais da série temporal e os valores passados, e pode ser formalizado como:
+
+\[X_{t}=\mu+\varepsilon_{t}+\theta_{1} \varepsilon_{t-1}+\cdots+\theta_{q} \varepsilon_{t-q}\]
+
+onde $\mu$ é a média da série, $\theta_{1}, ..., \theta_{q}$ são os parâmetros e $\varepsilon_{t}, ..., \varepsilon_{t-q}$ são os termos do ruído branco.
+
+Cada modelo pode ser utilizado de forma independente, ou em conjunto formando o modelo ARMA. A construção desse modelo se dá pela soma do modelo auto-regressivo com o modelo de médias móveis, e pode ser formalizado como:
+
+\[X_{t}=c+\varepsilon_{t}+\sum_{i=1}^{p} \varphi_{i} X_{t-i}+\sum_{i=1}^{q} \theta_{i} \varepsilon_{t-i}\]
+
+% Explicar possível utilização de variáveis exógenas...
+\subsection{ARIMA}
+% Gerando séries estacionárias...
+
+% Definição formal do ARIMA...
+
+% Expansões do ARIMA...
+
+\section{Tecnologias}
+% "Custurinha". Falar o que vimos até agora e o que vamos ver nas próximas subseções.
+\subsection{Biblioteca statsmodels}
+% Descrição da biblioteca (Linguagens de programação compatíveis, onde está disponível etc)...
+
+% Visão breve das ferramentas proporcionadas pela biblioteca (ARMA, ARIMA etc)...
+
+% Previsões de séries temporais com statmodels...
+\subsection{Biblioteca fbprophet}
+\cite{fbprophet}
+% Previsão de séries temporais para negócios...
+
+% Decomposição das séries temporais (tendência, sazonalidade e feriados)...
+
+% Previsões de séries temporais com fbprophet...
