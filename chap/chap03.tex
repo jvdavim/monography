@@ -72,11 +72,11 @@
     
     Para o escopo desse trabalho, será utilizada a transformação Termômetro, que possui as características necessárias para garantir um bom desempenho da rede. A transformação recebe 3 parâmetros: tamanho (\textit{sz}), valor mínimo (\textit{min}) e valor máximo (\textit{max}). O tamanho é a quantidade de bits que é utilizada para representar 1 número real, enquanto o valor mínimo e máximo representam o menor e o maior valor real possível assumido respectivamente. O algoritmo da transformação termômetro consiste na divisão do espaço entre o mínimo e o máximo em \textit{sz} pedações de mesmo tamanho, atribuindo um valor limite para cada uma das divisões. Em seguida, cada pedaço é preenchido por um bit 1 ou 0 dependendo se o valor que está sendo transformado está acima ou abaixo do valor limite. A Figura~\ref{fig:therm_ex} ilustra um número inteiro antes e após a transformação termômetro.
     
-    % \begin{figure}[!ht] \label{fig:therm_ex}
-    % \centering
-    % \includegraphics[width=6.0in]{img/therm_example.png}
-    % \caption{Transformação termômetro do número x}
-    % \end{figure}
+    \begin{figure}[!ht] \label{fig:therm_ex}
+    \centering
+    \includegraphics[width=6.0in]{img/therm_example.png}
+    \caption{Transformação termômetro do número 210}
+    \end{figure}
 
     É importante evidenciar que as técnicas utilizadas acima são fundamentais. A transformação dos números em binário modificando sua base de 10 para 2 tem um problema crucial. Ao mudar a base, os números perdem a propriedade de proximidade na representação, o que dificulta o processo de aprendizado da rede. Por exemplo, os números 11 e 12 possuem uma representação bem diferente quanto transformados da base 10 para 2, quando na verdade, deveriam ter representações próximas, pois são números próximos. A transformação termômetro garante essa propriedade. 
     
