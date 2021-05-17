@@ -74,15 +74,17 @@
     
     \begin{figure}[!ht] \label{fig:therm_ex}
     \centering
-    \includegraphics[width=6.0in]{img/therm_example.png}
-    \caption{Transformação termômetro do número 210}
+    \includegraphics[width=5.0in]{img/therm_example.png}
+    \caption{Exemplo de transformação termômetro do número 210}
     \end{figure}
 
     É importante evidenciar que as técnicas utilizadas acima são fundamentais. A transformação dos números em binário modificando sua base de 10 para 2 tem um problema crucial. Ao mudar a base, os números perdem a propriedade de proximidade na representação, o que dificulta o processo de aprendizado da rede. Por exemplo, os números 11 e 12 possuem uma representação bem diferente quanto transformados da base 10 para 2, quando na verdade, deveriam ter representações próximas, pois são números próximos. A transformação termômetro garante essa propriedade. 
     
 \section{Biblioteca wisardpkg}
-    Quase todos os métodos descritos nas seções anteriores, incluindo as RNSPs WiSARD e Regression WiSARD, são implementados na biblioteca wisardpkg.
+    Quase todos os métodos descritos nas seções anteriores, incluindo as RNSPs WiSARD e Regression WiSARD, são implementados na biblioteca wisardpkg \cite{wisardpkg}.
 
-% Modelos implementados (WiSARD, Regression WiSARD)...
+    A documentação da biblioteca fica hospedada no GitHub em \url{https://iazero.github.io/wisardpkg}, e o repositório pode ser acessado em \url{https://github.com/IAZero/wisardpkg}. Os modelos são implementados em C++, mas também podem ser utilizados em Python através da dependência pybind11.
 
-% Préprocessamentos implementados...
+    A biblioteca é multiplataforma, podendo ser utilizada nos sistemas operacionais Windows, Mac OSX ou Linux. Para Python é distribuída através do repositório de pacotes Pypi, e em C++ deve ter o código fonte e cabecalho inclusos no projeto.
+
+    Os dois principais módulos da biblioteca são os de Modelos (models) e Binarização (binarization), dando suporte para o treinamento dos modelos WiSARD e para o pré-processamento necessário para transformar o input em binário, como o método termômetro descrito na seção.
