@@ -30,13 +30,22 @@ Cada modelo pode ser utilizado de forma independente, ou em conjunto formando o 
 
 \[X_{t}=c+\varepsilon_{t}+\sum_{i=1}^{p} \varphi_{i} X_{t-i}+\sum_{i=1}^{q} \theta_{i} \varepsilon_{t-i}\]
 
-% Explicar possível utilização de variáveis exógenas...
+Existem diversas técnicas para a otimização dos hiperparâmetros $p$ e $q$ para que o modelo seja melhor ajustado aos dados. Uma das formas mais aceitas para encontrar esses valores é o critério de Akaike, conforme recomendado por Peter J. Brockwell e Richard A. Davis em \cite{akaike}.
 \subsection{ARIMA}
-Alguns problemas de previsão de séries temporais são ligeiramente mais complexos, pois representam uma série temporal não estacionária. Nesse caso específico, o ajuste do modelo ARMA acaba não sendo bom, pois não acompanha a não estacionaridade dos dados.
+Alguns problemas de previsão de séries temporais são ligeiramente mais complexos, pois representam uma série temporal não estacionária. Nesse caso específico, o ajuste do modelo ARMA acaba não sendo bom, pois não acompanha a não estacionaridade dos dados. O modelo auto-regressivo integrado de médias móveis (ARIMA) se propõe a resolver o problema da estacionaridade, e pode ser estudado como uma generalização do modelo ARMA.
 
-% Definição formal do ARIMA...
+De forma análoga ao ARMA, os modelos ARIMA são geralmente denotados como $ARIMA(p, d, q)$, onde os parâmetros $p$, $d$ e $q$ são inteiros não negativos que representam a ordem do modelo auto-regressivo (AR), o grau de diferenciação da parte integrada (I) e a ordem do modelo de médias móveis (MA) respectivamente.
 
-% Expansões do ARIMA...
+A parte integrada do modelo consiste na computação da diferença dos valores atuais da série temporal com os valores subsequentes da mesma. Esse procedimento é realizado $d$ vezes, e este é o parâmetro da parte integrada do modelo.
+
+Pode-se formalizar o moldeo ARIMA como:
+
+\[\left(1-\sum_{i=1}^{p} \phi_{i} L^{i}\right)(1-L)^{d} X_{t}=\left(1+\sum_{i=1}^{q} \theta_{i} L^{i}\right) \varepsilon_{t}\]
+
+em que $X_{t}$ é a série temporal de dados, $t$ é um índice representado por um inteiro, $L$ é o operador de defasagem, $p$ é o hiperparâmetro do modelo auto-regressivo, $q$ é o hiperparâmetro do modelo de médias móveis, $d$ é o número de diferenças da parte integrada, $\phi_{i}$ são os parâmetros do modelo auto-regressivo, $\theta_{i}$ são os parâmetros do modelo de médias móveis e $\epsilon_{t}$ é o ruído branco ou erro aleatório.
+
+A estimação de modelos ARIMA é realizada, geralmente, através do método de Box-Jenkins \cite{box&jenkins}, que é um processo iterativo para encontrar os parâmetros que melhor ajusta o modelo aos dados observados.
+
 
 \section{Tecnologias}
 % "Custurinha". Falar o que vimos até agora e o que vamos ver nas próximas subseções.
