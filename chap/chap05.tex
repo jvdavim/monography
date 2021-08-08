@@ -1,48 +1,54 @@
 \chapter{Avaliação Experimental}
-% Explicar objetivos da avaliação experimental...
+% explicar objetivos da avaliação experimental.
 \section{Ambiente computacional}
-% Máquinas utilizadas para os experimentos...
+% máquinas utilizadas para os experimentos.
 
-% Ambiente de programação (jupyter notebooks)...
+% ambiente de programação (jupyter notebooks).
 
-% Bibliotecas (statmodels, fbprophet, wisardpkg etc)...
+% bibliotecas (statmodels, fbprophet, wisardpkg etc).
 
 \section{Coleções de dados}
-% Dados do covid19...
+% explicar fonte e formato dos dados utilizados para avaliação dos modelos.
 
-% Dados gerado de forma sintética com o ARMA com auxílio da biblioteca statmodels...
+% casos confirmados  de covid19 no rio de janeiro.
+
+% dados gerado de forma sintética com o arma com auxílio da biblioteca statmodels.
+
+% dados de temperatura mínima diária.
 \section{Métricas de avaliação}
-% Erro absoluto médio...
-
-% Erro absoluto médio percentual...
-
-% Raiz do erro médio quadrático...
-
-% Validação cruzada adaptada para séries temporais...
+CRIAR SUBSEÇÃO PARA CADA MÉTRICA?
 
 \section{Resultados}
-% Apresentar formato de apresentação dos resultados...
-\subsection{Experimentos com dados sintéticos}
-% Resultados com ARMA...
+% apresentar formato de apresentação dos resultados.
 
-% Resultados com ARIMA...
+\subsection{Métricas de avaliação}
+TEM PROBLEMA DE USAR O MESMO NOME DA SEÇÃO ANTERIOR?
 
-% Resultados com Prophet...
+\subsection{Tempos de execução}
 
-% Resultados com AutoRegression WiSARD...
+\begin{table}[!htp]\centering
+    \caption{Tempo de ajuste dos modelos}\label{tab: }
+    \scriptsize
+    \begin{tabular}{lrrrrr}\toprule
+    \multirow{2}{*}{Modelo} &\multirow{2}{*}{Métrica} &\multicolumn{3}{c}{Dataset} \\\cmidrule{3-5}
+    & &Covid &Temperatura &Sintético \\\midrule
+    \multirow{4}{*}{ARIMA} &RMSE &779 ms ± 2.4 ms &3.61 s ± 5.34 ms &38.4 ms ± 383 µs \\
+    &MAPE &1.34 s ± 2.11ms &3.61 s ± 4.68 ms &38.3 ms ± 184 µs \\
+    &MAE &779 ms ± 1.2 ms &3.61 s ± 8.5 ms &38.4 ms ± 225 µs \\
+    &MPE &1.61 s ± 1.33 ms &6.36 s ± 9.48 ms &566 ms ± 705 µs \\\midrule
+    \multirow{4}{*}{ReW} &RMSE &4.41 ms ± 151 µs &31.2 ms ± 526 µs &9.97 ms ± 143 µs \\
+    &MAPE &4.46 ms ± 75.1 µs &19.5 ms ± 409 µs &10.1 ms ± 166 µs \\
+    &MAE &8.65 ms ± 126 µs &19.3 ms ± 149 µs &10.5 ms ± 116 µs \\
+    &MPE &4.41 ms ± 151 µs &64.7 ms ± 549 µs &8.86 ms ± 123 µs \\\midrule
+    \multirow{4}{*}{Prophet} &RMSE &56.5 ms ± 17.9 ms &205 ms ± 176 µs &60.7 ms ± 87 µs \\
+    &MAPE &46 ms ± 63.1 µs &179 ms ± 514 µs &60.9 ms ± 174 µs \\
+    &MAE &44.6 ms ± 109 µs &180 ms ± 396 µs &61.1 ms ± 177 µs \\
+    &MPE &46 ms ± 72.1 µs &203 ms ± 200 µs &68.1 ms ± 178 µs \\
+    \bottomrule
+    \end{tabular}
+\end{table}
 
-% Obs.: Apresentar escolha de hiperparâmetros, métricas de validação e tempos de execução.
-
-\subsection{Experimentos com dados do covid}
-% Resultados com ARMA...
-
-% Resultados com ARIMA...
-
-% Resultados com Prophet...
-
-% Resultados com AutoRegression WiSARD...
-
-% Obs.: Apresentar escolha de hiperparâmetros, métricas de validação e tempos de execução.
+\subsection{Uso de memória}
 
 \subsection{Discussão}
-
+w

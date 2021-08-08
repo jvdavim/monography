@@ -3,11 +3,11 @@
 \section{Definição do problema}
 Previsão de séries temporais é uma solução adotada para muitos problemas da vida real com o objetivo de, a partir de dados observados, realizar extrapolações para o futuro. Esse tipo de abordagem é muito eficaz quando há poucos dados disponíveis dentro do escopo do problema, pois permite realizar inferências que utilizam dados históricos da própria variável, e podem ser essenciais para o auxílio à tomada de decisão.
 
-% Formalização...m
+% formalização.
 
-% Principais dificuldades..."editor.wordWrap": "on",
+% principais dificuldades.
 
-\section{Modelos}
+\section{Modelos autoregressivos}
 Existem muitos modelos que são frequentemente utilizados para tarefas de predição de séries temporais. Dentre estes, podemos citar desde modelos estatísticos como ARMA \cite{box&jenkins} e suas variações \cite{ALZAHRANI2020914} até métodos com modelos aditivos como o Prophet \cite{fbprophet}. Além desses, existem muitos estudos que fazem adaptações de Redes Neurais para esta tarefa como em \cite{ZHANG2005501} e até mesmo modelos misturados de Redes Neurais com ARIMA como apresentado em \cite{ZHANG2003159}.
 
 Os modelos utilizados para os experimentos deste trabalho foram escolhidos com base em estudos paralelos realizados com os dados do Covid-19, e serão descritos nas subseções seguintes com suas respectivas formalizações.
@@ -31,6 +31,7 @@ Cada modelo pode ser utilizado de forma independente, ou em conjunto formando o 
 \[X_{t}=c+\varepsilon_{t}+\sum_{i=1}^{p} \varphi_{i} X_{t-i}+\sum_{i=1}^{q} \theta_{i} \varepsilon_{t-i}\]
 
 Existem diversas técnicas para a otimização dos hiperparâmetros $p$ e $q$ para que o modelo seja melhor ajustado aos dados. Uma das formas mais aceitas para encontrar esses valores é o critério de Akaike, conforme recomendado por Peter J. Brockwell e Richard A. Davis em \cite{akaike}.
+
 \subsection{ARIMA}
 Alguns problemas de previsão de séries temporais são ligeiramente mais complexos, pois representam uma série temporal não estacionária. Nesse caso específico, o ajuste do modelo ARMA acaba não sendo bom, pois não acompanha a não estacionaridade dos dados. O modelo auto-regressivo integrado de médias móveis (ARIMA) se propõe a resolver o problema da estacionaridade, e pode ser estudado como uma generalização do modelo ARMA.
 
@@ -46,19 +47,18 @@ em que $X_{t}$ é a série temporal de dados, $t$ é um índice representado por
 
 A estimação de modelos ARIMA é realizada, geralmente, através do método de Box-Jenkins \cite{box&jenkins}, que é um processo iterativo para encontrar os parâmetros que melhor ajusta o modelo aos dados observados.
 
-
-\section{Tecnologias}
-% "Custurinha". Falar o que vimos até agora e o que vamos ver nas próximas subseções.
 \subsection{Biblioteca statsmodels}
-% Descrição da biblioteca (Linguagens de programação compatíveis, onde está disponível etc)...
+% apresentar implementação dos modelos autoregressivos.
 
-% Visão breve das ferramentas proporcionadas pela biblioteca (ARMA, ARIMA etc)...
 
-% Previsões de séries temporais com statmodels...
-\subsection{Biblioteca fbprophet}
+\section{Modelo de previsão Prophet}
+% explicar modelo aditivo baseado em tendência, sazonalidade e feriados/eventos.
 \cite{fbprophet}
-% Previsão de séries temporais para negócios...
-
-% Decomposição das séries temporais (tendência, sazonalidade e feriados)...
-
-% Previsões de séries temporais com fbprophet...
+\subsection{Modelo de tendência}
+% explicar modelo de tendência.
+\subsection{Sazonalidade}
+% explicar modelo de sazonalidade.
+\subsection{Feriados e eventos}
+% explicar influência de feriados e eventos no prophet.
+\subsection{Biblioteca fbprophet}
+% apresentar implementação do modelo de previsão prophet. 

@@ -1,10 +1,10 @@
-\chapter{Autoregressão com WiSARD}
+\chapter{Previsão de séries temporais com Regression WiSARD}
 Como previsto no capítulo de redes neurais sem peso, o modelo Regression WiSARD é utilizado para resolver problemas de regressão, porém não é possível realizar previsão de séries temporais por depender de características que não são função do tempo. É possível, entretanto, tratar um problema de previsão de séries temporais como um problema de regressão aplicando técnicas como a janela deslizante e médias móveis conforme detalhado nas seções seguintes.
 
 \section{Janelas deslizantes}
 O método de janelas deslizantes é essencial para a Regression WiSARD ser capaz de realizar previsões de séries temporais. Isso ocorre porque é a técnica que permite transformar o problema temporal em um problema de regressão supervisionado.
 
-O método consiste em tornar cada amostra dependente das N amostras anteriores, e faz isso alocando uma janela de N amostras no início da série temporal e deslocando até o final de amostra em amostra para formar a matriz de características, conforme ilustra a Figure~\ref{fig:sliding_window}.
+% O método consiste em tornar cada amostra dependente das N amostras anteriores, e faz isso alocando uma janela de N amostras no início da série temporal e deslocando até o final de amostra em amostra para formar a matriz de características, conforme ilustra a Figure~\ref{fig:sliding_window}.
 
     % \begin{figure}[!ht] \label{fig:sliding_window}
     % \centering
@@ -20,9 +20,10 @@ O método consiste em tornar cada amostra dependente das N amostras anteriores, 
 % Exemplos práticos de utilização...
 
 % Como ajuda na previsão de séries temporais com a Regression WiSARD...
-\section{AutoRegression WiSARD}
+
+\section{Regression WiSARD}
 % Explicar treinamento do modelo...
 
 % Explicar predições com o modelo...
 
-% Aprendizado em tempo real...
+% Vantagens - Aprendizado em tempo real, ...
