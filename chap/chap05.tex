@@ -15,20 +15,19 @@
 % dados gerado de forma sintética com o arma com auxílio da biblioteca statmodels.
 
 % dados de temperatura mínima diária.
-\section{Métricas de avaliação}
+\section{Métricas de avaliação utilizadas}
 CRIAR SUBSEÇÃO PARA CADA MÉTRICA?
 
 \section{Resultados}
 % apresentar formato de apresentação dos resultados.
 
-\subsection{Métricas de avaliação}
+\subsection{Avaliação por métricas}
 TEM PROBLEMA DE USAR O MESMO NOME DA SEÇÃO ANTERIOR?
 
 \subsection{Tempos de execução}
 
 \begin{table}[!htp]\centering
-    \caption{Tempo de ajuste dos modelos}\label{tab: }
-    \scriptsize
+    \caption{Tempo de ajuste dos modelos}
     \begin{tabular}{lrrrrr}\toprule
     \multirow{2}{*}{Modelo} &\multirow{2}{*}{Métrica} &\multicolumn{3}{c}{Dataset} \\\cmidrule{3-5}
     & &Covid &Temperatura &Sintético \\\midrule
@@ -48,7 +47,26 @@ TEM PROBLEMA DE USAR O MESMO NOME DA SEÇÃO ANTERIOR?
     \end{tabular}
 \end{table}
 
+\begin{table}[!htp]\centering
+    \caption{Tempo de inferencia dos modelos}
+    \begin{tabular}{lrrrrr}\toprule
+    \multirow{2}{*}{Modelo} &\multirow{2}{*}{Métrica} &\multicolumn{3}{c}{Dataset} \\\cmidrule{3-5}
+     &  & Covid & Temperatura & Sintético \\ \midrule
+    \multirow{4}{*}{ARIMA} & RMSE & 960 µs ± 2.51 µs & 951 µs ± 14.4 µs & 1.92 ms ± 28.5 µs \\
+     & MAPE & 970 µs ± 1.83 µs & 942 µs ± 4.96 µs & 1.93 ms ± 33.3 µs \\
+     & MAE & 958 µs ± 2.81 µs & 972 µs ± 8.09 µs & 1.92 ms ± 24.8 µs \\
+     & MPE & 959 µs ± 5.72 µs & 956 µs ± 7.02 µs & 953 µs ± 27.8 µs \\ \midrule
+    \multirow{4}{*}{ReW} & RMSE & 142 µs ± 2.8 µs & 149 µs ± 349 ns & 330 µs ± 4.67 \\
+     & MAPE & 87.6 µs ± 1.22 µs & 106 µs ± 339 ns & 494 µs ± 12.8 µs \\
+     & MAE & 145 µs ± 2.3 µs & 107 µs ± 1.45 µs & 512 µs ± 7.91 µs \\
+     & MPE & 91 µs ± 638 ns & 232 µs ± 6.43 µs & 422 µs ± 8.16 µs \\ \midrule
+    \multirow{4}{*}{Prophet} & RMSE & 1.26 s ± 10.7 ms & 1.88 s ± 3.79 ms & 898 ms ± 768 µs \\
+     & MAPE & 1.25 s ± 1.59 ms & 2.13 s ± 711 µs & 906 ms ± 600 µs \\
+     & MAE & 1.25 s ± 1.29 ms & 2.13 s ± 940 µs & 898 ms ± 753 µs \\
+     & MPE & 1.25 s ± 1.26 ms & 1.88 s ± 530 µs & 899 ms ± 1.24 ms \\ \midrule
+    \end{tabular}
+\end{table}
+
 \subsection{Uso de memória}
 
 \subsection{Discussão}
-w
