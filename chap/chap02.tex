@@ -3,13 +3,13 @@
 \section{Definição do problema}
 Previsão de séries temporais é uma solução adotada para muitos problemas da vida real com o objetivo de, a partir de dados observados, realizar extrapolações para o futuro. Esse tipo de abordagem é muito eficaz quando há poucos dados disponíveis dentro do escopo do problema, pois permite realizar inferências que utilizam dados históricos da própria variável, e podem ser essenciais para o auxílio à tomada de decisão.
 
-% formalização.
+Toda previsão de série temporal possui um horizonte de previsão, ou seja, o número de instantes à frente que serão previstos. Esse valor faz parte da caracterização do problema, portanto, é fundamental que todos os ajustes sejam avaliados de acordo com esse horizonte.
 
-% principais dificuldades.
+Os modelos de previsão podem ser classificados em univariados ou multivariados. Modelos univariados utilizam apenas a própria variável como entrada para a previsão, enquanto modelos multivariados, podem utilizar multiplas variáveis para a previsão de uma variável alvo. Quando utilizada a própria variável para a inferência, esta é chamada de endógena, enquanto as restantes são chamadas exógenas.
+
+Existem muitos modelos univariados que são frequentemente utilizados para tarefas de predição de séries temporais. Dentre estes, podem-se citar desde modelos estatísticos como ARMA \cite{box&jenkins} e suas variações \cite{ALZAHRANI2020914} até métodos com modelos aditivos como o Prophet \cite{fbprophet}. Além destes, existem muitos estudos que fazem adaptações de Redes Neurais para esta tarefa como em \cite{ZHANG2005501} e até mesmo modelos misturados de Redes Neurais com ARIMA como apresentado em \cite{ZHANG2003159}.
 
 \section{Modelos autoregressivos}
-Existem muitos modelos que são frequentemente utilizados para tarefas de predição de séries temporais. Dentre estes, podemos citar desde modelos estatísticos como ARMA \cite{box&jenkins} e suas variações \cite{ALZAHRANI2020914} até métodos com modelos aditivos como o Prophet \cite{fbprophet}. Além desses, existem muitos estudos que fazem adaptações de Redes Neurais para esta tarefa como em \cite{ZHANG2005501} e até mesmo modelos misturados de Redes Neurais com ARIMA como apresentado em \cite{ZHANG2003159}.
-
 Os modelos utilizados para os experimentos deste trabalho foram escolhidos com base em estudos paralelos realizados com os dados do Covid-19, e serão descritos nas subseções seguintes com suas respectivas formalizações.
 \subsection{ARMA}
 O modelo ARMA é uma combinação dos modelos auto-regressivo (AR) e de médias móveis (MA). O modelo auto regressivo puro de ordem $p$, ou seja, $AR(p)$, pode ser formalizado como:
@@ -48,12 +48,16 @@ em que $X_{t}$ é a série temporal de dados, $t$ é um índice representado por
 A estimação de modelos ARIMA é realizada, geralmente, através do método de Box-Jenkins \cite{box&jenkins}, que é um processo iterativo para encontrar os parâmetros que melhor ajusta o modelo aos dados observados.
 
 \subsection{Biblioteca statsmodels}
-% apresentar implementação dos modelos autoregressivos.
+Os modelos autoregressivos apresentados, são implementados pela biblioteca statsmodels \cite{seabold2010statsmodels}, que é uma biblioteca para análise estatística e econométrica em Python. A biblioteca disponibiliza classes e funções para estimar diferentes modelos estatísticos, como ARMA e suas generalizações, além de testes estatísticos e análise estatística de dados.
+
+O pacote possui a licensa de código aberto \textit{Modified BSD (3-clause)}, e sua documentação oficial fica hospedada em statsmodels.org.
 
 
 \section{Modelo de previsão Prophet}
-% explicar modelo aditivo baseado em tendência, sazonalidade e feriados/eventos.
-\cite{fbprophet}
+O modelo de previsão Prophet \cite{fbprophet} foi uma solução criada e adotada pelo Facebook para solução de problemas de previsão no nicho de negócios. A ideia era criar um modelo capaz de utilizar características comuns na maioria dos problemas de previsão para tentar melhorar a acertividade em relação à modelos considerados automáticos como o ARIMA. Então, para facilitar a utilização do modelo por analistas, que na maior parte dos casos, não possui conhecimento detalhado sobre a série temporal que está sendo analisada, o Prophet propõe um modelo que tenha hiperparâmetros intuitivos para alcançar maior escalabilidade no momento da otimização feita pelos analistas.
+
+
+
 \subsection{Modelo de tendência}
 % explicar modelo de tendência.
 \subsection{Sazonalidade}
