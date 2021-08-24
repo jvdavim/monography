@@ -111,7 +111,16 @@ Para situações onde não é observada satruação no crescimento da série tem
 onde $k$ é a taxa de crescimento, $\boldsymbol{\delta}$ são as taxas de ajuste (dos \textit{changepoints}), $m$ é o parâmetro de deslocamento e $\gamma_{j}$ assume o valor de $-s_{j}\delta_{j}$ par tornar a função contínua.
 
 \subsection{Sazonalidade}
-% explicar modelo de sazonalidade.
+Muitas séries temporais apresentam características sazonais em diversos períodos, ou seja, podem apresentar comportamento semelhante de hora em hora, dia em dia, semana a semana, e assim sucessivamente. A mesma série pode, inclusive, apresentar mais de uma sazonalidade.
+
+Para flexibilizar o modelo quanto às sazonalidades, são utilizadas séries de Fourier. Portando, o modelo segue a equação
+
+\begin{equation}
+    s(t)=\sum_{n=1}^{N}\left(a_{n} \cos \left(\frac{2 \pi n t}{P}\right)+b_{n} \sin \left(\frac{2 \pi n t}{P}\right)\right)\, ,
+\end{equation}
+
+onde $P$ é o período da sazonalidade e $\boldsymbol{\beta} = [a_{1},b_{1},\ldots,a_{N},b_{N}]$ são os parâmetros ajustados por estimativa.
+
 \subsection{Feriados e eventos}
 % explicar influência de feriados e eventos no prophet.
 \subsection{Biblioteca fbprophet}
