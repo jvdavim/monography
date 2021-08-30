@@ -119,7 +119,15 @@ Para flexibilizar o modelo quanto às sazonalidades, são utilizadas séries de 
     s(t)=\sum_{n=1}^{N}\left(a_{n} \cos \left(\frac{2 \pi n t}{P}\right)+b_{n} \sin \left(\frac{2 \pi n t}{P}\right)\right)\, ,
 \end{equation}
 
-onde $P$ é o período da sazonalidade e $\boldsymbol{\beta} = [a_{1},b_{1},\ldots,a_{N},b_{N}]$ são os parâmetros ajustados por estimativa.
+onde $P$ é o período da sazonalidade e $\boldsymbol{\beta} = [a_{1},b_{1},\ldots,a_{N},b_{N}]^{\top}$ são os parâmetros ajustados por estimativa.
+
+Para $N=10$, por exemplo, é possível escrever a parte sazonal como:
+
+\begin{equation}
+    s(t)=\left[\cos \left(\frac{2 \pi(1) t}{365.25}\right), \ldots, \sin \left(\frac{2 \pi(10) t}{365.25}\right)\right]\boldsymbol{\beta}
+\end{equation}
+
+onde o parâmetro $\boldsymbol{\beta}$ pode ser estimado considerando $\boldsymbol{\beta} \sim \operatorname{Normal}\left(0, \sigma^{2}\right)$ e o parâmetro $N$ é atribuido empiricamente a $10$ e $3$ para sazonalidades anual e semanal respectivamente. Essa escolha de parâmetros pode ser automatizada utilizando métodos de seleção de modelos como o AIC (\textit{Akaike Information Criterion}).
 
 \subsection{Feriados e eventos}
 % explicar influência de feriados e eventos no prophet.
