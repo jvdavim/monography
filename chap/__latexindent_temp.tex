@@ -5,30 +5,35 @@ Previsão de séries temporais é uma solução adotada para muitos problemas da
 
 Toda previsão de série temporal possui um horizonte de previsão, ou seja, o número de instantes à frente que serão previstos. Esse valor faz parte da caracterização do problema, portanto, é fundamental que todos os ajustes sejam avaliados de acordo com esse horizonte.
 
-Os modelos de previsão podem ser classificados em univariados ou multivariados. Modelos univariados utilizam apenas a própria variável como entrada para a previsão, enquanto modelos multivariados, podem utilizar multiplas variáveis para a previsão de uma variável alvo. Quando utilizada a própria variável para a inferência, esta é chamada de endógena, enquanto as restantes são chamadas exógenas.
+Os modelos de previsão podem ser classificados em univariados ou multivariados \cite{box&jenkins}. Modelos univariados utilizam apenas a própria variável como entrada para a previsão, enquanto modelos multivariados, podem utilizar multiplas variáveis para a previsão de uma variável alvo. Quando utilizada a própria variável para a inferência, esta é chamada de endógena, enquanto as restantes são chamadas exógenas.
 
-Existem muitos modelos univariados que são frequentemente utilizados para tarefas de predição de séries temporais. Dentre estes, podem-se citar desde modelos estatísticos como ARMA \cite{box&jenkins} e suas variações \cite{ALZAHRANI2020914} até métodos com modelos aditivos como o Prophet \cite{fbprophet}. Além destes, existem muitos estudos que fazem adaptações de Redes Neurais para esta tarefa como em \cite{ZHANG2005501} e até mesmo modelos misturados de Redes Neurais com ARIMA como apresentado em \cite{ZHANG2003159}.
+Existem muitos modelos univariados que são frequentemente utilizados para tarefas de predição de séries temporais. Dentre estes, podem-se citar desde modelos estatísticos como ARMA \cite{box&jenkins} e suas variações \cite{ALZAHRANI2020914} até métodos com modelos aditivos como o Prophet \cite{fbprophet}. Além destes, existem muitos estudos que fazem adaptações de Redes Neurais para esta tarefa como em ZHANG \& QI, 2003 \cite{ZHANG2005501} e até mesmo modelos misturados de Redes Neurais com ARIMA como apresentado em Brockwell \& Davis, 1986 \cite{ZHANG2003159}.
 
 \section{Modelos autoregressivos}
-Os modelos utilizados para os experimentos deste trabalho foram escolhidos com base em estudos paralelos realizados com os dados do Covid-19, e serão descritos nas subseções seguintes com suas respectivas formalizações.
+Os modelos utilizados para os experimentos deste trabalho foram escolhidos com base em estudos paralelos realizados com os dados do Covid-19 como em Ribeiro et al., 2020 \cite{RIBEIRO2020109853} e Wang et al., 2020 \cite{WANG2020110058}, e serão descritos nas subseções seguintes com suas respectivas formalizações.
 \subsection{ARMA}
 O modelo ARMA é uma combinação dos modelos auto-regressivo (AR) e de médias móveis (MA). O modelo auto regressivo puro de ordem $p$, ou seja, $AR(p)$, pode ser formalizado como:
 
-\[X_{t}=c+\sum ^{p}_{i=1}\rho _{i}X_{t-i}+\varepsilon _{t}\]
+\begin{equation}
+    X_{t}=c+\sum ^{p}_{i=1}\rho _{i}X_{t-i}+\varepsilon _{t}\, ,
+\end{equation}
 
 onde $\rho _{1}\ldots \rho _{p}$ são os parâmetros, $c$ é uma constante e $\varepsilon _{t}$ representa um ruído branco.
 
-O ajuste de parâmetros a ser realizado na etapa de treinamento do modelo pode ser feito utilizando o método dos mínimos quadrados ou método dos momentos através das equações de Yule-Walker.
+O ajuste de parâmetros a ser realizado na etapa de treinamento do modelo pode ser feito utilizando o método dos mínimos quadrados ou método dos momentos através das equações de Yule-Walker \cite{box&jenkins}.
 
-O modelo de médias móveis (MA) é utilizado junto com o modelo auto regressivo, e é uma abordagem comum para modelagem de séries temporais univariadas. Este modelo estabelece uma dependência linear entre os valores atuais da série temporal e os valores passados, e pode ser formalizado como:
+O modelo de médias móveis (MA) é utilizado junto com o modelo auto regressivo, e é uma abordagem comum para modelagem de séries temporais univariadas \cite{box&jenkins}. Este modelo estabelece uma dependência linear entre os valores atuais da série temporal e os valores passados, e pode ser formalizado como:
 
-\[X_{t}=\mu+\varepsilon_{t}+\theta_{1} \varepsilon_{t-1}+\cdots+\theta_{q} \varepsilon_{t-q}\]
+\begin{equation}
+    X_{t}=\mu+\varepsilon_{t}+\theta_{1} \varepsilon_{t-1}+\cdots+\theta_{q} \varepsilon_{t-q}\, ,
+\end{equation}
 
 onde $\mu$ é a média da série, $\theta_{1}, ..., \theta_{q}$ são os parâmetros e $\varepsilon_{t}, ..., \varepsilon_{t-q}$ são os termos do ruído branco.
 
 Cada modelo pode ser utilizado de forma independente, ou em conjunto formando o modelo ARMA. A construção desse modelo se dá pela soma do modelo auto-regressivo com o modelo de médias móveis, e pode ser formalizado como:
-
-\[X_{t}=c+\varepsilon_{t}+\sum_{i=1}^{p} \varphi_{i} X_{t-i}+\sum_{i=1}^{q} \theta_{i} \varepsilon_{t-i}\]
+\begin{equation}
+    X_{t}=c+\varepsilon_{t}+\sum_{i=1}^{p} \varphi_{i} X_{t-i}+\sum_{i=1}^{q} \theta_{i} \varepsilon_{t-i}\, .
+\end{equation}
 
 Existem diversas técnicas para a otimização dos hiperparâmetros $p$ e $q$ para que o modelo seja melhor ajustado aos dados. Uma das formas mais aceitas para encontrar esses valores é o critério de Akaike, conforme recomendado por Peter J. Brockwell e Richard A. Davis em \cite{akaike}.
 
@@ -39,18 +44,16 @@ De forma análoga ao ARMA, os modelos ARIMA são geralmente denotados como $ARIM
 
 A parte integrada do modelo consiste na computação da diferença dos valores atuais da série temporal com os valores subsequentes da mesma. Esse procedimento é realizado $d$ vezes, e este é o parâmetro da parte integrada do modelo.
 
-Pode-se formalizar o moldeo ARIMA como:
+Pode-se formalizar o modelo ARIMA como:
 
-\[\left(1-\sum_{i=1}^{p} \phi_{i} L^{i}\right)(1-L)^{d} X_{t}=\left(1+\sum_{i=1}^{q} \theta_{i} L^{i}\right) \varepsilon_{t}\]
+\begin{equation}
+    \left(1-\sum_{i=1}^{p} \phi_{i} L^{i}\right)(1-L)^{d} X_{t}=\left(1+\sum_{i=1}^{q} \theta_{i} L^{i}\right) \varepsilon_{t}\, ,
+\end{equation}
 
-em que $X_{t}$ é a série temporal de dados, $t$ é um índice representado por um inteiro, $L$ é o operador de defasagem, $p$ é o hiperparâmetro do modelo auto-regressivo, $q$ é o hiperparâmetro do modelo de médias móveis, $d$ é o número de diferenças da parte integrada, $\phi_{i}$ são os parâmetros do modelo auto-regressivo, $\theta_{i}$ são os parâmetros do modelo de médias móveis e $\epsilon_{t}$ é o ruído branco ou erro aleatório.
-
-A estimação de modelos ARIMA é realizada, geralmente, através do método de Box-Jenkins \cite{box&jenkins}, que é um processo iterativo para encontrar os parâmetros que melhor ajusta o modelo aos dados observados.
+em que $X_{t}$ é a série temporal de dados, $t$ é um índice representado por um inteiro, $L$ é o operador de defasagem, $p$ é o hiperparâmetro do modelo auto-regressivo, $q$ é o hiperparâmetro do modelo de médias móveis, $d$ é o número de diferenças da parte integrada, $\phi_{i}$ são os parâmetros do modelo auto-regressivo, $\theta_{i}$ são os parâmetros do modelo de médias móveis e $\epsilon_{t}$ é o ruído branco ou erro aleatório. A estimação de modelos ARIMA é realizada, geralmente, através do método de Box-Jenkins \cite{box&jenkins}, que é um processo iterativo para encontrar os parâmetros que melhor ajustam o modelo aos dados observados.
 
 \subsection{Biblioteca statsmodels}
-Os modelos autoregressivos apresentados, são implementados pela biblioteca statsmodels \cite{seabold2010statsmodels}, que é uma biblioteca para análise estatística e econométrica em Python. A biblioteca disponibiliza classes e funções para estimar diferentes modelos estatísticos, como ARMA e suas generalizações, além de testes estatísticos e análise estatística de dados.
-
-O pacote possui a licensa de código aberto \textit{Modified BSD (3-clause)}, e sua documentação oficial fica hospedada em statsmodels.org.
+Os modelos autorregressivos apresentados, são implementados pela biblioteca statsmodels \cite{seabold2010statsmodels}, que é uma biblioteca para análise estatística e econométrica em Python. A biblioteca disponibiliza classes e funções para estimar diferentes modelos estatísticos, como ARMA e suas generalizações, além de testes estatísticos e análise estatística de dados. O pacote possui a licensa de código aberto \textit{Modified BSD (3-clause)}, e sua documentação oficial fica hospedada em statsmodels.org.
 
 
 \section{Modelo de previsão Prophet}
@@ -58,7 +61,9 @@ O modelo de previsão Prophet \cite{fbprophet} foi uma solução criada e adotad
 
 O modelo é resultado da decomposição da série temporal em 3 principais componentes: tendência, sazonalidade e feriados. Esses componentes compõe o modelo de acordo com a seguinte equação:
 
-\[y(t) = g(t) + s(t) + h(t) + \epsilon_{t}\]
+\begin{equation}
+    y(t) = g(t) + s(t) + h(t) + \epsilon_{t}\, ,
+\end{equation}
 
 onde $g(t)$ representa a tendência, $s(t)$ a sazonalidade e $h(t)$ o feriado, e $\epsilon_{t}$ representa o erro não acomodado pelos outros modelos.
 
@@ -67,7 +72,9 @@ Exitem 2 implementações do modelo de tendência que podem ser utilizados no Pr
 
 O modelo de crescimento logístico é, inicialmente, dado por:
 
-\[g(t)=\frac{C}{1+\exp (-k(t-m))}\]
+\begin{equation}
+    g(t)=\frac{C}{1+\exp (-k(t-m))}\, ,
+\end{equation}
 
 onde $C$ é a capacidade de saturação, $k$ é a taxa de crescimento, e $m$ um parametro de deslocamento.
 
@@ -76,12 +83,66 @@ Porém, algumas características são ajustadas para atender melhor aos problema
 Os \textit{changepoints}, são pontos específicos na série temporal onde a taxa de crescimento $k$ pode ser alterada. Dada a sequência de \textit{changepoints} $s_{j}$, $j=1, \ldots, S$ onde $S$ é a quantidade de \textit{changepoints} escolhidos, é definido um vetor de ajuste das taxas $\boldsymbol{\delta} \in \mathbb{R}^{S}$. Cada elemento $\delta_{j}$ desse vetor é somado à taxa constante $k$ de crescimento ao alcançar o changepoint $j$ de forma acumulativa. Sendo assim, a taxa de crescimento pode ser calculada como $k+\mathbf{a}(t)^{\top} \boldsymbol{\delta}$, onde
 
 \begin{equation}
-    a_{j}(t)= \begin{cases}1, & \text { if } t \geq s_{j} \\ 0, & \text { otherwise. }\end{cases}
-    \end{equation}
+    a_{j}(t)= \begin{cases}1, & \text { se } t \geq s_{j} \\ 0, & \text { caso contrário }\end{cases}\, .
+\end{equation}
+
+Quando a taxa de crescimento é ajustada, é preciso corrigir as conexões entre os segmentos formados pelos \textit{changepoints}, e para tal, é necessário computar um ajuste no parâmetro de deslocamento $j$ de forma que:
+
+\begin{equation}
+    \gamma_{j}=\left(s_{j}-m-\sum_{l<j} \gamma_{l}\right)\left(1-\frac{k+\sum_{l<j} \delta_{l}}{k+\sum_{l \leq j} \delta_{l}}\right)\, .
+\end{equation}
+
+Portanto, a forma final do modelo de tendência logística é:
+
+\begin{equation}
+    g(t)=\frac{C(t)}{1+\exp \left(-\left(k+\mathbf{a}(t)^{\top} \boldsymbol{\delta}\right)\left(t-\left(m+\mathbf{a}(t)^{\top} \gamma\right)\right)\right)}\, .
+\end{equation}
+
+Para situações onde não é observada saturação no crescimento da série temporal, é recomendado a utilização do modelo de tendência linear. A mesma lógica de \textit{changepoints} também é aplicada nessa situação, e o modelo é dado pela equação:
+
+\begin{equation}
+    g(t)=\left(k+\mathbf{a}(t)^{\top} \boldsymbol{\delta}\right) t+\left(m+\mathbf{a}(t)^{\top} \gamma\right)\, ,
+\end{equation}
+
+onde $k$ é a taxa de crescimento, $\boldsymbol{\delta}$ são as taxas de ajuste (dos \textit{changepoints}), $m$ é o parâmetro de deslocamento e $\gamma_{j}$ assume o valor de $-s_{j}\delta_{j}$ par tornar a função contínua.
 
 \subsection{Sazonalidade}
-% explicar modelo de sazonalidade.
+Muitas séries temporais apresentam características sazonais em diversos períodos, ou seja, podem apresentar comportamento semelhante de hora em hora, dia em dia, semana a semana, e assim sucessivamente. A mesma série pode, inclusive, apresentar mais de uma sazonalidade.
+
+Para flexibilizar o modelo quanto às sazonalidades, são utilizadas séries de Fourier. Portando, o modelo segue a equação
+
+\begin{equation}
+    s(t)=\sum_{n=1}^{N}\left(a_{n} \cos \left(\frac{2 \pi n t}{P}\right)+b_{n} \sin \left(\frac{2 \pi n t}{P}\right)\right)\, ,
+\end{equation}
+
+onde $P$ é o período da sazonalidade e $\boldsymbol{\beta} = [a_{1},b_{1},\ldots,a_{N},b_{N}]^{\top}$ são os parâmetros ajustados por estimativa.
+
+Para $N=10$, por exemplo, é possível escrever a parte sazonal como:
+
+\begin{equation}
+    s(t)=\left[\cos \left(\frac{2 \pi(1) t}{365.25}\right), \ldots, \sin \left(\frac{2 \pi(10) t}{365.25}\right)\right]\boldsymbol{\beta} \, ,
+\end{equation}
+
+onde o parâmetro $\boldsymbol{\beta}$ pode ser estimado considerando $\boldsymbol{\beta} \sim \operatorname{Normal}\left(0, \sigma^{2}\right)$ e o parâmetro $N$ é atribuido empiricamente a $10$ e $3$ para sazonalidades anual e semanal, respectivamente. Essa escolha de parâmetros pode ser automatizada utilizando métodos de seleção de modelos, como o AIC (\textit{Akaike Information Criterion}).
+
 \subsection{Feriados e eventos}
-% explicar influência de feriados e eventos no prophet.
+Apesar de não contemplado neste trabalho, o Prophet também inclui um modelo de feriados. O usuário pode fornecer de entrada uma lista de feriados universais ou específicos de seu país. Essa possibilidade permite que seja possível levar em conta os feriados como eventos que influenciam diretamente no comportamento da série temporal, o que é verdade em muitos problemas da vida real.
+
+Para incorporar uma lista de feriados ao modelo, é assumido que o efeito dos feriados são independentes. Portanto, é considerado um conjunto $D_{i}$ de feriados $i$ que ocorrem em diferentes tempos $t$ para construir o vetor
+
+\begin{equation}
+    Z(t)=\left[\mathbf{1}\left(t \in D_{1}\right), \ldots, \mathbf{1}\left(t \in D_{L}\right)\right] \, ,
+\end{equation}
+
+que multiplicado por um vetor de parametros $\kappa_{i}$, que representa a mudança na série temporal ocorrida em cada feriado forma o modelo de feriados e eventos implementado pelo Prophet:
+
+\begin{equation}
+    h(t)=Z(t) \boldsymbol{\kappa}
+\end{equation}
+
+Assim como na sazonalidade, para ajustar os parâmetros desse modelo, é considerado $\boldsymbol{\kappa} \sim \operatorname{Normal}\left(0, \nu^{2}\right) .$ Além disso, o modelo também considera datas vizinhas como possíveis candiadatas a desvios no comportamento da série temporal, logo são datas também consideradas como feriado assim como a data marcada como tal.
+
 \subsection{Biblioteca fbprophet}
-% apresentar implementação do modelo de previsão prophet. 
+A biblioteca fbprophet implementa o método Prophet, descrito nessa seção, e disponibiliza uma API em Python e outra em R para sua utilização.\footnote{A documentação fica disponível em $https://facebook.github.io/prophet/docs/quick_start.html$, e é baseada em exemplos.} O pacote possui como conteúdo principal a classe Prophet, que implementa o modelo aditivo completo e recebe os hiperparâmetros em seu construtor. A classe possui 2 métodos principais: o método \textit{fit} para ajustar os parâmetros e o \textit{predict} para fazer as previsões. Ambos recebem os dados de entrada como parâmetro. Além desses métodos principais, existem outros para mostrar gráficos e resultados gerados durante o ajuste e a inferência.
+
+A documentação aborda os hiperparâmetros de cada parte do modelo aditivo, ou seja, tendência, sazonalidade e feriados, além de apresentar como otimizar os hiperparâmetros, evidenciando quais desses devem ser buscados de forma automática e quais devem ser especificados de acordo com os conhecimentos do domínio do problema.

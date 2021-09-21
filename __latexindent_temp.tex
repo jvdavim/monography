@@ -1,0 +1,62 @@
+\documentclass[grad,numbers]{coppe}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{booktabs, multirow} % for borders and merged ranges
+\usepackage{soul}% for underlines
+\usepackage[table]{xcolor} % for cell colors
+\usepackage{changepage,threeparttable} % for wide tables
+
+\makelosymbols
+\makeloabbreviations
+
+\begin{document}
+\hfuzz=100pt
+  \title{Título}
+  \foreigntitle{Title}
+  \author{João Victor}{Almeida Davim}
+  \advisor{Prof.}{Priscila}{Machado Vieira Lima}{Ph.D.}
+  \advisor{Prof.}{Leopoldo André}{Dutra Lusquino Filho}{D.Sc.}
+
+
+  \examiner{Prof.}{Nome do Primeiro Examinador Sobrenome}{D.Sc.}
+  \examiner{Prof.}{Nome do Segundo Examinador Sobrenome}{Ph.D.}
+  \examiner{Prof.}{Nome do Terceiro Examinador Sobrenome}{D.Sc.}
+  \examiner{Prof.}{Nome do Quarto  Examinador Sobrenome}{Ph.D.}
+  \examiner{Prof.}{Nome do Quinto Examinador Sobrenome}{Ph.D.}
+  \department{PESC}
+  \date{08}{2021}
+
+  \keyword{Primeira palavra-chave}
+  \keyword{Segunda palavra-chave}
+  \keyword{Terceira palavra-chave}
+
+  \maketitle
+
+  \frontmatter
+  \include{frontmatter/dedic}
+  \include{frontmatter/thanks}
+  \include{frontmatter/resumo}
+  \include{frontmatter/abstract}
+  \tableofcontents
+  \listoffigures
+  \listoftables
+  \printlosymbols
+  \printloabbreviations
+
+  \mainmatter
+  \include{chap/chap01}
+  \include{chap/chap02}
+  \include{chap/chap03}
+  \include{chap/chap04}
+  \include{chap/chap05}
+  \include{chap/chap06}
+
+  \backmatter
+  \bibliographystyle{coppe-unsrt}
+  \bibliography{main}
+
+  \appendix
+  \include{appenA}
+\end{document}
