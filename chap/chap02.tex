@@ -49,7 +49,7 @@ A parte integrada do modelo consiste na computação da diferença dos valores a
     \left(1-\sum_{i=1}^{p} \phi_{i} L^{i}\right)(1-L)^{d} X_{t}=\left(1+\sum_{i=1}^{q} \theta_{i} L^{i}\right) \varepsilon_{t}\, ,
 \end{equation}
 
-em que $X_{t}$ é a série temporal de dados, $t$ é um índice representado por um inteiro, $L$ é o operador de defasagem, $p$ é o hiperparâmetro do modelo auto-regressivo, $q$ é o hiperparâmetro do modelo de médias móveis, $d$ é o número de diferenças da parte integrada, $\phi_{i}$ são os parâmetros do modelo auto-regressivo, $\theta_{i}$ são os parâmetros do modelo de médias móveis e $\epsilon_{t}$ é o ruído branco ou erro aleatório. A estimação de modelos ARIMA é realizada, geralmente, através do método de Box-Jenkins \cite{box&jenkins}, que é um processo iterativo para encontrar os parâmetros que melhor ajustam o modelo aos dados observados.
+em que $X_{t}$ é a série temporal de dados, $t$ é um índice representado por um inteiro, $L$ é o operador de defasagem, $p$ é o hiperparâmetro do modelo auto-regressivo, $q$ é o hiperparâmetro do modelo de médias móveis, $d$ é o número de diferenças da parte integrada, $\phi_{i}$ são os parâmetros do modelo auto-regressivo, $\theta_{i}$ são os parâmetros do modelo de médias móveis e $\epsilon_{t}$ é o ruído branco ou erro aleatório. O ajuste de modelos ARIMA é realizada, geralmente, através do método de Box-Jenkins \cite{box&jenkins}, que é um processo iterativo para encontrar os parâmetros que melhor ajustam o modelo aos dados observados.
 
 \subsection{Biblioteca statsmodels}
 Os modelos autorregressivos apresentados, são implementados pela biblioteca statsmodels \cite{seabold2010statsmodels}, que é uma biblioteca para análise estatística e econométrica em Python. A biblioteca disponibiliza classes e funções para estimar diferentes modelos estatísticos, como ARMA e suas generalizações, além de testes estatísticos e análise estatística de dados. O pacote possui a licensa de código aberto \textit{Modified BSD (3-clause)}, e sua documentação oficial fica hospedada em statsmodels.org.
@@ -69,7 +69,7 @@ onde $g(t)$ representa a tendência, $s(t)$ a sazonalidade e $h(t)$ o feriado, e
 \subsection{Modelo de tendência}
 Exitem duas implementações do modelo de tendência que podem ser utilizados no Propet. Um é o modelo logístico de saturação, e o outro é o modelo linear.
 
-O modelo de crescimento logístico é, inicialmente, dado por \eqref{eq:logistic_trend}.
+O modelo de crescimento logístico é, inicialmente, dado pela equação \eqref{eq:logistic_trend}.
 
 \begin{equation}\label{eq:logistic_trend}
     g(t)=\frac{C}{1+\exp (-k(t-m))}\, ,
@@ -79,7 +79,7 @@ onde $C$ é a capacidade de saturação, $k$ é a taxa de crescimento, e $m$ um 
 
 Porém, algumas características são ajustadas para atender melhor aos problema reais de previsão de séries temporais. A capacidade de saturação $C$, por exemplo, pode variar com relação ao tempo sendo substituída por $C(t)$. A taxa de crescimento $k$, também não é constante, então foi introduzido ao modelo um mecanismo de \textit{changepoints}, onde o usuário define um número específico de \textit{changepoints}, que podem ser escolhidos explicitamente ou automaticamente.
 
-Os \textit{changepoints}, são pontos específicos na série temporal onde a taxa de crescimento $k$ pode ser alterada. Dada a sequência de \textit{changepoints} $s_{j}$, $j=1, \ldots, S$ onde $S$ é a quantidade de \textit{changepoints} escolhidos, é definido um vetor de ajuste das taxas $\boldsymbol{\delta} \in \mathbb{R}^{S}$. Cada elemento $\delta_{j}$ desse vetor é somado à taxa constante $k$ de crescimento ao alcançar o changepoint $j$ de forma acumulativa. Sendo assim, a taxa de crescimento pode ser calculada conforme a equação \eqref{eq:growth_rate}.
+Os \textit{changepoints} são pontos específicos na série temporal onde a taxa de crescimento $k$ pode ser alterada. Dada a sequência de \textit{changepoints} $s_{j}$, $j=1, \ldots, S$ onde $S$ é a quantidade de \textit{changepoints} escolhidos, é definido um vetor de ajuste das taxas $\boldsymbol{\delta} \in \mathbb{R}^{S}$. Cada elemento $\delta_{j}$ desse vetor é somado à taxa constante $k$ de crescimento ao alcançar o \textit{changepoint} $j$ de forma acumulativa. Sendo assim, a taxa de crescimento pode ser calculada conforme a equação \eqref{eq:growth_rate}.
 
 \begin{equation}\label{eq:growth_rate}
     k+\mathbf{a}(t)^{\top} \boldsymbol{\delta}\, ,    

@@ -49,6 +49,7 @@
     A tarefa regressão, assim como a de classificação, é uma das tarefas mais abrangentes e divulgadas na área de aprendizado de máquina. Como descrito no capítulo anterior, o modelo WiSARD é utilizado para a resolução de problemas de classificação, mas, como alguns outros modelos de aprendizado de máquina, também pode ser utilizado para problemas de regressão, necessitando apenas de algumas modificações em sua arquitetura.
     A principal modificação necessária para utilização da WiSARD para a tarefa de regressão está na estrutura da RAM. Essa adaptação é um aumento de dimensionalidade dos valores armazenados em cada posição de memória, ou seja, enquanto na WiSARD cada posição de memória armazena um número inteiro (contador), na Regression WiSARD cada posição de memória armazena 2 valores: o número de acessos e o somatório do valor alvo dos exemplos que acessaram esta posição. A Figura~\ref{fig:ramxram} ilustra a diferença entre as RAMs das duas arquiteturas.
 
+    \hspace*{-1.5in}
     \begin{figure}[!ht] \label{fig:ramxram}
     \centering
     \includegraphics[width=3.0in]{img/ramxram.png}
