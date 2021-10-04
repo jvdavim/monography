@@ -1,6 +1,6 @@
 \chapter{Previsão de Séries Temporais}
 
-\section{Definição do problema}
+\section{Definição do problema de previsão de séries temporais}
 Previsão de séries temporais é uma solução adotada para muitos problemas da vida real com o objetivo de, a partir de dados observados, realizar extrapolações para o futuro. Esse tipo de abordagem é muito eficaz quando há poucos dados disponíveis dentro do escopo do problema, pois permite realizar inferências que utilizam dados históricos da própria variável, e podem ser essenciais para o auxílio à tomada de decisão.
 
 Toda previsão de série temporal possui um horizonte de previsão, ou seja, o número de instantes à frente que serão previstos. Esse valor faz parte da caracterização do problema, portanto, é fundamental que todos os ajustes sejam avaliados de acordo com esse horizonte.
@@ -12,9 +12,9 @@ Existem muitos modelos univariados que são frequentemente utilizados para taref
 \section{Modelos autoregressivos}
 Os modelos utilizados para os experimentos deste trabalho foram escolhidos com base em estudos paralelos realizados com os dados do Covid-19 como em Ribeiro et al., 2020 \cite{RIBEIRO2020109853} e Wang et al., 2020 \cite{WANG2020110058}, e serão descritos nas subseções seguintes com suas respectivas formalizações.
 \subsection{ARMA}
-O modelo ARMA é uma combinação dos modelos auto-regressivo (AR) e de médias móveis (MA). O modelo auto regressivo puro de ordem $p$, ou seja, $AR(p)$, pode ser formalizado como:
+O modelo ARMA é uma combinação dos modelos auto-regressivo (AR) e de médias móveis (MA). O modelo auto regressivo puro de ordem $p$, ou seja, $AR(p)$, pode é formalizado de acordo com a equação \eqref{eq:ar}.
 
-\begin{equation}
+\begin{equation}\label{eq:ar}
     X_{t}=c+\sum ^{p}_{i=1}\rho _{i}X_{t-i}+\varepsilon _{t}\, ,
 \end{equation}
 

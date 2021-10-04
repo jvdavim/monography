@@ -1,6 +1,6 @@
 \chapter{Previsão de Séries Temporais}
 
-\section{Definição do problema}
+\section{Definição do problema de previsão de séries temporais}
 Previsão de séries temporais é uma solução adotada para muitos problemas da vida real com o objetivo de, a partir de dados observados, realizar extrapolações para o futuro. Esse tipo de abordagem é muito eficaz quando há poucos dados disponíveis dentro do escopo do problema, pois permite realizar inferências que utilizam dados históricos da própria variável, e podem ser essenciais para o auxílio à tomada de decisão.
 
 Toda previsão de série temporal possui um horizonte de previsão, ou seja, o número de instantes à frente que serão previstos. Esse valor faz parte da caracterização do problema, portanto, é fundamental que todos os ajustes sejam avaliados de acordo com esse horizonte.
@@ -12,9 +12,9 @@ Existem muitos modelos univariados que são frequentemente utilizados para taref
 \section{Modelos autoregressivos}
 Os modelos utilizados para os experimentos deste trabalho foram escolhidos com base em estudos paralelos realizados com os dados do Covid-19 como em Ribeiro et al., 2020 \cite{RIBEIRO2020109853} e Wang et al., 2020 \cite{WANG2020110058}, e serão descritos nas subseções seguintes com suas respectivas formalizações.
 \subsection{ARMA}
-O modelo ARMA é uma combinação dos modelos auto-regressivo (AR) e de médias móveis (MA). O modelo auto regressivo puro de ordem $p$, ou seja, $AR(p)$, pode ser formalizado como:
+O modelo ARMA é uma combinação dos modelos auto-regressivo (AR) e de médias móveis (MA). O modelo auto regressivo puro de ordem $p$, ou seja, $AR(p)$, é formalizado de acordo com a equação \eqref{eq:ar}.
 
-\begin{equation}
+\begin{equation}\label{eq:ar}
     X_{t}=c+\sum ^{p}_{i=1}\rho _{i}X_{t-i}+\varepsilon _{t}\, ,
 \end{equation}
 
@@ -22,16 +22,17 @@ onde $\rho _{1}\ldots \rho _{p}$ são os parâmetros, $c$ é uma constante e $\v
 
 O ajuste de parâmetros a ser realizado na etapa de treinamento do modelo pode ser feito utilizando o método dos mínimos quadrados ou método dos momentos através das equações de Yule-Walker \cite{box&jenkins}.
 
-O modelo de médias móveis (MA) é utilizado junto com o modelo auto regressivo, e é uma abordagem comum para modelagem de séries temporais univariadas \cite{box&jenkins}. Este modelo estabelece uma dependência linear entre os valores atuais da série temporal e os valores passados, e pode ser formalizado como:
+O modelo de médias móveis (MA) é utilizado junto com o modelo auto regressivo, e é uma abordagem comum para modelagem de séries temporais univariadas \cite{box&jenkins}. Este modelo estabelece uma dependência linear entre os valores atuais da série temporal e os valores passados, e é formalizado de acordo com a equação \eqref{eq:ma}.
 
-\begin{equation}
+\begin{equation}\label{eq:ma}
     X_{t}=\mu+\varepsilon_{t}+\theta_{1} \varepsilon_{t-1}+\cdots+\theta_{q} \varepsilon_{t-q}\, ,
 \end{equation}
 
 onde $\mu$ é a média da série, $\theta_{1}, ..., \theta_{q}$ são os parâmetros e $\varepsilon_{t}, ..., \varepsilon_{t-q}$ são os termos do ruído branco.
 
-Cada modelo pode ser utilizado de forma independente, ou em conjunto formando o modelo ARMA. A construção desse modelo se dá pela soma do modelo auto-regressivo com o modelo de médias móveis, e pode ser formalizado como:
-\begin{equation}
+Cada modelo pode ser utilizado de forma independente, ou em conjunto formando o modelo ARMA. A construção desse modelo se dá pela soma do modelo auto-regressivo com o modelo de médias móveis é expresso na equação \eqref{eq:arma}.
+
+\begin{equation}\label{eq:arma}
     X_{t}=c+\varepsilon_{t}+\sum_{i=1}^{p} \varphi_{i} X_{t-i}+\sum_{i=1}^{q} \theta_{i} \varepsilon_{t-i}\, .
 \end{equation}
 
@@ -42,11 +43,9 @@ Alguns problemas de previsão de séries temporais são ligeiramente mais comple
 
 De forma análoga ao ARMA, os modelos ARIMA são geralmente denotados como $ARIMA(p, d, q)$, onde os parâmetros $p$, $d$ e $q$ são inteiros não negativos que representam a ordem do modelo auto-regressivo (AR), o grau de diferenciação da parte integrada (I) e a ordem do modelo de médias móveis (MA) respectivamente.
 
-A parte integrada do modelo consiste na computação da diferença dos valores atuais da série temporal com os valores subsequentes da mesma. Esse procedimento é realizado $d$ vezes, e este é o parâmetro da parte integrada do modelo.
+A parte integrada do modelo consiste na computação da diferença dos valores atuais da série temporal com os valores subsequentes da mesma. Esse procedimento é realizado $d$ vezes, e este é o parâmetro da parte integrada do modelo. A equação \eqref{eq:arima} descreve o modelo ARIMA.
 
-Pode-se formalizar o modelo ARIMA como:
-
-\begin{equation}
+\begin{equation}\label{eq:arima}
     \left(1-\sum_{i=1}^{p} \phi_{i} L^{i}\right)(1-L)^{d} X_{t}=\left(1+\sum_{i=1}^{q} \theta_{i} L^{i}\right) \varepsilon_{t}\, ,
 \end{equation}
 
@@ -59,20 +58,20 @@ Os modelos autorregressivos apresentados, são implementados pela biblioteca sta
 \section{Modelo de previsão Prophet}
 O modelo de previsão Prophet \cite{fbprophet} foi uma solução criada e adotada pelo Facebook para solução de problemas de previsão no nicho de negócios. A ideia era criar um modelo capaz de utilizar características comuns na maioria dos problemas de previsão para tentar melhorar a acertividade em relação à modelos considerados automáticos como o ARIMA. Então, para facilitar a utilização do modelo por analistas, que na maior parte dos casos, não possui conhecimento detalhado sobre a série temporal que está sendo analisada, o Prophet propõe um modelo que tenha hiperparâmetros intuitivos para alcançar maior escalabilidade no momento da otimização feita pelos analistas.
 
-O modelo é resultado da decomposição da série temporal em 3 principais componentes: tendência, sazonalidade e feriados. Esses componentes compõe o modelo de acordo com a seguinte equação:
+O modelo é resultado da decomposição da série temporal em 3 principais componentes: tendência, sazonalidade e feriados. Esses componentes compõe o modelo aditivo apresentado na equação \eqref{eq:prophet}.
 
-\begin{equation}
+\begin{equation}\label{eq:prophet}
     y(t) = g(t) + s(t) + h(t) + \epsilon_{t}\, ,
 \end{equation}
 
 onde $g(t)$ representa a tendência, $s(t)$ a sazonalidade e $h(t)$ o feriado, e $\epsilon_{t}$ representa o erro não acomodado pelos outros modelos.
 
 \subsection{Modelo de tendência}
-Exitem 2 implementações do modelo de tendência que podem ser utilizados no Propet. Um é o modelo logístico de saturação, e o outro é o modelo linear.
+Exitem duas implementações do modelo de tendência que podem ser utilizados no Propet. Um é o modelo logístico de saturação, e o outro é o modelo linear.
 
-O modelo de crescimento logístico é, inicialmente, dado por:
+O modelo de crescimento logístico é, inicialmente, dado por \eqref{eq:logistic_trend}.
 
-\begin{equation}
+\begin{equation}\label{eq:logistic_trend}
     g(t)=\frac{C}{1+\exp (-k(t-m))}\, ,
 \end{equation}
 
@@ -80,27 +79,33 @@ onde $C$ é a capacidade de saturação, $k$ é a taxa de crescimento, e $m$ um 
 
 Porém, algumas características são ajustadas para atender melhor aos problema reais de previsão de séries temporais. A capacidade de saturação $C$, por exemplo, pode variar com relação ao tempo sendo substituída por $C(t)$. A taxa de crescimento $k$, também não é constante, então foi introduzido ao modelo um mecanismo de \textit{changepoints}, onde o usuário define um número específico de \textit{changepoints}, que podem ser escolhidos explicitamente ou automaticamente.
 
-Os \textit{changepoints}, são pontos específicos na série temporal onde a taxa de crescimento $k$ pode ser alterada. Dada a sequência de \textit{changepoints} $s_{j}$, $j=1, \ldots, S$ onde $S$ é a quantidade de \textit{changepoints} escolhidos, é definido um vetor de ajuste das taxas $\boldsymbol{\delta} \in \mathbb{R}^{S}$. Cada elemento $\delta_{j}$ desse vetor é somado à taxa constante $k$ de crescimento ao alcançar o changepoint $j$ de forma acumulativa. Sendo assim, a taxa de crescimento pode ser calculada como $k+\mathbf{a}(t)^{\top} \boldsymbol{\delta}$, onde
+Os \textit{changepoints}, são pontos específicos na série temporal onde a taxa de crescimento $k$ pode ser alterada. Dada a sequência de \textit{changepoints} $s_{j}$, $j=1, \ldots, S$ onde $S$ é a quantidade de \textit{changepoints} escolhidos, é definido um vetor de ajuste das taxas $\boldsymbol{\delta} \in \mathbb{R}^{S}$. Cada elemento $\delta_{j}$ desse vetor é somado à taxa constante $k$ de crescimento ao alcançar o changepoint $j$ de forma acumulativa. Sendo assim, a taxa de crescimento pode ser calculada conforme a equação \eqref{eq:growth_rate}.
 
-\begin{equation}
-    a_{j}(t)= \begin{cases}1, & \text { se } t \geq s_{j} \\ 0, & \text { caso contrário }\end{cases}\, .
+\begin{equation}\label{eq:growth_rate}
+    k+\mathbf{a}(t)^{\top} \boldsymbol{\delta}\, ,    
 \end{equation}
 
-Quando a taxa de crescimento é ajustada, é preciso corrigir as conexões entre os segmentos formados pelos \textit{changepoints}, e para tal, é necessário computar um ajuste no parâmetro de deslocamento $j$ de forma que:
+onde
 
-\begin{equation}
+\[
+    a_{j}(t)= \begin{cases}1, & \text { se } t \geq s_{j} \\ 0, & \text { caso contrário }\end{cases}\, .
+\]
+
+Quando a taxa de crescimento é ajustada, é preciso corrigir as conexões entre os segmentos formados pelos \textit{changepoints}, e para tal, é necessário computar um ajuste no parâmetro de deslocamento $j$ conforme mostra a equação \eqref{eq:shift_parameter}.
+
+\begin{equation}\label{eq:shift_parameter}
     \gamma_{j}=\left(s_{j}-m-\sum_{l<j} \gamma_{l}\right)\left(1-\frac{k+\sum_{l<j} \delta_{l}}{k+\sum_{l \leq j} \delta_{l}}\right)\, .
 \end{equation}
 
-Portanto, a forma final do modelo de tendência logística é:
+Portanto, a forma final do modelo de tendência logística é representado pela equação \eqref{eq:final_logistic_trend}.
 
-\begin{equation}
+\begin{equation}\label{eq:final_logistic_trend}
     g(t)=\frac{C(t)}{1+\exp \left(-\left(k+\mathbf{a}(t)^{\top} \boldsymbol{\delta}\right)\left(t-\left(m+\mathbf{a}(t)^{\top} \gamma\right)\right)\right)}\, .
 \end{equation}
 
-Para situações onde não é observada saturação no crescimento da série temporal, é recomendado a utilização do modelo de tendência linear. A mesma lógica de \textit{changepoints} também é aplicada nessa situação, e o modelo é dado pela equação:
+Para situações onde não é observada saturação no crescimento da série temporal, é recomendado a utilização do modelo de tendência linear. A mesma lógica de \textit{changepoints} também é aplicada nessa situação, e o modelo é dado pela equação \eqref{eq:linear_trend}.
 
-\begin{equation}
+\begin{equation}\label{eq:linear_trend}
     g(t)=\left(k+\mathbf{a}(t)^{\top} \boldsymbol{\delta}\right) t+\left(m+\mathbf{a}(t)^{\top} \gamma\right)\, ,
 \end{equation}
 
@@ -109,17 +114,17 @@ onde $k$ é a taxa de crescimento, $\boldsymbol{\delta}$ são as taxas de ajuste
 \subsection{Sazonalidade}
 Muitas séries temporais apresentam características sazonais em diversos períodos, ou seja, podem apresentar comportamento semelhante de hora em hora, dia em dia, semana a semana, e assim sucessivamente. A mesma série pode, inclusive, apresentar mais de uma sazonalidade.
 
-Para flexibilizar o modelo quanto às sazonalidades, são utilizadas séries de Fourier. Portando, o modelo segue a equação
+Para flexibilizar o modelo quanto às sazonalidades, são utilizadas séries de Fourier. Portando, o modelo segue a equação \eqref{eq:fourier_seasonality}.
 
-\begin{equation}
+\begin{equation} \label{eq:fourier_seasonality}
     s(t)=\sum_{n=1}^{N}\left(a_{n} \cos \left(\frac{2 \pi n t}{P}\right)+b_{n} \sin \left(\frac{2 \pi n t}{P}\right)\right)\, ,
 \end{equation}
 
 onde $P$ é o período da sazonalidade e $\boldsymbol{\beta} = [a_{1},b_{1},\ldots,a_{N},b_{N}]^{\top}$ são os parâmetros ajustados por estimativa.
 
-Para $N=10$, por exemplo, é possível escrever a parte sazonal como:
+Para $N=10$, por exemplo, é possível escrever a parte sazonal conforme calculado em \eqref{eq:fourier_seasonality_n_10}.
 
-\begin{equation}
+\begin{equation} \label{eq:fourier_seasonality_n_10}
     s(t)=\left[\cos \left(\frac{2 \pi(1) t}{365.25}\right), \ldots, \sin \left(\frac{2 \pi(10) t}{365.25}\right)\right]\boldsymbol{\beta} \, ,
 \end{equation}
 
