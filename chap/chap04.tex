@@ -4,13 +4,15 @@ Como previsto no capítulo de redes neurais sem peso, o modelo Regression WiSARD
 \section{Janelas deslizantes}
 O método de janelas deslizantes é essencial para a Regression WiSARD ser capaz de realizar previsões de séries temporais. Isso ocorre porque é a técnica que permite transformar o problema temporal em um problema de regressão supervisionado.
 
-% O método consiste em tornar cada amostra dependente das N amostras anteriores, e faz isso alocando uma janela de N amostras no início da série temporal e deslocando até o final de amostra em amostra para formar a matriz de características, conforme ilustra a Figure~\ref{fig:sliding_window}.
+O método consiste em tornar cada amostra dependente das $W$ amostras anteriores, e faz isso alocando uma janela de $W$ amostras no início da série temporal e deslocando até o final de amostra em amostra para formar a matriz de características, conforme ilustra a Figura~\ref{fig:sliding_window}, onde $W=3$ e $N$ é o número de registros da série temporal.
 
-    % \begin{figure}[!ht] \label{fig:sliding_window}
-    % \centering
-    % \includegraphics[width=5.0in]{img/}
-    % \caption{Legenda}
-    % \end{figure}
+    \begin{figure}[!ht] \label{fig:sliding_window}
+    \centering
+    \includegraphics[width=3.0in]{img/sliding_window.png}
+    \caption{Exemplo de aplicação do método de janelas deslizantes para transformar a série temporal $t$ em uma matriz de características $X$ e um vetor alvo $y$. }
+    \end{figure}
+
+Em alguns casos, também é possível utilizar outro parâmetro para a técnica, como o tamanho do passo da janela. No exemplo da Figura~\ref{fig:sliding_window}, esse tamanho foi considerado como $s=1$, já que o tamanho do passo para formar cada registro foi de 1.
 % Exemplos práticos de utilização...
 
 % Como ajuda na previsão de séries temporais com a Regression WiSARD...
