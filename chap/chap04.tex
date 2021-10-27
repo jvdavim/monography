@@ -9,12 +9,16 @@ O método consiste em tornar cada amostra dependente das $W$ amostras anteriores
     \begin{figure}[!ht] \label{fig:sliding_window}
     \centering
     \includegraphics[width=3.0in]{img/sliding_window.png}
-    \caption{Exemplo de aplicação do método de janelas deslizantes para transformar a série temporal $t$ em uma matriz de características $X$ e um vetor alvo $y$. }
+    \caption{Exemplo de aplicação do método de janelas deslizantes com passo $s=1$  para transformar a série temporal $t$ em uma matriz de características $X$ e um vetor alvo $y$. }
     \end{figure}
 
-Em alguns casos, também é possível utilizar outro parâmetro para a técnica, como o tamanho do passo da janela. No exemplo da Figura~\ref{fig:sliding_window}, esse tamanho de passo foi considerado como $s=1$, já que o tamanho do passo para formar cada registro foi de 1.
+Em alguns casos, também é possível utilizar outro parâmetro para a técnica, como o tamanho do passo da janela. No exemplo da Figura~\ref{fig:sliding_window_2}, esse tamanho de passo foi considerado como $s=1$, já que o tamanho do passo para formar cada registro foi de 1.
 
-%% IMAGEM EXEMPLO PARA O USO DO MÉTODO DE JANELAS DESLIZANTES PARA TAMANHO DE PASSO s=2...
+\begin{figure}[!ht] \label{fig:sliding_window_2}
+    \centering
+    \includegraphics[width=3.0in]{img/sliding_window_2.png}
+    \caption{Exemplo de aplicação do método de janelas deslizantes com passo $s=2$  para transformar a série temporal $t$ em uma matriz de características $X$ e um vetor alvo $y$. }
+\end{figure}
 
 É importante observar algumas características quanto ao método de janela deslizante, como a preservação da ordem dos registros, que é importante para garantir que a variável alvo será uma função dos dados anteriores na série temporal. Além disso, os primeiros $W$ valores da série temporal serão inutilizados, pois não possuem registros anteriores suficientes para gerar um registro na matriz de características.
 
@@ -25,9 +29,15 @@ Mesmo com a utilização desse método, os problemas relacionados à previsão d
 \section{Média móvel} \label{sec:moving_average}
 Existem alguns tipos de média móvel como a simples, a ponderada, a cumulativa, e a exponencial. Cada tipo de média móvel produz um efeito ao ser aplicada na série temporal, e podem ser usadas para alcançar objetivos diferentes. O algoritmo de média móvel simples, por exemplo, é utilizado para suavizar flutuações em curto prazo em uma série temporal, e consequentemente evidenciar tendências a longo prazo. Essa transformação se faz necessária, portanto, para facilitar o processo de aprendizado de modelos preditivos.
 
-% Exemplos práticos de utilização...
+Para aplicar uma média móvel simples, dado uma sequência $P = (p_{1}, p_{2}, ..., p_{m})$ e um tamanho de janela $n$, é possível calcular cada valor $\overline{p}_{i}$ de média móvel conforme a Equação~\ref{eq:moving_average}.
 
-% Como ajuda na previsão de séries temporais com a Regression WiSARD...
+\begin{equation} \label{eq:moving_average}
+    \overline{p}_{i} = \dfrac{1}{n}\sum ^{i}_{j=i-n}p_{j}
+\end{equation}
+
+É possível notar que os primeiros $n$ valores da série temporal resultante são inviáveis de calcular, pois não possuem $n$ antecessores para o cáculo da média. Nesse sentido, uma abordagem simples é apenas desconsiderar os $n$ valores iniciais da série, já que em muitos casos o tamanho da série temporal é grande suficiente para essa perda não ser expressiva para os modelos preditivos.
+
+%% Verificar na lib do pandas como é implementado e escrever a equação...
 
 \section{Regression WiSARD}
 % Explicar treinamento do modelo...
