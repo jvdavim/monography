@@ -82,7 +82,7 @@ Porém, algumas características são ajustadas para atender melhor aos problema
 Os \textit{changepoints} são pontos específicos na série temporal onde a taxa de crescimento $k$ pode ser alterada. Dada a sequência de \textit{changepoints} $s_{j}$, $j=1, \ldots, S$ onde $S$ é a quantidade de \textit{changepoints} escolhidos, é definido um vetor de ajuste das taxas $\boldsymbol{\delta} \in \mathbb{R}^{S}$. Cada elemento $\delta_{j}$ desse vetor é somado à taxa constante $k$ de crescimento ao alcançar o \textit{changepoint} $j$ de forma acumulativa. Sendo assim, a taxa de crescimento pode ser calculada conforme a equação \eqref{eq:growth_rate}.
 
 \begin{equation}\label{eq:growth_rate}
-    k+\mathbf{a}(t)^{\top} \boldsymbol{\delta}\, ,    
+    k+\mathbf{a}(t)^{\top} \boldsymbol{\delta}\, ,
 \end{equation}
 
 onde
