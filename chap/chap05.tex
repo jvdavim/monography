@@ -12,10 +12,12 @@ Para os experimentos realizados neste trabalho, foram utilizados 2 máquinas com
 Os experimentos foram realizados utilizando \textit{scripts} e \textit{notebooks} Python, dependendo da etapa e da finalidade. Para a busca de hiperparâmetros e avaliação dos modelos em relação ao erro, foram utilizados \textit{scripts}, enquanto para a avaliação de métricas de tempo de inferência e uso de memória foram utilizados \textit{notebooks}.
 
 \section{Coleções de dados}
+Foram utilizadas para os experimentos deste trabalho 3 coleções de dados. Dentre estas, duas foram coletadas de fontes públicas abertas na internet e uma foi gerada artificialmente. Todas foram armazenadas em disco local no formato tabular com extensão CSV.
 % explicar fonte e formato dos dados utilizados para avaliação dos modelos.
-
+Com o auxílio da biblioteca \textit{requests} do Python, foi criado um script para baixar e armazenar localmente o número de casos confirmados de Covid19 no Estado do Rio de Janeiro. O arquivo csv foi baixado diretamente do web site da Secretaria de Saúde do Estado do Rio de Janeiro. \footnote{$http://sistemas.saude.rj.gov.br/tabnetbd/dhx.exe?covid19/covid_munic_diario.def$}
 % casos confirmados  de covid19 no rio de janeiro.
 
+Uma coleção de dados foi gerada de forma sintética com o auxílio da biblioteca \textit{numpy} do Python com características criadas artificialmente somando componentes como tendência, sazonalidade, ruído branco e 
 % dados gerado de forma sintética com o arma com auxílio da biblioteca statmodels.
 
 % dados de temperatura mínima diária.
@@ -28,48 +30,93 @@ Os experimentos foram realizados utilizando \textit{scripts} e \textit{notebooks
 
 \subsection{Tempos de execução}
 
-\begin{table}[!htp]\centering
+\begin{table}[!htp]
     \caption{Tempo de ajuste dos modelos}
-    \begin{tabular}{cccccc}
-        \toprule
-        \multirow{2}{*}{Modelo}  & \multirow{2}{*}{Métrica} & \multicolumn{3}{c}{Dataset}                                       \\\cmidrule{3-5}
-                                 &                          & Covid                       & Temperatura      & Sintético        \\\midrule
-        \multirow{4}{*}{ARIMA}   & RMSE                     & 779 ms ± 2.4 ms             & 3.61 s ± 5.34 ms & 38.4 ms ± 383 µs \\
-                                 & MAPE                     & 1.34 s ± 2.11ms             & 3.61 s ± 4.68 ms & 38.3 ms ± 184 µs \\
-                                 & MAE                      & 779 ms ± 1.2 ms             & 3.61 s ± 8.5 ms  & 38.4 ms ± 225 µs \\
-                                 & MPE                      & 1.61 s ± 1.33 ms            & 6.36 s ± 9.48 ms & 566 ms ± 705 µs  \\\midrule
-        \multirow{4}{*}{ReW}     & RMSE                     & 4.41 ms ± 151 µs            & 31.2 ms ± 526 µs & 9.97 ms ± 143 µs \\
-                                 & MAPE                     & 4.46 ms ± 75.1 µs           & 19.5 ms ± 409 µs & 10.1 ms ± 166 µs \\
-                                 & MAE                      & 8.65 ms ± 126 µs            & 19.3 ms ± 149 µs & 10.5 ms ± 116 µs \\
-                                 & MPE                      & 4.41 ms ± 151 µs            & 64.7 ms ± 549 µs & 8.86 ms ± 123 µs \\\midrule
-        \multirow{4}{*}{Prophet} & RMSE                     & 56.5 ms ± 17.9 ms           & 205 ms ± 176 µs  & 60.7 ms ± 87 µs  \\
-                                 & MAPE                     & 46 ms ± 63.1 µs             & 179 ms ± 514 µs  & 60.9 ms ± 174 µs \\
-                                 & MAE                      & 44.6 ms ± 109 µs            & 180 ms ± 396 µs  & 61.1 ms ± 177 µs \\
-                                 & MPE                      & 46 ms ± 72.1 µs             & 203 ms ± 200 µs  & 68.1 ms ± 178 µs \\
-        \bottomrule
+    \begin{tabular}{|c|c|ccc|}
+        \hline
+        \rowcolor[HTML]{C0C0C0}
+        \cellcolor[HTML]{C0C0C0}                          & \cellcolor[HTML]{C0C0C0}                          & \multicolumn{3}{c|}{\cellcolor[HTML]{C0C0C0}Dataset}                                                                                                                         \\ \cline{3-5}
+        \rowcolor[HTML]{C0C0C0}
+        \multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}Modelo}  & \multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}Métrica} & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Covid}                      & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Temperatura}               & Sintético                 \\ \hline
+        \cellcolor[HTML]{C0C0C0}                          & RMSE                                              & \multicolumn{1}{c|}{779 ms ± 2.4 ms}                                    & \multicolumn{1}{c|}{3.61 s ± 5.34 ms}                                  & 38.4 ms ± 383 µs          \\ \cline{2-5}
+        \rowcolor[HTML]{EFEFEF}
+        \cellcolor[HTML]{C0C0C0}                          & MAPE                                              & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}1.34 s ± 2.11ms}            & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}3.61 s ± 4.68 ms}          & 38.3 ms ± 184 µs          \\ \cline{2-5}
+        \cellcolor[HTML]{C0C0C0}                          & MAE                                               & \multicolumn{1}{c|}{779 ms ± 1.2 ms}                                    & \multicolumn{1}{c|}{3.61 s ± 8.5 ms}                                   & 38.4 ms ± 225 µs          \\ \cline{2-5}
+        \rowcolor[HTML]{EFEFEF}
+        \multirow{-4}{*}{\cellcolor[HTML]{C0C0C0}ARIMA}   & MPE                                               & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}1.61 s ± 1.33 ms}           & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}6.36 s ± 9.48 ms}          & 566 ms ± 705 µs           \\ \hline
+        \cellcolor[HTML]{C0C0C0}                          & RMSE                                              & \multicolumn{1}{c|}{\textbf{4.41 ms ± 151 µs}}                          & \multicolumn{1}{c|}{\textbf{31.2 ms ± 526 µs}}                         & \textbf{9.97 ms ± 143 µs} \\ \cline{2-5}
+        \rowcolor[HTML]{EFEFEF}
+        \cellcolor[HTML]{C0C0C0}                          & MAPE                                              & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{4.46 ms ± 75.1 µs}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{19.5 ms ± 409 µs}} & \textbf{10.1 ms ± 166 µs} \\ \cline{2-5}
+        \cellcolor[HTML]{C0C0C0}                          & MAE                                               & \multicolumn{1}{c|}{\textbf{8.65 ms ± 126 µs}}                          & \multicolumn{1}{c|}{\textbf{19.3 ms ± 149 µs}}                         & \textbf{10.5 ms ± 116 µs} \\ \cline{2-5}
+        \rowcolor[HTML]{EFEFEF}
+        \multirow{-4}{*}{\cellcolor[HTML]{C0C0C0}ReW}     & MPE                                               & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{4.41 ms ± 151 µs}}  & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{64.7 ms ± 549 µs}} & \textbf{8.86 ms ± 123 µs} \\ \hline
+        \cellcolor[HTML]{C0C0C0}                          & RMSE                                              & \multicolumn{1}{c|}{56.5 ms ± 17.9 ms}                                  & \multicolumn{1}{c|}{205 ms ± 176 µs}                                   & 60.7 ms ± 87 µs           \\ \cline{2-5}
+        \rowcolor[HTML]{EFEFEF}
+        \cellcolor[HTML]{C0C0C0}                          & MAPE                                              & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}46 ms ± 63.1 µs}            & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}179 ms ± 514 µs}           & 60.9 ms ± 174 µs          \\ \cline{2-5}
+        \cellcolor[HTML]{C0C0C0}                          & MAE                                               & \multicolumn{1}{c|}{44.6 ms ± 109 µs}                                   & \multicolumn{1}{c|}{180 ms ± 396 µs}                                   & 61.1 ms ± 177 µs          \\ \cline{2-5}
+        \rowcolor[HTML]{EFEFEF}
+        \multirow{-4}{*}{\cellcolor[HTML]{C0C0C0}Prophet} & MPE                                               & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}46 ms ± 72.1 µs}            & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}203 ms ± 200 µs}           & 68.1 ms ± 178 µs          \\ \hline
     \end{tabular}
 \end{table}
 
-\begin{table}[!htp]\centering
-    \caption{Tempo de inferencia dos modelos}
-    \begin{tabular}{lrrrrr}\toprule
-        \multirow{2}{*}{Modelo}  & \multirow{2}{*}{Métrica} & \multicolumn{3}{c}{Dataset}                                        \\\cmidrule{3-5}
-                                 &                          & Covid                       & Temperatura      & Sintético         \\ \midrule
-        \multirow{4}{*}{ARIMA}   & RMSE                     & 960 µs ± 2.51 µs            & 951 µs ± 14.4 µs & 1.92 ms ± 28.5 µs \\
-                                 & MAPE                     & 970 µs ± 1.83 µs            & 942 µs ± 4.96 µs & 1.93 ms ± 33.3 µs \\
-                                 & MAE                      & 958 µs ± 2.81 µs            & 972 µs ± 8.09 µs & 1.92 ms ± 24.8 µs \\
-                                 & MPE                      & 959 µs ± 5.72 µs            & 956 µs ± 7.02 µs & 953 µs ± 27.8 µs  \\ \midrule
-        \multirow{4}{*}{ReW}     & RMSE                     & 142 µs ± 2.8 µs             & 149 µs ± 349 ns  & 330 µs ± 4.67     \\
-                                 & MAPE                     & 87.6 µs ± 1.22 µs           & 106 µs ± 339 ns  & 494 µs ± 12.8 µs  \\
-                                 & MAE                      & 145 µs ± 2.3 µs             & 107 µs ± 1.45 µs & 512 µs ± 7.91 µs  \\
-                                 & MPE                      & 91 µs ± 638 ns              & 232 µs ± 6.43 µs & 422 µs ± 8.16 µs  \\ \midrule
-        \multirow{4}{*}{Prophet} & RMSE                     & 1.26 s ± 10.7 ms            & 1.88 s ± 3.79 ms & 898 ms ± 768 µs   \\
-                                 & MAPE                     & 1.25 s ± 1.59 ms            & 2.13 s ± 711 µs  & 906 ms ± 600 µs   \\
-                                 & MAE                      & 1.25 s ± 1.29 ms            & 2.13 s ± 940 µs  & 898 ms ± 753 µs   \\
-                                 & MPE                      & 1.25 s ± 1.26 ms            & 1.88 s ± 530 µs  & 899 ms ± 1.24 ms  \\ \midrule
+\begin{table}[!htp]
+    \caption{Tempo de inferência dos modelos}
+    \begin{tabular}{|c|c|ccc|}
+        \hline
+        \rowcolor[HTML]{C0C0C0}
+        \cellcolor[HTML]{C0C0C0}                          & \cellcolor[HTML]{C0C0C0}                          & \multicolumn{3}{c|}{\cellcolor[HTML]{C0C0C0}Dataset}                                                                                                                         \\ \cline{3-5}
+        \rowcolor[HTML]{C0C0C0}
+        \multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}Modelo}  & \multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}Métrica} & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Covid}                      & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Temperatura}               & Sintético                 \\ \hline
+        \cellcolor[HTML]{C0C0C0}                          & RMSE                                              & \multicolumn{1}{c|}{960 µs ± 2.51 µs}                                   & \multicolumn{1}{c|}{951 µs ± 14.4 µs}                                  & 1.92 ms ± 28.5 µs         \\ \cline{2-5}
+        \rowcolor[HTML]{EFEFEF}
+        \cellcolor[HTML]{C0C0C0}                          & MAPE                                              & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}970 µs ± 1.83 µs}           & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}942 µs ± 4.96 µs}          & 1.93 ms ± 33.3 µs         \\ \cline{2-5}
+        \cellcolor[HTML]{C0C0C0}                          & MAE                                               & \multicolumn{1}{c|}{958 µs ± 2.81 µs}                                   & \multicolumn{1}{c|}{972 µs ± 8.09 µs}                                  & 1.92 ms ± 24.8 µs         \\ \cline{2-5}
+        \rowcolor[HTML]{EFEFEF}
+        \multirow{-4}{*}{\cellcolor[HTML]{C0C0C0}ARIMA}   & MPE                                               & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}959 µs ± 5.72 µs}           & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}956 µs ± 7.02 µs}          & 953 µs ± 27.8 µs          \\ \hline
+        \cellcolor[HTML]{C0C0C0}                          & RMSE                                              & \multicolumn{1}{c|}{\textbf{142 µs ± 2.8 µs}}                           & \multicolumn{1}{c|}{\textbf{149 µs ± 349 ns}}                          & \textbf{330 µs ± 4.67}    \\ \cline{2-5}
+        \rowcolor[HTML]{EFEFEF}
+        \cellcolor[HTML]{C0C0C0}                          & MAPE                                              & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{87.6 µs ± 1.22 µs}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{106 µs ± 339 ns}}  & \textbf{494 µs ± 12.8 µs} \\ \cline{2-5}
+        \cellcolor[HTML]{C0C0C0}                          & MAE                                               & \multicolumn{1}{c|}{\textbf{145 µs ± 2.3 µs}}                           & \multicolumn{1}{c|}{\textbf{107 µs ± 1.45 µs}}                         & \textbf{512 µs ± 7.91 µs} \\ \cline{2-5}
+        \rowcolor[HTML]{EFEFEF}
+        \multirow{-4}{*}{\cellcolor[HTML]{C0C0C0}ReW}     & MPE                                               & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{91 µs ± 638 ns}}    & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{232 µs ± 6.43 µs}} & \textbf{422 µs ± 8.16 µs} \\ \hline
+        \cellcolor[HTML]{C0C0C0}                          & RMSE                                              & \multicolumn{1}{c|}{1.26 s ± 10.7 ms}                                   & \multicolumn{1}{c|}{1.88 s ± 3.79 ms}                                  & 898 ms ± 768 µs           \\ \cline{2-5}
+        \rowcolor[HTML]{EFEFEF}
+        \cellcolor[HTML]{C0C0C0}                          & MAPE                                              & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}1.25 s ± 1.59 ms}           & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}2.13 s ± 711 µs}           & 906 ms ± 600 µs           \\ \cline{2-5}
+        \cellcolor[HTML]{C0C0C0}                          & MAE                                               & \multicolumn{1}{c|}{1.25 s ± 1.29 ms}                                   & \multicolumn{1}{c|}{2.13 s ± 940 µs}                                   & 898 ms ± 753 µs           \\ \cline{2-5}
+        \rowcolor[HTML]{EFEFEF}
+        \multirow{-4}{*}{\cellcolor[HTML]{C0C0C0}Prophet} & MPE                                               & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}1.25 s ± 1.26 ms}           & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}1.88 s ± 530 µs}           & 899 ms ± 1.24 ms          \\ \hline
     \end{tabular}
 \end{table}
 
 \subsection{Uso de memória}
 
+\begin{table}[!htp]
+    \caption{Uso de memória de cada modelo por métrica otimizada e dataset}
+    \centering
+    \begin{tabular}{|c|c|ccc|}
+        \hline
+        \rowcolor[HTML]{C0C0C0}
+        \cellcolor[HTML]{C0C0C0}                          & \cellcolor[HTML]{C0C0C0}                          & \multicolumn{3}{c|}{\cellcolor[HTML]{C0C0C0}Dataset}                                                                                                   \\ \cline{3-5}
+        \rowcolor[HTML]{C0C0C0}
+        \multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}Modelo}  & \multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}Métrica} & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Covid}              & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Temperatura}        & Sintético          \\ \hline
+        \cellcolor[HTML]{C0C0C0}                          & RMSE                                              & \multicolumn{1}{c|}{9.086 MiB}                                  & \multicolumn{1}{c|}{43.621 MiB}                                 & 3.105 MiB          \\ \cline{2-5}
+        \rowcolor[HTML]{EFEFEF}
+        \cellcolor[HTML]{C0C0C0}                          & MAPE                                              & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}11.383 MiB}         & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}43.699 MiB}         & 3.078 MiB          \\ \cline{2-5}
+        \cellcolor[HTML]{C0C0C0}                          & MAE                                               & \multicolumn{1}{c|}{8.816 MiB}                                  & \multicolumn{1}{c|}{44.035 MiB}                                 & 3.359 MiB          \\ \cline{2-5}
+        \rowcolor[HTML]{EFEFEF}
+        \multirow{-4}{*}{\cellcolor[HTML]{C0C0C0}ARIMA}   & MPE                                               & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}13.734 MiB}         & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}50.805 MiB}         & 6.457 MiB          \\ \hline
+        \cellcolor[HTML]{C0C0C0}                          & RMSE                                              & \multicolumn{1}{c|}{\textbf{0.512 MiB}}                         & \multicolumn{1}{c|}{\textbf{1.039 MiB}}                         & \textbf{0.598 MiB} \\ \cline{2-5}
+        \rowcolor[HTML]{EFEFEF}
+        \cellcolor[HTML]{C0C0C0}                          & MAPE                                              & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{0.000 MiB}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{0.922 MiB}} & \textbf{0.570 MiB} \\ \cline{2-5}
+        \cellcolor[HTML]{C0C0C0}                          & MAE                                               & \multicolumn{1}{c|}{\textbf{0.586 MiB}}                         & \multicolumn{1}{c|}{\textbf{0.887 MiB}}                         & \textbf{0.898 MiB} \\ \cline{2-5}
+        \rowcolor[HTML]{EFEFEF}
+        \multirow{-4}{*}{\cellcolor[HTML]{C0C0C0}ReW}     & MPE                                               & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{0.645 MiB}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{0.809 MiB}} & \textbf{0.562 MiB} \\ \hline
+        \cellcolor[HTML]{C0C0C0}                          & RMSE                                              & \multicolumn{1}{c|}{90.676 MiB}                                 & \multicolumn{1}{c|}{101.699 MiB}                                & 89.719 MiB         \\ \cline{2-5}
+        \rowcolor[HTML]{EFEFEF}
+        \cellcolor[HTML]{C0C0C0}                          & MAPE                                              & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}90.652 MiB}         & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}102.074 MiB}        & 89.203 MiB         \\ \cline{2-5}
+        \cellcolor[HTML]{C0C0C0}                          & MAE                                               & \multicolumn{1}{c|}{90.621 MiB}                                 & \multicolumn{1}{c|}{102.273 MiB}                                & 89.426 MiB         \\ \cline{2-5}
+        \rowcolor[HTML]{EFEFEF}
+        \multirow{-4}{*}{\cellcolor[HTML]{C0C0C0}Prophet} & MPE                                               & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}90.617 MiB}         & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}101.926 MiB}        & 89.277 MiB         \\ \hline
+    \end{tabular}
+\end{table}
 \subsection{Discussão}
