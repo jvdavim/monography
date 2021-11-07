@@ -26,7 +26,7 @@ A utilização deste método permite que o problema de previsão de séries temp
 
 Mesmo com a utilização desse método, os problemas relacionados à previsão de séries temporais como a flutuação de valores em um curto período. Para resolver esse tipo de problema, podem ser utilizados outros métodos, como o de médias móveis, que é explicado na Seção~\ref{sec:moving_average}.
 
-\section{Média móvel} \label{sec:moving_average}
+\section{Médias móveis} \label{sec:moving_average}
 Existem alguns tipos de média móvel como a simples, a ponderada, a cumulativa, e a exponencial. Cada tipo de média móvel produz um efeito ao ser aplicada na série temporal, e podem ser usadas para alcançar objetivos diferentes. O algoritmo de média móvel simples, por exemplo, é utilizado para suavizar flutuações em curto prazo em uma série temporal, e consequentemente evidenciar tendências a longo prazo. Essa transformação se faz necessária, portanto, para facilitar o processo de aprendizado de modelos preditivos.
 
 Para aplicar uma média móvel simples, dado uma sequência $P = (p_{1}, p_{2}, ..., p_{m})$ e um tamanho de janela $n$, é possível calcular cada valor $\overline{p}_{i}$ de média móvel conforme a Equação~\ref{eq:moving_average}.

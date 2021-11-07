@@ -12,15 +12,30 @@ Para os experimentos realizados neste trabalho, foram utilizados 2 máquinas com
 Os experimentos foram realizados utilizando \textit{scripts} e \textit{notebooks} Python, dependendo da etapa e da finalidade. Para a busca de hiperparâmetros e avaliação dos modelos em relação ao erro, foram utilizados \textit{scripts}, enquanto para a avaliação de métricas de tempo de inferência e uso de memória foram utilizados \textit{notebooks}.
 
 \section{Coleções de dados}
-Foram utilizadas para os experimentos deste trabalho 3 coleções de dados. Dentre estas, duas foram coletadas de fontes públicas abertas na internet e uma foi gerada artificialmente. Todas foram armazenadas em disco local no formato tabular com extensão CSV.
-% explicar fonte e formato dos dados utilizados para avaliação dos modelos.
-Com o auxílio da biblioteca \textit{requests} do Python, foi criado um script para baixar e armazenar localmente o número de casos confirmados de Covid19 no Estado do Rio de Janeiro. O arquivo csv foi baixado diretamente do web site da Secretaria de Saúde do Estado do Rio de Janeiro. \footnote{$http://sistemas.saude.rj.gov.br/tabnetbd/dhx.exe?covid19/covid_munic_diario.def$}
-% casos confirmados  de covid19 no rio de janeiro.
+Foram utilizadas para os experimentos deste trabalho 3 coleções de dados. Dentre estas, duas foram coletadas de fontes públicas abertas na internet e uma foi gerada artificialmente. Todas foram armazenadas em disco local no formato tabular com extensão CSV. O número de casos confirmados de Covid19 no Rio de Janeiro foi o primeiro dataset utilizado nos experimentos e serviu um dos motivadores do estudo realizado. A temperatura mínima diária em Melbourne e os dados gerados sintéticamente serviram como prova de conceito para averiguar a eficiência dos métodos aplicados em diferentes cenários, portanto foram submetidos aos mesmos métodos e técnicas aplicados na primeira coleção de dados.
 
-Uma coleção de dados foi gerada de forma sintética com o auxílio da biblioteca \textit{numpy} do Python com características criadas artificialmente somando componentes como tendência, sazonalidade, ruído branco e 
-% dados gerado de forma sintética com o arma com auxílio da biblioteca statmodels.
+\subsection{Casos confirmados de Covid19 no Rio de Janeiro}
+Com o auxílio da biblioteca \textit{requests} do Python, foi criado um script para baixar e armazenar localmente o número de casos confirmados de Covid19 no Estado do Rio de Janeiro. O arquivo csv foi baixado diretamente do web site da Secretaria de Saúde do Estado do Rio de Janeiro. \footnote{$http://sistemas.saude.rj.gov.br/tabnetbd/dhx.exe?covid19/covid_munic_diario.def$} Para manter a reprodutibilidade dos experimentos, o período analisado foi congelado entre as datas 01/01/2020 e 04/07/2021. A Figura~\ref{fig:casos_confirmados} mostra um gráfico da série temporal não acumulada do número de casos confirmados diário, ou seja, os valores absolutos de casos registrados em cada dia sem considerar os dias anteriores.
 
-% dados de temperatura mínima diária.
+\begin{figure}[!htp] \label{fig:casos_confirmados}
+    \centering
+    \includegraphics[width=5.0in]{img/casos_confirmados.png}
+    \caption{Série temporal de casos confirmados de Covid19 no Rio de Janeiro}
+\end{figure}
+
+A Figura~\ref{fig:casos_confirmados} mostra que há flutuações a curto pazo, que podem ter sido geradas por diversos fatores na coleta dos dados, como, por exemplo, a subamostragem. Como a coleta dos dados utilizados foi feita de fontes externas e públicas, os experimentos deste se limitaram a trabalhar com o dado como foi disponibilizado, sem aprofundar na avaliação da coleta. Porém, para remover a influência dessas flutuações, foi aplicado o método de médias móveis variando o parâmetro do número de amostras junto à busca de hiperparâmetros para encontrar o melhor ajuste. A Figura~\ref{fig:medias_moveis} mostra a mesma série temporal com as médias móveis em vermelho considerando-se o parâmetro $n=7$ como exemplo de suavização na flutuação dos valores da série temporal.
+
+\begin{figure}[!htp] \label{fig:medias_moveis}
+    \centering
+    \includegraphics[width=5.0in]{img/medias_moveis.png}
+    \caption{Médias móveis da série temporal de casos confirmados de Covid19 no Rio de Janeiro}
+\end{figure}
+
+\subsection{Temperatura mínima diária em Melbourne}
+
+\subsection{Série temporal sintética}
+Uma coleção de dados foi gerada de forma sintética com o auxílio da biblioteca \textit{numpy} do Python com características criadas artificialmente somando componentes como tendência, sazonalidade, ruído branco e fatores para distorção da estacionaridade.
+
 \section{Métricas de avaliação utilizadas}
 
 \section{Resultados}
