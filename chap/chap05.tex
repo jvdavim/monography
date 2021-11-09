@@ -3,19 +3,26 @@
 \section{Ambiente computacional}
 Para os experimentos realizados neste trabalho, foram utilizados 2 máquinas com configrações diferentes de hardware. Um deles possui o \textit{hostname} poseidon e é hospedado nas dependências do Laboratório de Arquitetura de Computadores e Microeletrônica (LAM), enquanto o outro trata-se de um notebook pessoal com \textit{hostname} jvdvostro. O servidor poseidon foi utilizado para realizar a busca de hiperparâmetros, pois é a etapa que mais consome recursos computacionais. O jvdvostro foi utilizado para coletar as métricas de inferência, gerar gráficos e fazer a análise dos resultados. A Tabela~\ref{tab:hardware} expõe as configurações de \textit{hardware} de ambos computadores utilizados nos experimentos.
 
-\begin{table}[!htp]\centering \label{tab:hardware}
+\begin{table}[!htp] \label{tab:hardware}
     \caption{Configurações de \textit{hardware} dos computadores}
-    \begin{tabular}{lrrrrr}\toprule
+    \setlength\extrarowheight{5pt}
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \rowcolor[HTML]{C0C0C0}
+        Hostname  & CPU                           & RAM  & Sistema Operacional \\ \hline
+        jvdvostro & Intel i7-5500U (4) @ 3.000GHz & 8 GB & Arch Linux x86\_64  \\ \hline
+        poseidon  &                               &      &                     \\ \hline
     \end{tabular}
 \end{table}
 
 Os experimentos foram realizados utilizando \textit{scripts} e \textit{notebooks} Python, dependendo da etapa e da finalidade. Para a busca de hiperparâmetros e avaliação dos modelos em relação ao erro, foram utilizados \textit{scripts}, enquanto para a avaliação de métricas de tempo de inferência e uso de memória foram utilizados \textit{notebooks}.
 
 \section{Coleções de dados}
-Foram utilizadas para os experimentos deste trabalho 3 coleções de dados. Dentre estas, duas foram coletadas de fontes públicas abertas na internet e uma foi gerada artificialmente. Todas foram armazenadas em disco local no formato tabular com extensão CSV. O número de casos confirmados de Covid19 no Rio de Janeiro foi o primeiro dataset utilizado nos experimentos e serviu um dos motivadores do estudo realizado. A temperatura mínima diária em Melbourne e os dados gerados sintéticamente serviram como prova de conceito para averiguar a eficiência dos métodos aplicados em diferentes cenários, portanto foram submetidos aos mesmos métodos e técnicas aplicados na primeira coleção de dados.
+Foram utilizadas para os experimentos deste trabalho 3 coleções de dados. Dentre estas, duas foram coletadas de fontes públicas abertas na internet e uma foi gerada artificialmente. Todas foram armazenadas em disco local no formato tabular com extensão CSV. O número de casos confirmados de Covid19 no Rio de Janeiro foi o primeiro dataset utilizado nos experimentos e serviu um dos motivadores do estudo realizado. A temperatura mínima diária em Melbourne e os dados gerados sintéticamente serviram como prova de conceito para averiguar a eficiência dos métodos aplicados em diferentes cenários, portanto foram submetidos aos mesmos métodos e técnicas aplicados na primeira coleção de dados. As duas coleções de dados retiradas de fontes públicas possuem licensa que permite a sua utilização para fins acadêmicos, e podem ser consultadas nos endereços disponibilizados nesta Seção.
 
-\subsection{Casos confirmados de Covid19 no Rio de Janeiro}
-Com o auxílio da biblioteca \textit{requests} do Python, foi criado um script para baixar e armazenar localmente o número de casos confirmados de Covid19 no Estado do Rio de Janeiro. O arquivo csv foi baixado diretamente do web site da Secretaria de Saúde do Estado do Rio de Janeiro. \footnote{$http://sistemas.saude.rj.gov.br/tabnetbd/dhx.exe?covid19/covid_munic_diario.def$} Para manter a reprodutibilidade dos experimentos, o período analisado foi congelado entre as datas 01/01/2020 e 04/07/2021. A Figura~\ref{fig:casos_confirmados} mostra um gráfico da série temporal não acumulada do número de casos confirmados diário, ou seja, os valores absolutos de casos registrados em cada dia sem considerar os dias anteriores.
+\subsection{Casos confirmados de Covid19 no Rio de Janeiro} \label{subsec:casos_confirmados}
+Com o auxílio da biblioteca \textit{requests} do Python, foi criado um \textit{script} para baixar e armazenar localmente o número de casos confirmados de Covid19 no Estado do Rio de Janeiro. O arquivo csv foi baixado diretamente do web site da Secretaria de Saúde do Estado do Rio de Janeiro. \footnote{$http://sistemas.saude.rj.gov.br/tabnetbd/dhx.exe?covid19/covid_munic_diario.def$} Para manter a reprodutibilidade dos experimentos, o período analisado foi congelado entre as datas 01/01/2020 e 04/07/2021. A Figura~\ref{fig:casos_confirmados} mostra um gráfico da série temporal não acumulada do número de casos confirmados diário, ou seja, os valores absolutos de casos registrados em cada dia sem considerar os dias anteriores.
 
 \begin{figure}[!htp] \label{fig:casos_confirmados}
     \centering
@@ -32,6 +39,14 @@ A Figura~\ref{fig:casos_confirmados} mostra que há flutuações a curto pazo, q
 \end{figure}
 
 \subsection{Temperatura mínima diária em Melbourne}
+Assim como na coleção de dados referente ao número de casos confirmados de Covid19 no Rio de Janeiro~\ref{subsec:casos_confirmados}, os dados de temperatura mínima diária em Melbourne foram baixados através de um \textit{script} Python com o auxílio da biblioteca \textit{requests}. O arquivo pode ser baixado diretamente do GitHub \footnote{$https://raw.githubusercontent.com/jbrownlee/Datasets/master/daily-min-temperatures.csv$} e também pode ser encontrado em um desafio do Kaggle \footnote{$https://www.kaggle.com/paulbrabban/daily-minimum-temperatures-in-melbourne$}.
+
+\begin{figure}[!htp] \label{fig:temperatura_minima_diaria}
+    \centering
+    \includegraphics[width=5.0in]{img/temperatura_minima_diaria.png}
+    \caption{Série temporal da temperatura mínima diária em Melbourne}
+\end{figure}
+
 
 \subsection{Série temporal sintética}
 Uma coleção de dados foi gerada de forma sintética com o auxílio da biblioteca \textit{numpy} do Python com características criadas artificialmente somando componentes como tendência, sazonalidade, ruído branco e fatores para distorção da estacionaridade.
@@ -47,6 +62,7 @@ Uma coleção de dados foi gerada de forma sintética com o auxílio da bibliote
 
 \begin{table}[!htp]
     \caption{Tempo de ajuste dos modelos}
+    \setlength\extrarowheight{5pt}
     \begin{tabular}{|c|c|ccc|}
         \hline
         \rowcolor[HTML]{C0C0C0}
@@ -76,6 +92,7 @@ Uma coleção de dados foi gerada de forma sintética com o auxílio da bibliote
 
 \begin{table}[!htp]
     \caption{Tempo de inferência dos modelos}
+    \setlength\extrarowheight{5pt}
     \begin{tabular}{|c|c|ccc|}
         \hline
         \rowcolor[HTML]{C0C0C0}
@@ -107,6 +124,7 @@ Uma coleção de dados foi gerada de forma sintética com o auxílio da bibliote
 
 \begin{table}[!htp]
     \caption{Uso de memória de cada modelo por métrica otimizada e dataset}
+    \setlength\extrarowheight{5pt}
     \centering
     \begin{tabular}{|c|c|ccc|}
         \hline
