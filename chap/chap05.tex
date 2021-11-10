@@ -10,9 +10,9 @@ Para os experimentos realizados neste trabalho, foram utilizados 2 máquinas com
     \begin{tabular}{|c|c|c|c|}
         \hline
         \rowcolor[HTML]{C0C0C0}
-        Hostname  & CPU                           & RAM  & Sistema Operacional \\ \hline
-        jvdvostro & Intel i7-5500U (4) @ 3.000GHz & 8 GB & Arch Linux x86\_64  \\ \hline
-        poseidon  &                               &      &                     \\ \hline
+        Hostname  & CPU                           & RAM   & Sistema Operacional \\ \hline
+        jvdvostro & Intel i7-5500U (4) @ 3.000GHz & 8 GB  & Arch Linux x86\_64  \\ \hline
+        poseidon  & Intel i7-6700 (4) @ 3.40GHz   & 32 GB & Ubuntu Linux        \\ \hline
     \end{tabular}
 \end{table}
 
@@ -27,15 +27,15 @@ Com o auxílio da biblioteca \textit{requests} do Python, foi criado um \textit{
 \begin{figure}[!htp] \label{fig:casos_confirmados}
     \centering
     \includegraphics[width=5.0in]{img/casos_confirmados.png}
-    \caption{Série temporal de casos confirmados de Covid19 no Rio de Janeiro}
+    \caption{Série temporal do número de casos confirmados de Covid19 no Rio de Janeiro}
 \end{figure}
 
-A Figura~\ref{fig:casos_confirmados} mostra que há flutuações a curto pazo, que podem ter sido geradas por diversos fatores na coleta dos dados, como, por exemplo, a subamostragem. Como a coleta dos dados utilizados foi feita de fontes externas e públicas, os experimentos deste se limitaram a trabalhar com o dado como foi disponibilizado, sem aprofundar na avaliação da coleta. Porém, para remover a influência dessas flutuações, foi aplicado o método de médias móveis variando o parâmetro do número de amostras junto à busca de hiperparâmetros para encontrar o melhor ajuste. A Figura~\ref{fig:medias_moveis} mostra a mesma série temporal com as médias móveis em vermelho considerando-se o parâmetro $n=7$ como exemplo de suavização na flutuação dos valores da série temporal.
+A Figura~\ref{fig:casos_confirmados} mostra que há flutuações a curto pazo, que podem ter sido geradas por diversos fatores na coleta dos dados, como, por exemplo, a subamostragem. Como a coleta dos dados utilizados foi feita de fontes externas e públicas, os experimentos deste se limitaram a trabalhar com o dado como foi disponibilizado, sem aprofundar na avaliação da coleta. Porém, para remover a influência dessas flutuações, foi aplicado o método de médias móveis variando o parâmetro do número de amostras junto à busca de hiperparâmetros para encontrar o melhor ajuste. A Figura~\ref{fig:casos_confirmados_ma} mostra a mesma série temporal com as médias móveis em vermelho considerando-se o parâmetro $n=7$ como exemplo de suavização na flutuação dos valores da série temporal.
 
-\begin{figure}[!htp] \label{fig:medias_moveis}
+\begin{figure}[!htp] \label{fig:casos_confirmados_ma}
     \centering
-    \includegraphics[width=5.0in]{img/medias_moveis.png}
-    \caption{Médias móveis da série temporal de casos confirmados de Covid19 no Rio de Janeiro}
+    \includegraphics[width=5.0in]{img/casos_confirmados_ma.png}
+    \caption{Médias móveis do número de casos confirmados de Covid19 no Rio de Janeiro}
 \end{figure}
 
 \subsection{Temperatura mínima diária em Melbourne}
@@ -47,9 +47,26 @@ Assim como na coleção de dados referente ao número de casos confirmados de Co
     \caption{Série temporal da temperatura mínima diária em Melbourne}
 \end{figure}
 
+\begin{figure}[!htp] \label{fig:temperatura_minima_diaria_ma}
+    \centering
+    \includegraphics[width=5.0in]{img/temperatura_minima_diaria_ma.png}
+    \caption{Médias móveis da temperatura mínima diária em Melbourne}
+\end{figure}
 
 \subsection{Série temporal sintética}
 Uma coleção de dados foi gerada de forma sintética com o auxílio da biblioteca \textit{numpy} do Python com características criadas artificialmente somando componentes como tendência, sazonalidade, ruído branco e fatores para distorção da estacionaridade.
+
+\begin{figure}[!htp] \label{fig:dados_sinteticos}
+    \centering
+    \includegraphics[width=5.0in]{img/dados_sinteticos.png}
+    \caption{Série temporal gerada sinteticamente}
+\end{figure}
+
+\begin{figure}[!htp] \label{fig:dados_sinteticos_ma}
+    \centering
+    \includegraphics[width=5.0in]{img/dados_sinteticos_ma.png}
+    \caption{Médias móveis da série temporal gerada sinteticamente}
+\end{figure}
 
 \section{Métricas de avaliação utilizadas}
 
