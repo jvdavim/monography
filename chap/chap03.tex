@@ -14,7 +14,7 @@ A arquitetura do modelo WiSARD (Wilkie, Stonhan and Aleksander Recognition Devic
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=5.0in]{img/wisard_discriminator.png}
+    \includegraphics[width=5.0in]{img/wisard_discriminator.pdf}
     \caption{WiSARD e discriminador. Em caso de empate, o operador máximo seleciona aleatoriamente um dos máximos encontrados.}
     \label{fig:wsd_disc}
 \end{figure}
@@ -23,7 +23,7 @@ O treinamento de um modelo WiSARD é dado pela escrita nas RAMs de cada discrimi
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=5.0in]{img/wisard_training.png}
+    \includegraphics[width=5.0in]{img/wisard_training.pdf}
     \caption{Treinamento de um exemplo da classe I no seu respectivo discriminador.}
     \label{fig:wsd_train}
 \end{figure}
@@ -32,7 +32,7 @@ A classificação é realizada lendo-se o conteúdo das RAMs de cada discriminad
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=5.0in]{img/wisard_classification.png}
+    \includegraphics[width=5.0in]{img/wisard_classification.pdf}
     \caption{Classificação de um exemplo da classe I no seu respectivo discriminador já treinado.}
     \label{fig:wsd_classification}
 \end{figure}
@@ -43,7 +43,7 @@ Um problema evidente no modelo WiSARD é a possibilidade de empate entre dois ou
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=3.0in]{img/bleaching.png}
+    \includegraphics[width=3.0in]{img/bleaching.pdf}
     \caption{Exemplo de bleaching em um discriminador.}
     \label{fig:bleaching}
 \end{figure}
@@ -55,7 +55,7 @@ A principal modificação necessária para utilização da WiSARD para a tarefa 
 \hspace*{-1.5in}
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=3.0in]{img/ramxram.png}
+    \includegraphics[width=3.0in]{img/ramxram.pdf}
     \caption{Diferença entre as RAMs das arquiteturas. (a) RAM da WiSARD. (b) RAM da Regression WiSARD.}
     \label{fig:ramxram}
 \end{figure}
@@ -64,7 +64,7 @@ Para a etapa de treinamento essa é a única mudança necessária. Cada endereç
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=5.0in]{img/rew_regression.png}
+    \includegraphics[width=5.0in]{img/rew_regression.pdf}
     \caption{Discriminador na etapa de inferência da Regression WiSARD transformando a entrada com a função T e agregando o valor de inferência com a função média simples.}
     \label{fig:rew_discr}
 \end{figure}
@@ -80,7 +80,7 @@ Para o escopo desse trabalho, será utilizada a transformação Termômetro, que
 
 \begin{figure}[!htp]
     \centering
-    \includegraphics[width=5.0in]{img/therm_example.png}
+    \includegraphics[width=5.0in]{img/therm_example.pdf}
     \caption{Exemplo de transformação termômetro do número 210.}
     \label{fig:therm_ex}
 \end{figure}

@@ -26,7 +26,7 @@ Com o auxílio da biblioteca \textit{requests} do Python, foi criado um \textit{
 
 \begin{figure}[!htp]
     \centering
-    \includegraphics[width=5.0in]{img/casos_confirmados.png}
+    \includegraphics[width=5.0in]{img/casos_confirmados.pdf}
     \caption{Série temporal do número de casos confirmados de Covid19 no Rio de Janeiro.}
     \label{fig:casos_confirmados}
 \end{figure}
@@ -35,7 +35,7 @@ A Figura~\ref{fig:casos_confirmados} mostra que há flutuações a curto pazo, q
 
 \begin{figure}[!htp]
     \centering
-    \includegraphics[width=5.0in]{img/casos_confirmados_ma.png}
+    \includegraphics[width=5.0in]{img/casos_confirmados_ma.pdf}
     \caption{Médias móveis do número de casos confirmados de Covid19 no Rio de Janeiro.}
     \label{fig:casos_confirmados_ma}
 \end{figure}
@@ -47,7 +47,7 @@ Assim como na coleção de dados referente ao número de casos confirmados de Co
 
 \begin{figure}[!htp]
     \centering
-    \includegraphics[width=5.0in]{img/temperatura_minima_diaria.png}
+    \includegraphics[width=5.0in]{img/temperatura_minima_diaria.pdf}
     \caption{Série temporal da temperatura mínima diária em Melbourne.}
     \label{fig:temperatura_minima_diaria}
 \end{figure}
@@ -56,7 +56,7 @@ A Figura~\ref{fig:temperatura_minima_diaria} mostra que a quantidade de observa�
 
 \begin{figure}[!htp]
     \centering
-    \includegraphics[width=5.0in]{img/temperatura_minima_diaria_ma.png}
+    \includegraphics[width=5.0in]{img/temperatura_minima_diaria_ma.pdf}
     \caption{Médias móveis da temperatura mínima diária em Melbourne.}
     \label{fig:temperatura_minima_diaria_ma}
 \end{figure}
@@ -72,17 +72,41 @@ Em uma série temporal, a tendência é o padrão que evidencia o crescimento ou
 
 \begin{figure}[!htp]
     \centering
-    \includegraphics[width=5.0in]{img/upward_trend.png}
+    \includegraphics[width=5.0in]{img/upward_trend.pdf}
     \caption{Componente de tendência crescente.}
     \label{fig:upward_trend}
 \end{figure}
 
-A sasonalidade pode ser caracterizada pela presença de variações semelhantes que ocorrem em intervalos regulares de tempo.
-
+A sasonalidade pode ser caracterizada pela presença de variações semelhantes que ocorrem em intervalos regulares de tempo. Então, para simular um comportamento sazonal, foi aplicado um crescimento cúbico seguido de um crescimento quadrático nos primeiros 50 dias, e então esse mesmo padrão foi repetido ao longo de toda a série temporal até o último dado observado. Na Figura~\ref{fig:seasonal_pattern} fica clara a repetição do padrão com as 2 curvas de crescimento seguidas.
 
 \begin{figure}[!htp]
     \centering
-    \includegraphics[width=5.0in]{img/dados_sinteticos.png}
+    \includegraphics[width=5.0in]{img/seasonal_pattern.pdf}
+    \caption{Componente de sazonalidade.}
+    \label{fig:seasonal_pattern}
+\end{figure}
+
+O ruído é a parte do sinal que não possui valor semântico, ou seja, são distorções que ocorrem no sinal que podem ter como origem diversos fatores como o equipamento utilizado para fazer a coleta, erro humano, entre outros. Como nenhum sinal na vida real é livre de ruído, para aproximar a série temporal a de um problema real, foi adicionado um sinal de ruído branco gerado de forma pseudo-aleatória conforme apresentado na Figura~\ref{fig:noise}. Além do ruído, também foi adicionado um evento com impacto maior na série temporal com o objetivo de representar um fator inesperado na série. Esse fator pode ser equiparado a qualquer evento que possa alterar de forma disruptiva os dados observados na série temporal. Portanto, como a série possui uma tendência de crescimento, foi gerado um componente decrescente, ilustrado na Figura~\ref{fig:big_event}, nos últimos dias da série para ser somado aos outros componentes e gerar o efeito desejado.
+
+\begin{figure}[!htp]
+    \centering
+    \includegraphics[width=5.0in]{img/noise.pdf}
+    \caption{Ruído branco utilizado para compor a série temporal sintética.}
+    \label{fig:noise}
+\end{figure}
+
+\begin{figure}[!htp]
+    \centering
+    \includegraphics[width=5.0in]{img/big_event.pdf}
+    \caption{Componente de evento inesperado descrescente.}
+    \label{fig:big_event}
+\end{figure}
+
+Finalmente, após a soma de todos os componentes, é alcançada a série temporal resultante, conforme mostra a Figura~\ref{fig:dados_sinteticos}, onde será possível ajustar os modelos de predição e avaliar a capacidade de generalização de cada um. Como nas séries temporais anteriores, compartilha de flutuações de curto prazo, apesar de menores. Portanto, a Figura~\ref{fig:dados_sinteticos_ma} mostra as médias móveis calculadas com $W=4$ sobre a série temporal sintética. Esse valor foi escolhido na tentativa de suavizar as pequenas flutuações causadas propositalmente pela adição de ruído na composição da série temporal sintética.
+
+\begin{figure}[!htp]
+    \centering
+    \includegraphics[width=5.0in]{img/dados_sinteticos.pdf}
     \caption{Série temporal gerada sinteticamente.}
     \label{fig:dados_sinteticos}
 \end{figure}
@@ -90,7 +114,7 @@ A sasonalidade pode ser caracterizada pela presença de variações semelhantes 
 
 \begin{figure}[!htp]
     \centering
-    \includegraphics[width=5.0in]{img/dados_sinteticos_ma.png}
+    \includegraphics[width=5.0in]{img/dados_sinteticos_ma.pdf}
     \caption{Médias móveis da série temporal gerada sinteticamente.}
     \label{fig:dados_sinteticos_ma}
 \end{figure}
@@ -99,10 +123,30 @@ A sasonalidade pode ser caracterizada pela presença de variações semelhantes 
 
 \section{Métricas de avaliação utilizadas}
 
+Para a avaliação dos modelos preditivos, foram utilizadas 4 métricas de avaliação: .
+
+\begin{equation}
+    RMSE=\sqrt{\dfrac{\sum ^{n}_{i=1}\left( y_{i}-x_{i}\right) ^{2}}{n}}
+\end{equation}
+
+\begin{equation}
+    MAE=\sum ^{n}_{i=1}\dfrac{\left| y_{i}-x_{i}\right| }{n}
+\end{equation}
+
+\begin{equation}
+    MPE=\dfrac{1}{n}\sum ^{n}_{i=1}\dfrac{x_{i}-y_{i}}{x_{i}}
+\end{equation}
+
+\begin{equation}
+    MAPE=\dfrac{1}{n}\sum ^{n}_{i=1}\left| \dfrac{y_{i}-x_{i}}{x_{i}}\right|
+\end{equation}
+
 \section{Resultados}
 % apresentar formato de apresentação dos resultados.
 
 \subsection{Avaliação por métricas}
+
+
 
 \subsection{Tempos de execução}
 
