@@ -4,7 +4,7 @@
 Para os experimentos realizados neste trabalho, foram utilizados 2 máquinas com configrações diferentes de hardware. Um deles possui o \textit{hostname} poseidon e é hospedado nas dependências do Laboratório de Arquitetura de Computadores e Microeletrônica (LAM), enquanto o outro trata-se de um notebook pessoal com \textit{hostname} jvdvostro. O servidor poseidon foi utilizado para realizar a busca de hiperparâmetros, pois é a etapa que mais consome recursos computacionais. O jvdvostro foi utilizado para coletar as métricas de inferência, gerar gráficos e fazer a análise dos resultados. A Tabela~\ref{tab:hardware} expõe as configurações de \textit{hardware} de ambos computadores utilizados nos experimentos.
 
 \begin{table}[!htp] \label{tab:hardware}
-    \caption{Configurações de \textit{hardware} dos computadores}
+    \caption{Configurações de \textit{hardware} dos computadores.}
     \setlength\extrarowheight{5pt}
     \centering
     \begin{tabular}{|c|c|c|c|}
@@ -27,7 +27,7 @@ Com o auxílio da biblioteca \textit{requests} do Python, foi criado um \textit{
 \begin{figure}[!htp]
     \centering
     \includegraphics[width=5.0in]{img/casos_confirmados.png}
-    \caption{Série temporal do número de casos confirmados de Covid19 no Rio de Janeiro}
+    \caption{Série temporal do número de casos confirmados de Covid19 no Rio de Janeiro.}
     \label{fig:casos_confirmados}
 \end{figure}
 
@@ -36,7 +36,7 @@ A Figura~\ref{fig:casos_confirmados} mostra que há flutuações a curto pazo, q
 \begin{figure}[!htp]
     \centering
     \includegraphics[width=5.0in]{img/casos_confirmados_ma.png}
-    \caption{Médias móveis do número de casos confirmados de Covid19 no Rio de Janeiro}
+    \caption{Médias móveis do número de casos confirmados de Covid19 no Rio de Janeiro.}
     \label{fig:casos_confirmados_ma}
 \end{figure}
 
@@ -77,6 +77,8 @@ Em uma série temporal, a tendência é o padrão que evidencia o crescimento ou
     \label{fig:upward_trend}
 \end{figure}
 
+A sasonalidade pode ser caracterizada pela presença de variações semelhantes que ocorrem em intervalos regulares de tempo.
+
 
 \begin{figure}[!htp]
     \centering
@@ -105,7 +107,7 @@ Em uma série temporal, a tendência é o padrão que evidencia o crescimento ou
 \subsection{Tempos de execução}
 
 \begin{table}[!htp]
-    \caption{Tempo de ajuste dos modelos}
+    \caption{Tempo de ajuste dos modelos.}
     \setlength\extrarowheight{5pt}
     \begin{tabular}{|c|c|ccc|}
         \hline
@@ -135,7 +137,7 @@ Em uma série temporal, a tendência é o padrão que evidencia o crescimento ou
 \end{table}
 
 \begin{table}[!htp]
-    \caption{Tempo de inferência dos modelos}
+    \caption{Tempo de inferência dos modelos.}
     \setlength\extrarowheight{5pt}
     \begin{tabular}{|c|c|ccc|}
         \hline
@@ -169,7 +171,7 @@ Em uma série temporal, a tendência é o padrão que evidencia o crescimento ou
 \subsection{Uso de memória}
 
 \begin{table}[!htp]
-    \caption{Uso de memória de cada modelo por métrica otimizada e dataset}
+    \caption{Uso de memória de cada modelo por métrica otimizada e dataset.}
     \setlength\extrarowheight{5pt}
     \centering
     \begin{tabular}{|c|c|ccc|}
