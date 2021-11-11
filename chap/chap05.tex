@@ -24,49 +24,76 @@ Foram utilizadas para os experimentos deste trabalho 3 coleções de dados. Dent
 \subsection{Casos confirmados de Covid19 no Rio de Janeiro} \label{subsec:casos_confirmados}
 Com o auxílio da biblioteca \textit{requests} do Python, foi criado um \textit{script} para baixar e armazenar localmente o número de casos confirmados de Covid19 no Estado do Rio de Janeiro. O arquivo csv foi baixado diretamente do web site da Secretaria de Saúde do Estado do Rio de Janeiro. \footnote{$http://sistemas.saude.rj.gov.br/tabnetbd/dhx.exe?covid19/covid_munic_diario.def$} Para manter a reprodutibilidade dos experimentos, o período analisado foi congelado entre as datas 01/01/2020 e 04/07/2021. A Figura~\ref{fig:casos_confirmados} mostra um gráfico da série temporal não acumulada do número de casos confirmados diário, ou seja, os valores absolutos de casos registrados em cada dia sem considerar os dias anteriores.
 
-\begin{figure}[!htp] \label{fig:casos_confirmados}
+\begin{figure}[!htp]
     \centering
     \includegraphics[width=5.0in]{img/casos_confirmados.png}
     \caption{Série temporal do número de casos confirmados de Covid19 no Rio de Janeiro}
+    \label{fig:casos_confirmados}
 \end{figure}
 
 A Figura~\ref{fig:casos_confirmados} mostra que há flutuações a curto pazo, que podem ter sido geradas por diversos fatores na coleta dos dados, como, por exemplo, a subamostragem. Como a coleta dos dados utilizados foi feita de fontes externas e públicas, os experimentos deste se limitaram a trabalhar com o dado como foi disponibilizado, sem aprofundar na avaliação da coleta. Porém, para remover a influência dessas flutuações, foi aplicado o método de médias móveis variando o parâmetro do número de amostras junto à busca de hiperparâmetros para encontrar o melhor ajuste. A Figura~\ref{fig:casos_confirmados_ma} mostra a mesma série temporal com as médias móveis em vermelho considerando-se o parâmetro $n=7$ como exemplo de suavização na flutuação dos valores da série temporal.
 
-\begin{figure}[!htp] \label{fig:casos_confirmados_ma}
+\begin{figure}[!htp]
     \centering
     \includegraphics[width=5.0in]{img/casos_confirmados_ma.png}
     \caption{Médias móveis do número de casos confirmados de Covid19 no Rio de Janeiro}
+    \label{fig:casos_confirmados_ma}
 \end{figure}
+
+\FloatBarrier
 
 \subsection{Temperatura mínima diária em Melbourne}
 Assim como na coleção de dados referente ao número de casos confirmados de Covid19 no Rio de Janeiro~\ref{subsec:casos_confirmados}, os dados de temperatura mínima diária em Melbourne foram baixados através de um \textit{script} Python com o auxílio da biblioteca \textit{requests}. O arquivo pode ser baixado diretamente do GitHub \footnote{$https://raw.githubusercontent.com/jbrownlee/Datasets/master/daily-min-temperatures.csv$} e também pode ser encontrado em um desafio do Kaggle \footnote{$https://www.kaggle.com/paulbrabban/daily-minimum-temperatures-in-melbourne$}.
 
-\begin{figure}[!htp] \label{fig:temperatura_minima_diaria}
+\begin{figure}[!htp]
     \centering
     \includegraphics[width=5.0in]{img/temperatura_minima_diaria.png}
-    \caption{Série temporal da temperatura mínima diária em Melbourne}
+    \caption{Série temporal da temperatura mínima diária em Melbourne.}
+    \label{fig:temperatura_minima_diaria}
 \end{figure}
 
-\begin{figure}[!htp] \label{fig:temperatura_minima_diaria_ma}
+A Figura~\ref{fig:temperatura_minima_diaria} mostra que a quantidade de observações na série temporal da temperatura mínima diária em Melbourne é muito superior ao número de casos confirmados de Covid19, e correspondem ao período entre 01/01/1981 e 31/12/1990. Outro ponto divergente é a observabilidade do caráter sazonal com período de um ano. Porém, as flutuações de curto prazo permanecem, e continuam configurando um problema para o ajuste de modelos preditivos que precisam generalizar para realizar inferências mais acertivas.
+
+\begin{figure}[!htp]
     \centering
     \includegraphics[width=5.0in]{img/temperatura_minima_diaria_ma.png}
-    \caption{Médias móveis da temperatura mínima diária em Melbourne}
+    \caption{Médias móveis da temperatura mínima diária em Melbourne.}
+    \label{fig:temperatura_minima_diaria_ma}
 \end{figure}
+
+A Figura~\ref{fig:temperatura_minima_diaria_ma} mostra as médias móveis da temperatura mínima diária em Melbourne em vermelho. O parâmetro utilizado para gerar esta figura foi $W=30$, que foi escolhido para representação gráfica por se tratar de uma série com aproximadamente um ano de período de sazonalidade.
+
+\FloatBarrier
 
 \subsection{Série temporal sintética}
-Uma coleção de dados foi gerada de forma sintética com o auxílio da biblioteca \textit{numpy} do Python com características criadas artificialmente somando componentes como tendência, sazonalidade, ruído branco e fatores para distorção da estacionaridade.
+Uma coleção de dados foi gerada de forma sintética com o auxílio da biblioteca \textit{numpy} do Python com características criadas artificialmente somando componentes como tendência, sazonalidade, ruído branco e fatores para distorção da estacionaridade seguindo o método apresentado em Yıldırım Soner, 2020 \cite{syntheticdata}. Essa série temporal é contruída com o objetivo de avaliar a capacidade de generalização dos modelos em cima dos componentes que estes costumam considerar como base, justificando a importância de ter sido gerada sinteticamente.
 
-\begin{figure}[!htp] \label{fig:dados_sinteticos}
+Em uma série temporal, a tendência é o padrão que evidencia o crescimento ou decrescimento dos valores a longo prazo. Portanto, para compor a série temporal sintética, foi considerada uma função linear crescente como fator de tendência. A Figura~\ref{fig:upward_trend} mostra a componente resultante gerada sinteticamente.
+
+\begin{figure}[!htp]
+    \centering
+    \includegraphics[width=5.0in]{img/upward_trend.png}
+    \caption{Componente de tendência crescente.}
+    \label{fig:upward_trend}
+\end{figure}
+
+
+\begin{figure}[!htp]
     \centering
     \includegraphics[width=5.0in]{img/dados_sinteticos.png}
-    \caption{Série temporal gerada sinteticamente}
+    \caption{Série temporal gerada sinteticamente.}
+    \label{fig:dados_sinteticos}
 \end{figure}
 
-\begin{figure}[!htp] \label{fig:dados_sinteticos_ma}
+
+\begin{figure}[!htp]
     \centering
     \includegraphics[width=5.0in]{img/dados_sinteticos_ma.png}
-    \caption{Médias móveis da série temporal gerada sinteticamente}
+    \caption{Médias móveis da série temporal gerada sinteticamente.}
+    \label{fig:dados_sinteticos_ma}
 \end{figure}
+
+\FloatBarrier
 
 \section{Métricas de avaliação utilizadas}
 
@@ -137,6 +164,8 @@ Uma coleção de dados foi gerada de forma sintética com o auxílio da bibliote
     \end{tabular}
 \end{table}
 
+\FloatBarrier
+
 \subsection{Uso de memória}
 
 \begin{table}[!htp]
@@ -169,4 +198,7 @@ Uma coleção de dados foi gerada de forma sintética com o auxílio da bibliote
         \multirow{-4}{*}{\cellcolor[HTML]{C0C0C0}Prophet} & MPE                                               & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}90.617 MiB}         & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}101.926 MiB}        & 89.277 MiB         \\ \hline
     \end{tabular}
 \end{table}
+
+\FloatBarrier
+
 \subsection{Discussão}

@@ -6,18 +6,20 @@ O método de janelas deslizantes é essencial para a Regression WiSARD ser capaz
 
 O método consiste em tornar cada amostra dependente das $W$ amostras anteriores, e faz isso alocando uma janela de $W$ amostras no início da série temporal e deslocando até o final de amostra em amostra para formar a matriz de características, conforme ilustra a Figura~\ref{fig:sliding_window}, onde $W=3$ e $N$ é o número de registros da série temporal.
 
-\begin{figure}[!htp] \label{fig:sliding_window}
+\begin{figure}[!htp]
     \centering
     \includegraphics[width=3.0in]{img/sliding_window.png}
     \caption{Exemplo de aplicação do método de janelas deslizantes com passo $s=1$  para transformar a série temporal $t$ em uma matriz de características $X$ e um vetor alvo $y$. }
+    \label{fig:sliding_window}
 \end{figure}
 
 Em alguns casos, também é possível utilizar outro parâmetro para a técnica, como o tamanho do passo da janela. No exemplo da Figura~\ref{fig:sliding_window_2}, esse tamanho de passo foi considerado como $s=1$, já que o tamanho do passo para formar cada registro foi de 1.
 
-\begin{figure}[!htp] \label{fig:sliding_window_2}
+\begin{figure}[!htp]
     \centering
     \includegraphics[width=3.0in]{img/sliding_window_2.png}
     \caption{Exemplo de aplicação do método de janelas deslizantes com passo $s=2$  para transformar a série temporal $t$ em uma matriz de características $X$ e um vetor alvo $y$. }
+    \label{fig:sliding_window_2}
 \end{figure}
 
 É importante observar algumas características quanto ao método de janela deslizante, como a preservação da ordem dos registros, que é importante para garantir que a variável alvo será uma função dos dados anteriores na série temporal. Além disso, os primeiros $W$ valores da série temporal serão inutilizados, pois não possuem registros anteriores suficientes para gerar um registro na matriz de características.
@@ -40,10 +42,11 @@ Conforme já apresentado no Capítulo~\ref{chap:03}, o modelo Regression WiSARD 
 
 Para realizar tal tarefa, é necessário que os dados passem por um \textit{pipeline} de transformações, onde a ordem de tais transformações importa e é única. A Figura~\ref{fig:transforms_order} mostra um diagrama simples da ordem em que as trasnformações precisam ocorrer da esquerda para a direita. A técninca de médias móveis é a primeira a ser aplicada diretamente sobre a série temporal, e é responsável por suavizar flutuações a curto prazo, conforme explicado pela Seção~\ref{sec:moving_average}. Já a janela deslizante, apresentada na Seção~\ref{sec:sliding_window}, é aplicada sobre a série temporal de médias móveis, e é responsável pela transformação da série temporal em uma sequência de registros conforme um problema de regressão supervisionado. Por último, deve ser aplicada uma técnica de binarização sobre os dados, conforme explicado na Seção~\ref{sec:input_repr}, para que a representação da entrata seja compatível com a Regression WiSARD.
 
-\begin{figure}[!ht] \label{fig:transforms_order}
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=5.0in]{img/transforms_order.png}
-    \caption{}
+    \caption{Ordem das transformações aplicadas às séries temporais.}
+    \label{fig:transforms_order}
 \end{figure}
 
 % Explicar predições com o modelo...

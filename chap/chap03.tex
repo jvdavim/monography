@@ -12,36 +12,40 @@ A próxima seção explica detalhadamente o processo de codificação tal como d
 \section{WiSARD}
 A arquitetura do modelo WiSARD (Wilkie, Stonhan and Aleksander Recognition Device) é composta por discriminadores, que são componentes responsáveis pela identidade de uma classe em um problema de classificação supervisionado. Cada discriminador é formado por um conjunto específico de memórias de acesso aleatório (RAMs), que são responsáveis por armazenar o padrão reconhecido no exemplo de entrada. A Figura~\ref{fig:wsd_disc} representa a estrutura da WiSARD seguida abaixo de um de seus discriminadores.
 
-\begin{figure}[!ht] \label{fig:wsd_disc}
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=5.0in]{img/wisard_discriminator.png}
     \caption{WiSARD e discriminador. Em caso de empate, o operador máximo seleciona aleatoriamente um dos máximos encontrados.}
+    \label{fig:wsd_disc}
 \end{figure}
 
 O treinamento de um modelo WiSARD é dado pela escrita nas RAMs de cada discriminador, enquanto a classificação é dada pela leitura dessas posições de memória. A escrita se dá através de um mapeamento aleatório dos bits de entrada em um conjunto de endereços, que serão utilizados para apontar as posições de memória que devem ser escritas, portanto, se faz necessária a utilização de uma entrada binária para a rede. Cada discriminador possui seu próprio mapeamento, que pode ser o mesmo ou não dependendo da implementação. A implementação utilizada neste trabalho, e explicada na Seção~\ref{sec:wisardpkg}, utiliza o mesmo mapeamento para todos os discriminadores.
 
-\begin{figure}[!ht] \label{fig:wsd_train}
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=5.0in]{img/wisard_training.png}
     \caption{Treinamento de um exemplo da classe I no seu respectivo discriminador.}
+    \label{fig:wsd_train}
 \end{figure}
 
 A classificação é realizada lendo-se o conteúdo das RAMs de cada discriminador e comparando a entrada a ser classificada com o conteúdo das RAMs de cada discriminador a fim de descobrir à qual discriminador (ou classe) o exemplo pertence.
 
-\begin{figure}[!ht] \label{fig:wsd_classification}
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=5.0in]{img/wisard_classification.png}
     \caption{Classificação de um exemplo da classe I no seu respectivo discriminador já treinado.}
+    \label{fig:wsd_classification}
 \end{figure}
 
 Como o modelo requer uma entrada binária tanto para a etapa de treinamento quanto para a entrada de classificação, há uma dependência forte do pré-processamento dos dados a fim de obter uma representação razoável no formato binário, ou seja, transformar os dados de entrada em binário mantendo a capacidade de generalização do modelo. Algumas técnicas de pré-processamento serão apresentadas na Seção~\ref{sec:input_repr}.
 
 Um problema evidente no modelo WiSARD é a possibilidade de empate entre dois ou mais discriminadores, ou seja, mais de um discriminador com a mesma quantidade (máxima) de RAMs que acessaram posições escritas no momento da classificação. Portanto, para contornar tal problema, é utilizada a técnica \textit{bleaching}, introduzida em Grieco et al., 2010 \cite{mentalimages} e primeiramente utilizada como \textit{bleaching} em França et al., 2014 \cite{advanceswns}. A técnica consiste em utilizar as posições de RAM como contadores ao invés de bits, e aplicar um valor limite na saída de cada RAM, de forma que a resposta do discriminador seja a soma do número de RAMs que apresentam o valor acessado superior ao valor limite escolhido como hiperparâmetro. Caso o empate permaneça, o valor de limite é incrementado progressivamente até que ocorra o desempate ou um empate absoluto, ou seja, quando o valor limite ultrapassar o valor do contator de valor máximo.
 
-\begin{figure}[!ht] \label{fig:bleaching}
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=3.0in]{img/bleaching.png}
     \caption{Exemplo de bleaching em um discriminador.}
+    \label{fig:bleaching}
 \end{figure}
 
 \section{Regression WiSARD}
@@ -49,18 +53,20 @@ A tarefa regressão, assim como a de classificação, é uma das tarefas mais ab
 A principal modificação necessária para utilização da WiSARD para a tarefa de regressão está na estrutura da RAM. Essa adaptação foi proposta por \cite{rew} e se trata de um aumento de dimensionalidade dos valores armazenados em cada posição de memória, ou seja, enquanto na WiSARD cada posição de memória armazena um número inteiro (contador), na Regression WiSARD cada posição de memória armazena 2 valores: o número de acessos e o somatório do valor alvo dos exemplos que acessaram esta posição. A Figura~\ref{fig:ramxram} ilustra a diferença entre as RAMs das duas arquiteturas.
 
 \hspace*{-1.5in}
-\begin{figure}[!ht] \label{fig:ramxram}
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=3.0in]{img/ramxram.png}
     \caption{Diferença entre as RAMs das arquiteturas. (a) RAM da WiSARD. (b) RAM da Regression WiSARD.}
+    \label{fig:ramxram}
 \end{figure}
 
 Para a etapa de treinamento essa é a única mudança necessária. Cada endereço, quando acessado, tem seu contador incrementado em 1 e seu valor incrementado do valor alvo do exemplo que acessou a posição. Já a etapa de inferência, após as RAMs já estiverem preenchidas, o acesso às posições continua sendo feito da mesma forma, porém a resposta do discriminador se torna uma função do contador e do valor das posições de memória acessadas.
 
-\begin{figure}[!ht] \label{fig:rew_discr}
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=5.0in]{img/rew_regression.png}
     \caption{Discriminador na etapa de inferência da Regression WiSARD transformando a entrada com a função T e agregando o valor de inferência com a função média simples.}
+    \label{fig:rew_discr}
 \end{figure}
 
 O exemplo da Figura~\ref{fig:rew_discr} mostra o discriminador utilizando uma média simples como função dos valores da posição de memória acessada. É bem intuitivo e coerente pensar que essa função pode variar de acordo com o problema e ser tratada como um hiperparâmetro do modelo. Alguns exemplos de funções utilizadas são a média simples, mediana, média harmônica e média geométrica \cite{rew}.
@@ -72,10 +78,11 @@ Tanto a WiSARD quanto a \textit{Regression} WiSARD possuem como requisito a repr
 
 Para o escopo desse trabalho, será utilizada a transformação Termômetro, que possui as características necessárias para garantir um bom desempenho da rede. A transformação recebe 3 parâmetros: tamanho (\textit{sz}), valor mínimo (\textit{min}) e valor máximo (\textit{max}). O tamanho é a quantidade de bits que é utilizada para representar 1 número real, enquanto o valor mínimo e máximo representam o menor e o maior valor real possível assumido respectivamente. O algoritmo da transformação termômetro consiste na divisão do espaço entre o mínimo e o máximo em \textit{sz} pedações de mesmo tamanho, atribuindo um valor limite para cada uma das divisões. Em seguida, cada pedaço é preenchido por um bit 1 ou 0 dependendo se o valor que está sendo transformado está acima ou abaixo do valor limite. A Figura~\ref{fig:therm_ex} ilustra um número inteiro antes e após a transformação termômetro.
 
-\begin{figure}[!htp] \label{fig:therm_ex}
+\begin{figure}[!htp]
     \centering
     \includegraphics[width=5.0in]{img/therm_example.png}
     \caption{Exemplo de transformação termômetro do número 210}
+    \label{fig:therm_ex}
 \end{figure}
 
 É importante evidenciar que as técnicas utilizadas acima são fundamentais. A transformação dos números em binário modificando sua base de 10 para 2 tem um problema crucial. Ao mudar a base, os números perdem a propriedade de proximidade na representação, o que dificulta o processo de aprendizado da rede. Por exemplo, os números 11 e 12 possuem uma representação bem diferente quanto transformados da base 10 para 2, quando na verdade, deveriam ter representações próximas, pois são números próximos. A transformação termômetro garante essa propriedade.
