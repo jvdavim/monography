@@ -135,9 +135,13 @@ A métrica expressa pela Equação~\ref{eq:mae}, assim como o RMSE, é uma medid
     MAE=\sum ^{n}_{i=1}\dfrac{\left| y_{i}-x_{i}\right| }{n}
 \end{equation}
 
+Diferente das métricas MAE, RMSE e MAPE, a \textit{Mean Percentage Error} (MPE), é uma métrica que considera o sinal do erro, ou seja, erros positivos e negativos se cancelam. Como consequência, a sua fórmula pode ser usada para medir o viés das predições. A Equação~\ref{eq:mpe} mostra como é feito o cáculo da MPE.
 \begin{equation} \label{eq:mpe}
     MPE=\dfrac{1}{n}\sum ^{n}_{i=1}\dfrac{x_{i}-y_{i}}{x_{i}}
 \end{equation}
+
+A métrica \textit{Mean Absolute Percentage Error} (MAPE), é uma medida de acurácia, assim como a RMSE e MAE. Seu diferencial se dá pelo fato de ter uma interpretabilidade intuitiva comparado às outras métricas. Porém possui alguns defeitos bem conhecidos \cite{CHRISTOFALLIS2015}, como o erro da divisão por 0 e o fato de penalizar mais erros negativos do que erros positivos \cite{MAKRIDAKIS1993527}, levando à escolha de modelos cujo as predições são de valores mais baixos.
+
 
 \begin{equation} \label{eq:mape}
     MAPE=\dfrac{1}{n}\sum ^{n}_{i=1}\left| \dfrac{y_{i}-x_{i}}{x_{i}}\right|
