@@ -123,21 +123,23 @@ Finalmente, após a soma de todos os componentes, é alcançada a série tempora
 
 \section{Métricas de avaliação utilizadas}
 
-Para a avaliação dos modelos preditivos, foram utilizadas 4 métricas de avaliação: .
+Para a avaliação dos modelos preditivos, foram utilizadas 4 métricas de avaliação: \textit{Root Mean Square Error} (RMSE), \textit{Mean Absolute Error} (MAE), \textit{Mean Percentage Error} (MPE) e \textit{Mean Absolute Percentage Error} (MAPE). As métricas foram escolhidas com o objetivo de avaliar o erro de predição dos modelos de diferentes perspectivas. As Equações~\ref{eq:rmse}, \ref{eq:mae}, \ref{eq:mpe} e \ref{eq:mape} consideram $n$ como o número de observações presentes na coleção de dados, os valores de $y_{i}$ representam o conjunto de valores previstos pelos modelos e $x_{i}$ são os valores observados do conjunto separado para teste.
 
-\begin{equation}
+A Equação~\ref{eq:rmse} descreve o RMSE, que representa a raiz quadrada da média quadrática da diferença entre os valores previstos e observados. O RMSE é uma métrica que pode ser utilizada para comparar diferentes modelos ajustados e avaliados sobre um mesmo conjunto de dados, não sendo indicado para comparações entre coleções de dados diferentes. Esse comportamento é justificado pelo fato do RMSE ser uma métrica de acurácia que a escala depende da escala dos dados, como constatado em \cite{HYNDMAN2006679}. O valor de RMSE nunca assume valores negativos, e, em geral, valores menores são melhores que valores maiores. Esta métrica é sensível a erros muito grandes, ou seja, não possui um comportamento estável quando há \textit{outliers}.
+\begin{equation} \label{eq:rmse}
     RMSE=\sqrt{\dfrac{\sum ^{n}_{i=1}\left( y_{i}-x_{i}\right) ^{2}}{n}}
 \end{equation}
 
-\begin{equation}
+A métrica expressa pela Equação~\ref{eq:mae}, assim como o RMSE, é uma medida de acurácia. Com isso, compartilha da mesma propriedade de escala. A sua diferença principal, é que seu cálculo é linear, ou seja, as diferenças entre os valores observados e preditos são igualmente ponderadas na média.
+\begin{equation} \label{eq:mae}
     MAE=\sum ^{n}_{i=1}\dfrac{\left| y_{i}-x_{i}\right| }{n}
 \end{equation}
 
-\begin{equation}
+\begin{equation} \label{eq:mpe}
     MPE=\dfrac{1}{n}\sum ^{n}_{i=1}\dfrac{x_{i}-y_{i}}{x_{i}}
 \end{equation}
 
-\begin{equation}
+\begin{equation} \label{eq:mape}
     MAPE=\dfrac{1}{n}\sum ^{n}_{i=1}\left| \dfrac{y_{i}-x_{i}}{x_{i}}\right|
 \end{equation}
 
