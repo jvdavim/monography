@@ -121,7 +121,7 @@ Finalmente, após a soma de todos os componentes, é alcançada a série tempora
 
 \FloatBarrier
 
-\section{Métricas de avaliação utilizadas}
+\section{Métricas de avaliação utilizadas} \label{sec:metrics}
 
 Para a avaliação dos modelos preditivos, foram utilizadas 4 métricas de avaliação: \textit{Root Mean Square Error} (RMSE), \textit{Mean Absolute Error} (MAE), \textit{Mean Percentage Error} (MPE) e \textit{Mean Absolute Percentage Error} (MAPE). As métricas foram escolhidas com o objetivo de avaliar o erro de predição dos modelos de diferentes perspectivas. As Equações~\ref{eq:rmse}, \ref{eq:mae}, \ref{eq:mpe} e \ref{eq:mape} consideram $n$ como o número de observações presentes na coleção de dados, os valores de $y_{i}$ representam o conjunto de valores previstos pelos modelos e $x_{i}$ são os valores observados do conjunto separado para teste.
 
@@ -148,10 +148,19 @@ A métrica \textit{Mean Absolute Percentage Error} (MAPE), é uma medida de acur
 \end{equation}
 
 \section{Resultados}
-% apresentar formato de apresentação dos resultados.
+Os modelos Prophet, ARIMA e Regression WiSARD tiveram seus hiperparâmetros otimizados através de uma busca exaustiva em grade. Para cada modelo, foi definido um conjunto específico de combinações de hiperparâmetros que formaram um espaço discreto de busca, onde todas as possibilidades foram avaliadas. Os melhores conjuntos de hiperparâmetros encontrados para cada modelo, foram utilizados para uma comparação entre os modelos de acordo com 3 critérios: erro, tempo de inferência/ajuste e uso de memória RAM para inferência.
 
 \subsection{Avaliação por métricas}
+Para uma comparação quanto ao erro dos modelos, foram avaliadas as métricas explicadas na Seção~\ref{sec:metrics} para cada configuração possível da grade de hiperparâmetros de cada modelo. Cada modelo teve 4 configurações escolhidas, que foram otimizadas por cada uma das métricas apresentadas. A Tabela~\ref{tab:metrics} mostra os resultados obtidos para cada \textit{dataset}.
 
+\begin{table}[!htp]
+    \caption{}
+    \label{tab:metrics}
+    \setlength\extrarowheight{5pt}
+    \begin{tabular}{|c|c|ccc|}
+        
+    \end{tabular}
+\end{table}
 
 
 \subsection{Tempos de execução}
