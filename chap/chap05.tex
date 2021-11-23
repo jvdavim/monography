@@ -3,8 +3,9 @@
 \section{Ambiente computacional}
 Para os experimentos realizados neste trabalho, foram utilizados 2 máquinas com configrações diferentes de hardware. Um deles possui o \textit{hostname} poseidon e é hospedado nas dependências do Laboratório de Arquitetura de Computadores e Microeletrônica (LAM), enquanto o outro trata-se de um notebook pessoal com \textit{hostname} jvdvostro. O servidor poseidon foi utilizado para realizar a busca de hiperparâmetros, pois é a etapa que mais consome recursos computacionais. O jvdvostro foi utilizado para coletar as métricas de inferência, gerar gráficos e fazer a análise dos resultados. A Tabela~\ref{tab:hardware} expõe as configurações de \textit{hardware} de ambos computadores utilizados nos experimentos.
 
-\begin{table}[!htp] \label{tab:hardware}
+\begin{table}[!htp]
     \caption{Configurações de \textit{hardware} dos computadores.}
+    \label{tab:hardware}
     \setlength\extrarowheight{5pt}
     \centering
     \begin{tabular}{|c|c|c|c|}
@@ -151,22 +152,64 @@ A métrica \textit{Mean Absolute Percentage Error} (MAPE), é uma medida de acur
 Os modelos Prophet, ARIMA e Regression WiSARD tiveram seus hiperparâmetros otimizados através de uma busca exaustiva em grade. Para cada modelo, foi definido um conjunto específico de combinações de hiperparâmetros que formaram um espaço discreto de busca, onde todas as possibilidades foram avaliadas. Os melhores conjuntos de hiperparâmetros encontrados para cada modelo, foram utilizados para uma comparação entre os modelos de acordo com 3 critérios: erro, tempo de inferência/ajuste e uso de memória RAM para inferência.
 
 \subsection{Avaliação por métricas}
-Para uma comparação quanto ao erro dos modelos, foram avaliadas as métricas explicadas na Seção~\ref{sec:metrics} para cada configuração possível da grade de hiperparâmetros de cada modelo. Cada modelo teve 4 configurações escolhidas, que foram otimizadas por cada uma das métricas apresentadas. A Tabela~\ref{tab:metrics} mostra os resultados obtidos para cada \textit{dataset}.
+Para uma comparação quanto ao erro dos modelos, foram avaliadas as métricas explicadas na Seção~\ref{sec:metrics} para cada configuração possível da grade de hiperparâmetros de cada modelo. Cada modelo teve 4 configurações escolhidas, que foram otimizadas por cada uma das métricas apresentadas. As Tabelas~\ref{tab:temperature_results}, \ref{tab:covid_results} e \ref{tab:synthetic_results} mostram os resultados obtidos para cada \textit{dataset}.
 
 \begin{table}[!htp]
-    \caption{}
-    \label{tab:metrics}
+    \caption{Tabela de métricas para o \textit{dataset} da temperatura mínima diária de Melbourne.}
+    \label{tab:temperature_results}
     \setlength\extrarowheight{5pt}
-    \begin{tabular}{|c|c|ccc|}
-        
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        \rowcolor[HTML]{C0C0C0}
+        Modelo  & RMSE              & MAPE              & MPE                   & MAE               \\ \hline
+        arima   & 1.049886          & 0.060034          & -1.830924e-04         & 0.848392          \\ \hline
+        \rowcolor[HTML]{EFEFEF}
+        rew     & 0.910288          & \textbf{0.048378} & \textbf{5.457293e-08} & \textbf{0.700003} \\ \hline
+        prophet & \textbf{0.905167} & 0.049002          & -1.334196e-04         & 0.707685          \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[!htp]
+    \caption{Tabela de métricas para o \textit{dataset} do número de casos confirmados de Covid19 no Rio de Janeiro.}
+    \label{tab:covid_results}
+    \setlength\extrarowheight{5pt}
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        \rowcolor[HTML]{C0C0C0}
+        Modelo  & RMSE                & MAPE              & MPE                & MAE                 \\ \hline
+        arima   & \textbf{238.181820} & \textbf{0.254128} & \textbf{-0.060560} & \textbf{194.656193} \\ \hline
+        \rowcolor[HTML]{EFEFEF}
+        rew     & 261.198655          & 5.029668          & -4.672775          & 226.856128          \\ \hline
+        prophet & 1214.961631         & 21.895568         & -21.895568         & 1205.848658         \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[!htp]
+    \caption{Tabela de métricas para o \textit{dataset} gerado sinteticamente.}
+    \label{tab:synthetic_results}
+    \setlength\extrarowheight{5pt}
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        \rowcolor[HTML]{C0C0C0}
+        Modelo  & RMSE                & MAPE              & MPE               & MAE                 \\ \hline
+        arima   & 131.741791          & 0.082449          & 0.006564          & 126.191932          \\ \hline
+        \rowcolor[HTML]{EFEFEF}
+        rew     & \textbf{126.377103} & \textbf{0.070265} & \textbf{0.000020} & \textbf{101.588470} \\ \hline
+        prophet & 169.177431          & 0.100267          & 0.023560          & 153.021037          \\ \hline
     \end{tabular}
 \end{table}
 
 
 \subsection{Tempos de execução}
 
+Para medir o tempo de execução, foram utilizados todos os melhores conjuntos de hiperparâmetros encontrados na busca de acordo com cada métrica, ou seja, foram realizados um total de 4 medições para cada modelo para cada \textit{dataset}. A medida de tempo do mesmo modelo com diferentes conjuntos de hiperparâmetros pode parecer irrelevante em um primeiro momento, mas pode indicar uma possível sensibilidade de performance dependendo do ajuste. A Tabela~\ref{tab:tempo_ajuste} mostra as medições de tempo feitas no momento da inferência, enquanto a Tabela~\ref{tab:tempo_inferencia} mostra as medições de tempo de inferência dos modelos. As medições de ajuste foram realizadas em 7 rodadas com 10 iterações, enquanto as de inferência foram obtidas com 7 rodadas de 100 iterações.
+
 \begin{table}[!htp]
     \caption{Tempo de ajuste dos modelos.}
+    \label{tab:tempo_ajuste}
     \setlength\extrarowheight{5pt}
     \begin{tabular}{|c|c|ccc|}
         \hline
@@ -197,6 +240,7 @@ Para uma comparação quanto ao erro dos modelos, foram avaliadas as métricas e
 
 \begin{table}[!htp]
     \caption{Tempo de inferência dos modelos.}
+    \label{tab:tempo_inferencia}
     \setlength\extrarowheight{5pt}
     \begin{tabular}{|c|c|ccc|}
         \hline
