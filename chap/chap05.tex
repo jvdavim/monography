@@ -123,26 +123,27 @@ Finalmente, após a soma de todos os componentes, é alcançada a série tempora
 \FloatBarrier
 
 \section{Métricas de avaliação utilizadas} \label{sec:metrics}
-
 Para a avaliação dos modelos preditivos, foram utilizadas 4 métricas de avaliação: \textit{Root Mean Square Error} (RMSE), \textit{Mean Absolute Error} (MAE), \textit{Mean Percentage Error} (MPE) e \textit{Mean Absolute Percentage Error} (MAPE). As métricas foram escolhidas com o objetivo de avaliar o erro de predição dos modelos de diferentes perspectivas. As Equações~\ref{eq:rmse}, \ref{eq:mae}, \ref{eq:mpe} e \ref{eq:mape} consideram $n$ como o número de observações presentes na coleção de dados, os valores de $y_{i}$ representam o conjunto de valores previstos pelos modelos e $x_{i}$ são os valores observados do conjunto separado para teste.
 
 A Equação~\ref{eq:rmse} descreve o RMSE, que representa a raiz quadrada da média quadrática da diferença entre os valores previstos e observados. O RMSE é uma métrica que pode ser utilizada para comparar diferentes modelos ajustados e avaliados sobre um mesmo conjunto de dados, não sendo indicado para comparações entre coleções de dados diferentes. Esse comportamento é justificado pelo fato do RMSE ser uma métrica de acurácia que a escala depende da escala dos dados, como constatado em \cite{HYNDMAN2006679}. O valor de RMSE nunca assume valores negativos, e, em geral, valores menores são melhores que valores maiores. Esta métrica é sensível a erros muito grandes, ou seja, não possui um comportamento estável quando há \textit{outliers}.
+
 \begin{equation} \label{eq:rmse}
     RMSE=\sqrt{\dfrac{\sum ^{n}_{i=1}\left( y_{i}-x_{i}\right) ^{2}}{n}}
 \end{equation}
 
 A métrica expressa pela Equação~\ref{eq:mae}, assim como o RMSE, é uma medida de acurácia. Com isso, compartilha da mesma propriedade de escala. A sua diferença principal, é que seu cálculo é linear, ou seja, as diferenças entre os valores observados e preditos são igualmente ponderadas na média.
+
 \begin{equation} \label{eq:mae}
     MAE=\sum ^{n}_{i=1}\dfrac{\left| y_{i}-x_{i}\right| }{n}
 \end{equation}
 
 Diferente das métricas MAE, RMSE e MAPE, a \textit{Mean Percentage Error} (MPE), é uma métrica que considera o sinal do erro, ou seja, erros positivos e negativos se cancelam. Como consequência, a sua fórmula pode ser usada para medir o viés das predições. A Equação~\ref{eq:mpe} mostra como é feito o cáculo da MPE.
+
 \begin{equation} \label{eq:mpe}
     MPE=\dfrac{1}{n}\sum ^{n}_{i=1}\dfrac{x_{i}-y_{i}}{x_{i}}
 \end{equation}
 
 A métrica \textit{Mean Absolute Percentage Error} (MAPE), é uma medida de acurácia, assim como a RMSE e MAE. Seu diferencial se dá pelo fato de ter uma interpretabilidade intuitiva comparado às outras métricas. Porém possui alguns defeitos bem conhecidos \cite{CHRISTOFALLIS2015}, como o erro da divisão por 0 e o fato de penalizar mais erros negativos do que erros positivos \cite{MAKRIDAKIS1993527}, levando à escolha de modelos cujo as predições são de valores mais baixos.
-
 
 \begin{equation} \label{eq:mape}
     MAPE=\dfrac{1}{n}\sum ^{n}_{i=1}\left| \dfrac{y_{i}-x_{i}}{x_{i}}\right|
@@ -204,7 +205,6 @@ Para uma comparação quanto ao erro dos modelos, foram avaliadas as métricas e
 
 
 \subsection{Tempos de execução}
-
 Para medir o tempo de execução, foram utilizados todos os melhores conjuntos de hiperparâmetros encontrados na busca de acordo com cada métrica, ou seja, foram realizados um total de 4 medições para cada modelo para cada \textit{dataset}. A medida de tempo do mesmo modelo com diferentes conjuntos de hiperparâmetros pode parecer irrelevante em um primeiro momento, mas pode indicar uma possível sensibilidade de performance dependendo do ajuste. A Tabela~\ref{tab:tempo_ajuste} mostra as medições de tempo feitas no momento da inferência, enquanto a Tabela~\ref{tab:tempo_inferencia} mostra as medições de tempo de inferência dos modelos. As medições de ajuste foram realizadas em 7 rodadas com 10 iterações, enquanto as de inferência foram obtidas com 7 rodadas de 100 iterações.
 
 \begin{table}[!htp]
@@ -272,9 +272,12 @@ Para medir o tempo de execução, foram utilizados todos os melhores conjuntos d
 \FloatBarrier
 
 \subsection{Uso de memória}
+Assim como as medidas de tempo de execução, o uso de memória foi coletado para cada combinação de modelo, \textit{dataset} e métrica utilizada para escolha dos hiperparâmetros. Porém, neste caso, a medida de interesse é o uso de memória do modelo ajustado, portanto a Tabela~\ref{tab:memoria} mostra o uso de memória em MiB de cada modelo. As medidas foram realizadas com o auxílio da biblioteca \textit{memory\_profiler}, que possui todas suas especificações documentadas no github\footnote{$https://github.com/pythonprofilers/memory\_profiler\#memory-profiler$}.
+
 
 \begin{table}[!htp]
     \caption{Uso de memória de cada modelo por métrica otimizada e dataset.}
+    \label{tab:memoria}
     \setlength\extrarowheight{5pt}
     \centering
     \begin{tabular}{|c|c|ccc|}
