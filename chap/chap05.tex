@@ -152,7 +152,7 @@ A métrica \textit{Mean Absolute Percentage Error} (MAPE), é uma medida de acur
 \section{Resultados}
 Os modelos Prophet, ARIMA e Regression WiSARD tiveram seus hiperparâmetros otimizados através de uma busca exaustiva em grade. Para cada modelo, foi definido um conjunto específico de combinações de hiperparâmetros que formaram um espaço discreto de busca, onde todas as possibilidades foram avaliadas. Os melhores conjuntos de hiperparâmetros encontrados para cada modelo, foram utilizados para uma comparação entre os modelos de acordo com 3 critérios: erro, tempo de inferência/ajuste e uso de memória RAM para inferência.
 
-\subsection{Avaliação por métricas}
+\subsection{Avaliação por métricas} \label{subsec:metrics_eval}
 Para uma comparação quanto ao erro dos modelos, foram avaliadas as métricas explicadas na Seção~\ref{sec:metrics} para cada configuração possível da grade de hiperparâmetros de cada modelo. Cada modelo teve 4 configurações escolhidas, que foram otimizadas por cada uma das métricas apresentadas. As Tabelas~\ref{tab:temperature_results}, \ref{tab:covid_results} e \ref{tab:synthetic_results} mostram os resultados obtidos para cada \textit{dataset}.
 
 \begin{table}[!htp]
@@ -310,3 +310,8 @@ Assim como as medidas de tempo de execução, o uso de memória foi coletado par
 \FloatBarrier
 
 \subsection{Discussão}
+Com base nos resultados expostos na Subseção~\ref{subsec:metrics_eval}, é possível concluir que todos os modelos atingiram métricas próximas considerando suas respectivas escalas. Na maioria dos casos, todas as métricas apontaram o mesmo modelo como melhor opção, tendo como exceção apenas o \textit{dataset} de temperatura mínima diária em Melbourne, que teve o modelo Prophet apontado como melhor opção ao considerar a métrica RMSE. Ao observar as Tabelas~\ref{tab:temperature_results} e \ref{tab:synthetic_results}, é possível também notar a propriedade das métricas dependentes da escala, conforme descrito na Subseção~\ref{subsec:metrics_eval}. Em geral, a Regression WiSARD obteve métricas melhores para as coleções de dados sintética e temperatura mínima diária em Melbourne, enquanto o ARIMA obeteve o melhor resultado para o número de casos confirmados de Covid19 no Rio de Janeiro.
+
+Os resultados referentes ao tempo de ajuste, por sua vez, favoreceram o modelo Regression WiSARD, apresentando tempos de ajuste ordens de grandeza menores que o ARIMA e o Prophet. Apesar disto, o Prophet apresentou um tempo de ajuste significativamente menor se comparado ao ARIMA. O tempo de inferência também privilegiou a Regression WiSARD, porém o modelo ARIMA obteve tempos significativamente melhores que o Prophet, se mantendo, em alguns casos, quase na mesma ordem de grandeza dos tempos da Regression WiSARD. O tamanho do \textit{dataset} foi uma característica relevante para o tempo de ajuste, dado que houve aumento no tempo medido em \textit{datasets} maiores.
+
+Em relação ao uso de memória RAM, a Regression WiSARD apresentou o menor custo, seguida do ARIMA e do Prophet respectivamente. Independente do \textit{dataset} e do conjunto de hiperparâmetros utilizado, houve unanimidade na comparação de uso de memória entre os 3 modelos, porém, o ARIMA foi o modelo que mais sofreu variações com o tamanho do \textit{dataset}, apesar de sempre se manter com uso de memória inferior ao Prophet.

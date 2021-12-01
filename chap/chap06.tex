@@ -1,10 +1,11 @@
 \chapter{Conclusão}
-% resumo do trabalho.
+Este trabalho começou apresentando dois modelos de previsão de séries temporais e descrevendo suas características e implementações. Então, foi apresentado um modelo de regressão supervisionado baseado em Redes Neurais sem Peso e um método alternativo para resolver o problema de previsão de séries temporais. A transformação do problema de previsão de séries temporais em um problema de regressão supervisionado através das janelas deslizantes e a suavização das flutuações de curto prazo com médias móveis foram essenciais para viabilizar o treinamento do modelo avaliado.
 
-% resumo e discussão dos resultados.
-\section{Sumário}
+O método apresentado provou ser competitivo nas medidas de acurácia em relação a modelos como o ARIMA e o Prophet na resolução do problema de previsão do número de casos confirmados de Covid19 no Rio de Janeiro, da temperatura mínima diária em Melbourne e de dados gerados de forma sintética. Em relação ao tempo de inferência e ajuste o modelo utilizado foi superior aos demais modelos, assim como na utilização de memória. Portanto, dado a baixa utilização de memória e o baixo tempo de inferência e ajuste, este método é um bom candidato para situações onde o custo computacional seja requisito.
 
-\section{Trabalhos futuros} % curto, médio e longo prazo
+Apesar de terem sido obtidos resultados satisfatórios no método apresentado, a utilização de \textit{ensembles} pode ser explorada em curto prazo como tentativa de ganhos nas medidas de acurácia sem perda no custo computacional. A utilização de variáveis exógenas também pode melhorar a acurácia do modelo, porém requer pouco mais tempo para o estudo de como incluir estas no treinamento de forma ótima. Já a longo prazo, podem ser pensadas formas de previsões de séries temporais com múltiplas variáveis de saída e em técnicas de pré-processamento para séries temporais de alta frequência.
+
+% trabalhos futuros em curto, médio e longo prazo
 % variáveis exógenas
 % ensembles
 % 
