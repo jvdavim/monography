@@ -1,5 +1,8 @@
 \chapter{Avaliação Experimental}
-% explicar objetivos da avaliação experimental.
+\label{chap:05}
+
+Todos os experimentos realizados nesse trabalho foram reproduzidos para as coleções de dados referentes ao número de casos confirmados de COVID-19 no Rio de Janeiro, temperatura mínima diária em Melbourne, e dados gerados por um processo determinístico. Os experimentos consistem no treinamento dos modelos ARIMA, Prophet e Regression WiSARD e avaliação de acordo com as métricas de acurácia, tempo e custo computacional (uso de memória RAM). Em todos os casos, foram reservadas as 7 observações finais de cada \textit{dataset} para avaliação quanto às métricas de acurácia e tempo de ajuste.
+
 \section{Ambiente computacional}
 Para os experimentos realizados neste trabalho, foram utilizados 2 máquinas com configrações diferentes de hardware. Um deles possui o \textit{hostname} poseidon e é hospedado nas dependências do Laboratório de Arquitetura de Computadores e Microeletrônica (LAM), enquanto o outro trata-se de um notebook pessoal com \textit{hostname} jvdvostro. O servidor poseidon foi utilizado para realizar a busca de hiperparâmetros, pois é a etapa que mais consome recursos computacionais. O jvdvostro foi utilizado para coletar as métricas de inferência, gerar gráficos e fazer a análise dos resultados. A Tabela~\ref{tab:hardware} expõe as configurações de \textit{hardware} de ambos computadores utilizados nos experimentos.
 
