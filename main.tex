@@ -12,6 +12,10 @@
 \makelosymbols
 \makeloabbreviations
 
+\makeatletter
+\renewcommand\tagform@[1]{\maketag@@@{\ignorespaces#1\unskip\@@italiccorr}}
+\makeatother
+
 \begin{document}
 \title{Título}
 \foreigntitle{Title}
