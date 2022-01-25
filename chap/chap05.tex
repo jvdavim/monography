@@ -23,15 +23,15 @@ Para os experimentos realizados neste trabalho, foram utilizados 2 máquinas com
 Os experimentos foram realizados utilizando \textit{scripts} e \textit{notebooks} Python, dependendo da etapa e da finalidade. Para a busca de hiperparâmetros e avaliação dos modelos em relação ao erro, foram utilizados \textit{scripts}, enquanto para a avaliação de métricas de tempo de inferência e uso de memória foram utilizados \textit{notebooks}.
 
 \section{Coleções de dados}
-Foram utilizadas para os experimentos deste trabalho 3 coleções de dados. Dentre estas, duas foram coletadas de fontes públicas abertas na internet e uma foi gerada artificialmente. Todas foram armazenadas em disco local no formato tabular com extensão csv (\textit{comma separated values}). O número de casos confirmados de Covid19 no Rio de Janeiro foi o primeiro dataset utilizado nos experimentos e serviu como um dos motivadores do estudo realizado. A temperatura mínima diária em Melbourne e os dados gerados sintéticamente serviram como prova de conceito para averiguar a eficiência dos métodos aplicados em diferentes cenários, portanto foram submetidos aos mesmos métodos e técnicas aplicados na primeira coleção de dados. As duas coleções de dados retiradas de fontes públicas possuem licensa que permite a sua utilização para fins acadêmicos, e podem ser consultadas nos endereços disponibilizados nesta Seção.
+Foram utilizadas para os experimentos deste trabalho 3 coleções de dados. Dentre estas, duas foram coletadas de fontes públicas abertas na internet e uma foi gerada artificialmente. Todas foram armazenadas em disco local no formato tabular com extensão csv (\textit{comma separated values}). O número de casos confirmados de COVID-19 no Rio de Janeiro foi o primeiro dataset utilizado nos experimentos e serviu como um dos motivadores do estudo realizado. A temperatura mínima diária em Melbourne e os dados gerados sintéticamente serviram como prova de conceito para averiguar a eficiência dos métodos aplicados em diferentes cenários, portanto foram submetidos aos mesmos métodos e técnicas aplicados na primeira coleção de dados. As duas coleções de dados retiradas de fontes públicas possuem licensa que permite a sua utilização para fins acadêmicos, e podem ser consultadas nos endereços disponibilizados nesta Seção.
 
-\subsection{Casos confirmados de Covid19 no Rio de Janeiro} \label{subsec:casos_confirmados}
-Com o auxílio da biblioteca \textit{requests} do Python, foi criado um \textit{script} para baixar e armazenar localmente o número de casos confirmados de Covid19 no Estado do Rio de Janeiro. O arquivo csv foi baixado diretamente do web site da Secretaria de Saúde do Estado do Rio de Janeiro. \footnote{$http://sistemas.saude.rj.gov.br/tabnetbd/dhx.exe?covid19/covid_munic_diario.def$} Para manter a reprodutibilidade dos experimentos, o período analisado foi congelado entre as datas 01/01/2020 e 04/07/2021. A Figura~\ref{fig:casos_confirmados} mostra um gráfico da série temporal não acumulada do número de casos confirmados diário, ou seja, os valores absolutos de casos registrados em cada dia sem considerar os dias anteriores.
+\subsection{Casos confirmados de COVID-19 no Rio de Janeiro} \label{subsec:casos_confirmados}
+Com o auxílio da biblioteca \textit{requests} do Python, foi criado um \textit{script} para baixar e armazenar localmente o número de casos confirmados de COVID-19 no Estado do Rio de Janeiro. O arquivo csv foi baixado diretamente do web site da Secretaria de Saúde do Estado do Rio de Janeiro. \footnote{$http://sistemas.saude.rj.gov.br/tabnetbd/dhx.exe?covid19/covid_munic_diario.def$} Para manter a reprodutibilidade dos experimentos, o período analisado foi congelado entre as datas 01/01/2020 e 04/07/2021. A Figura~\ref{fig:casos_confirmados} mostra um gráfico da série temporal não acumulada do número de casos confirmados diário, ou seja, os valores absolutos de casos registrados em cada dia sem considerar os dias anteriores.
 
 \begin{figure}[!htp]
     \centering
     \includegraphics[width=5.0in]{img/casos_confirmados.pdf}
-    \caption{Série temporal do número de casos confirmados de Covid19 no Rio de Janeiro.}
+    \caption{Série temporal do número de casos confirmados de COVID-19 no Rio de Janeiro.}
     \label{fig:casos_confirmados}
 \end{figure}
 
@@ -40,14 +40,14 @@ A Figura~\ref{fig:casos_confirmados} mostra que há flutuações a curto pazo, q
 \begin{figure}[!htp]
     \centering
     \includegraphics[width=5.0in]{img/casos_confirmados_ma.pdf}
-    \caption{Médias móveis do número de casos confirmados de Covid19 no Rio de Janeiro.}
+    \caption{Médias móveis do número de casos confirmados de COVID-19 no Rio de Janeiro.}
     \label{fig:casos_confirmados_ma}
 \end{figure}
 
 \FloatBarrier
 
 \subsection{Temperatura mínima diária em Melbourne}
-Assim como na coleção de dados referente ao número de casos confirmados de Covid19 no Rio de Janeiro~\ref{subsec:casos_confirmados}, os dados de temperatura mínima diária em Melbourne foram baixados através de um \textit{script} Python com o auxílio da biblioteca \textit{requests}. O arquivo pode ser baixado diretamente do GitHub \footnote{$https://raw.githubusercontent.com/jbrownlee/Datasets/master/daily-min-temperatures.csv$} e também pode ser encontrado em um desafio do Kaggle \footnote{$https://www.kaggle.com/paulbrabban/daily-minimum-temperatures-in-melbourne$}.
+Assim como na coleção de dados referente ao número de casos confirmados de COVID-19 no Rio de Janeiro~\ref{subsec:casos_confirmados}, os dados de temperatura mínima diária em Melbourne foram baixados através de um \textit{script} Python com o auxílio da biblioteca \textit{requests}. O arquivo pode ser baixado diretamente do GitHub \footnote{$https://raw.githubusercontent.com/jbrownlee/Datasets/master/daily-min-temperatures.csv$} e também pode ser encontrado em um desafio do Kaggle \footnote{$https://www.kaggle.com/paulbrabban/daily-minimum-temperatures-in-melbourne$}.
 
 \begin{figure}[!htp]
     \centering
@@ -56,7 +56,7 @@ Assim como na coleção de dados referente ao número de casos confirmados de Co
     \label{fig:temperatura_minima_diaria}
 \end{figure}
 
-A Figura~\ref{fig:temperatura_minima_diaria} mostra que a quantidade de observações na série temporal da temperatura mínima diária em Melbourne é muito superior ao número de casos confirmados de Covid19, e correspondem ao período entre 01/01/1981 e 31/12/1990. Outro ponto divergente é a observabilidade do caráter sazonal com período de um ano. Porém, as flutuações de curto prazo permanecem, e continuam configurando um problema para o ajuste de modelos preditivos que precisam generalizar para realizar inferências mais acertivas.
+A Figura~\ref{fig:temperatura_minima_diaria} mostra que a quantidade de observações na série temporal da temperatura mínima diária em Melbourne é muito superior ao número de casos confirmados de COVID-19, e correspondem ao período entre 01/01/1981 e 31/12/1990. Outro ponto divergente é a observabilidade do caráter sazonal com período de um ano. Porém, as flutuações de curto prazo permanecem, e continuam configurando um problema para o ajuste de modelos preditivos que precisam generalizar para realizar inferências mais acertivas.
 
 \begin{figure}[!htp]
     \centering
@@ -126,7 +126,7 @@ Finalmente, após a soma de todos os componentes, é alcançada a série tempora
 \FloatBarrier
 
 \section{Métricas de avaliação utilizadas} \label{sec:metrics}
-Para a avaliação dos modelos preditivos, foram utilizadas 4 métricas de avaliação: \textit{Root Mean Square Error} (RMSE), \textit{Mean Absolute Error} (MAE), \textit{Mean Percentage Error} (MPE) e \textit{Mean Absolute Percentage Error} (MAPE). As métricas foram escolhidas com o objetivo de avaliar o erro de predição dos modelos de diferentes perspectivas. As Equações~\ref{eq:rmse}, \ref{eq:mae}, \ref{eq:mpe} e \ref{eq:mape} consideram $n$ como o número de observações presentes na coleção de dados, os valores de $y_{i}$ representam o conjunto de valores previstos pelos modelos e $x_{i}$ são os valores observados do conjunto separado para teste.
+Para a avaliação dos modelos preditivos, foram utilizadas 4 métricas de avaliação:  Raiz do Erro Médio Quadrático (\textit{Root Mean Square Error}, RMSE), \textit{Mean Absolute Error} (MAE), \textit{Mean Percentage Error} (MPE) e \textit{Mean Absolute Percentage Error} (MAPE). As métricas foram escolhidas com o objetivo de avaliar o erro de predição dos modelos de diferentes perspectivas. As Equações~\ref{eq:rmse}, \ref{eq:mae}, \ref{eq:mpe} e \ref{eq:mape} consideram $n$ como o número de observações presentes na coleção de dados, os valores de $y_{i}$ representam o conjunto de valores previstos pelos modelos e $x_{i}$ são os valores observados do conjunto separado para teste.
 
 A Equação~\ref{eq:rmse} descreve o RMSE, que representa a raiz quadrada da média quadrática da diferença entre os valores previstos e observados. O RMSE é uma métrica que pode ser utilizada para comparar diferentes modelos ajustados e avaliados sobre um mesmo conjunto de dados, não sendo indicado para comparações entre coleções de dados diferentes. Esse comportamento é justificado pelo fato do RMSE ser uma métrica de acurácia que a escala depende da escala dos dados, como constatado em \cite{HYNDMAN2006679}. O valor de RMSE nunca assume valores negativos, e, em geral, valores menores são melhores que valores maiores. Esta métrica é sensível a erros muito grandes, ou seja, não possui um comportamento estável quando há \textit{outliers}.
 
@@ -159,7 +159,7 @@ Os modelos Prophet, ARIMA e Regression WiSARD tiveram seus hiperparâmetros otim
 Para uma comparação quanto ao erro dos modelos, foram avaliadas as métricas explicadas na Seção~\ref{sec:metrics} para cada configuração possível da grade de hiperparâmetros de cada modelo. Cada modelo teve 4 configurações escolhidas, que foram otimizadas por cada uma das métricas apresentadas. As Tabelas~\ref{tab:temperature_results}, \ref{tab:covid_results} e \ref{tab:synthetic_results} mostram os resultados obtidos para cada \textit{dataset}.
 
 \begin{table}[!htp]
-    \caption{Tabela de métricas para o \textit{dataset} do número de casos confirmados de Covid19 no Rio de Janeiro.}
+    \caption{Tabela de métricas para o \textit{dataset} do número de casos confirmados de COVID-19 no Rio de Janeiro.}
     \label{tab:covid_results}
     \setlength\extrarowheight{5pt}
     \centering
@@ -167,7 +167,7 @@ Para uma comparação quanto ao erro dos modelos, foram avaliadas as métricas e
         \hline
         \rowcolor[HTML]{C0C0C0}
         Modelo  & RMSE                & MAPE              & MPE                & MAE                 \\ \hline
-        arima   & \textbf{238.181820} & \textbf{0.254128} & \textbf{-0.060560} & \textbf{194.656193} \\ \hline
+        ARIMA   & \textbf{238.181820} & \textbf{0.254128} & \textbf{-0.060560} & \textbf{194.656193} \\ \hline
         \rowcolor[HTML]{EFEFEF}
         rew     & 261.198655          & 5.029668          & -4.672775          & 226.856128          \\ \hline
         prophet & 1214.961631         & 21.895568         & -21.895568         & 1205.848658         \\ \hline
@@ -183,7 +183,7 @@ Para uma comparação quanto ao erro dos modelos, foram avaliadas as métricas e
         \hline
         \rowcolor[HTML]{C0C0C0}
         Modelo  & RMSE              & MAPE              & MPE                   & MAE               \\ \hline
-        arima   & 1.049886          & 0.060034          & -1.830924e-04         & 0.848392          \\ \hline
+        ARIMA   & 1.049886          & 0.060034          & -1.830924e-04         & 0.848392          \\ \hline
         \rowcolor[HTML]{EFEFEF}
         rew     & 0.910288          & \textbf{0.048378} & \textbf{5.457293e-08} & \textbf{0.700003} \\ \hline
         prophet & \textbf{0.905167} & 0.049002          & -1.334196e-04         & 0.707685          \\ \hline
@@ -199,7 +199,7 @@ Para uma comparação quanto ao erro dos modelos, foram avaliadas as métricas e
         \hline
         \rowcolor[HTML]{C0C0C0}
         Modelo  & RMSE                & MAPE              & MPE               & MAE                 \\ \hline
-        arima   & 131.741791          & 0.082449          & 0.006564          & 126.191932          \\ \hline
+        ARIMA   & 131.741791          & 0.082449          & 0.006564          & 126.191932          \\ \hline
         \rowcolor[HTML]{EFEFEF}
         rew     & \textbf{126.377103} & \textbf{0.070265} & \textbf{0.000020} & \textbf{101.588470} \\ \hline
         prophet & 169.177431          & 0.100267          & 0.023560          & 153.021037          \\ \hline
@@ -219,7 +219,7 @@ Para medir o tempo de execução, foram utilizados todos os melhores conjuntos d
         \rowcolor[HTML]{C0C0C0}
         \cellcolor[HTML]{C0C0C0}                          & \cellcolor[HTML]{C0C0C0}                          & \multicolumn{3}{c|}{\cellcolor[HTML]{C0C0C0}Dataset}                                                                                                                         \\ \cline{3-5}
         \rowcolor[HTML]{C0C0C0}
-        \multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}Modelo}  & \multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}Métrica} & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Covid}                      & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Temperatura}               & Sintético                 \\ \hline
+        \multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}Modelo}  & \multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}Métrica} & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}COVID}                      & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Temperatura}               & Sintético                 \\ \hline
         \cellcolor[HTML]{C0C0C0}                          & RMSE                                              & \multicolumn{1}{c|}{779 ms ± 2.4 ms}                                    & \multicolumn{1}{c|}{3.61 s ± 5.34 ms}                                  & 38.4 ms ± 383 µs          \\ \cline{2-5}
         \rowcolor[HTML]{EFEFEF}
         \cellcolor[HTML]{C0C0C0}                          & MAPE                                              & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}1.34 s ± 2.11ms}            & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}3.61 s ± 4.68 ms}          & 38.3 ms ± 184 µs          \\ \cline{2-5}
@@ -250,7 +250,7 @@ Para medir o tempo de execução, foram utilizados todos os melhores conjuntos d
         \rowcolor[HTML]{C0C0C0}
         \cellcolor[HTML]{C0C0C0}                          & \cellcolor[HTML]{C0C0C0}                          & \multicolumn{3}{c|}{\cellcolor[HTML]{C0C0C0}Dataset}                                                                                                                         \\ \cline{3-5}
         \rowcolor[HTML]{C0C0C0}
-        \multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}Modelo}  & \multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}Métrica} & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Covid}                      & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Temperatura}               & Sintético                 \\ \hline
+        \multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}Modelo}  & \multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}Métrica} & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}COVID}                      & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Temperatura}               & Sintético                 \\ \hline
         \cellcolor[HTML]{C0C0C0}                          & RMSE                                              & \multicolumn{1}{c|}{960 µs ± 2.51 µs}                                   & \multicolumn{1}{c|}{951 µs ± 14.4 µs}                                  & 1.92 ms ± 28.5 µs         \\ \cline{2-5}
         \rowcolor[HTML]{EFEFEF}
         \cellcolor[HTML]{C0C0C0}                          & MAPE                                              & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}970 µs ± 1.83 µs}           & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}942 µs ± 4.96 µs}          & 1.93 ms ± 33.3 µs         \\ \cline{2-5}
@@ -288,7 +288,7 @@ Assim como as medidas de tempo de execução, o uso de memória foi coletado par
         \rowcolor[HTML]{C0C0C0}
         \cellcolor[HTML]{C0C0C0}                          & \cellcolor[HTML]{C0C0C0}                          & \multicolumn{3}{c|}{\cellcolor[HTML]{C0C0C0}Dataset}                                                                                                   \\ \cline{3-5}
         \rowcolor[HTML]{C0C0C0}
-        \multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}Modelo}  & \multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}Métrica} & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Covid}              & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Temperatura}        & Sintético          \\ \hline
+        \multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}Modelo}  & \multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}Métrica} & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}COVID}              & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}Temperatura}        & Sintético          \\ \hline
         \cellcolor[HTML]{C0C0C0}                          & RMSE                                              & \multicolumn{1}{c|}{9.086 MiB}                                  & \multicolumn{1}{c|}{43.621 MiB}                                 & 3.105 MiB          \\ \cline{2-5}
         \rowcolor[HTML]{EFEFEF}
         \cellcolor[HTML]{C0C0C0}                          & MAPE                                              & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}11.383 MiB}         & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}43.699 MiB}         & 3.078 MiB          \\ \cline{2-5}
@@ -313,7 +313,7 @@ Assim como as medidas de tempo de execução, o uso de memória foi coletado par
 \FloatBarrier
 
 \subsection{Discussão}
-Com base nos resultados expostos na Subseção~\ref{subsec:metrics_eval}, é possível concluir que todos os modelos atingiram métricas próximas considerando suas respectivas escalas. Na maioria dos casos, todas as métricas apontaram o mesmo modelo como melhor opção, tendo como exceção apenas o \textit{dataset} de temperatura mínima diária em Melbourne, que teve o modelo Prophet apontado como melhor opção ao considerar a métrica RMSE. Ao observar as Tabelas~\ref{tab:temperature_results} e \ref{tab:synthetic_results}, é possível também notar a propriedade das métricas dependentes da escala, conforme descrito na Subseção~\ref{subsec:metrics_eval}. Em geral, a Regression WiSARD obteve a melhor performance para as coleções de dados sintética e temperatura mínima diária em Melbourne, enquanto o ARIMA obeteve o melhor resultado para o número de casos confirmados de Covid19 no Rio de Janeiro.
+Com base nos resultados expostos na Subseção~\ref{subsec:metrics_eval}, é possível concluir que todos os modelos atingiram métricas próximas considerando suas respectivas escalas. Na maioria dos casos, todas as métricas apontaram o mesmo modelo como melhor opção, tendo como exceção apenas o \textit{dataset} de temperatura mínima diária em Melbourne, que teve o modelo Prophet apontado como melhor opção ao considerar a métrica RMSE. Ao observar as Tabelas~\ref{tab:temperature_results} e \ref{tab:synthetic_results}, é possível também notar a propriedade das métricas dependentes da escala, conforme descrito na Subseção~\ref{subsec:metrics_eval}. Em geral, a Regression WiSARD obteve a melhor performance para as coleções de dados sintética e temperatura mínima diária em Melbourne, enquanto o ARIMA obeteve o melhor resultado para o número de casos confirmados de COVID-19 no Rio de Janeiro.
 
 Os resultados referentes ao tempo de treinamento, por sua vez, favoreceram o modelo Regression WiSARD, apresentando tempos de treinamento ordens de grandeza menores que o ARIMA e o Prophet. Apesar disto, o Prophet apresentou um tempo de treinamento significativamente menor se comparado ao ARIMA. O tempo de inferência também privilegiou a Regression WiSARD, porém o modelo ARIMA obteve tempos significativamente melhores que o Prophet, se mantendo, em alguns casos, quase na mesma ordem de grandeza dos tempos da Regression WiSARD. O tamanho do \textit{dataset} foi uma característica relevante para o tempo de treinamento, dado que houve aumento no tempo medido em \textit{datasets} maiores.
 
