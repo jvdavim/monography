@@ -58,7 +58,7 @@ Os modelos autorregressivos apresentados, são implementados pela biblioteca sta
 \section{Modelo de previsão Prophet}
 O modelo de previsão Prophet \cite{fbprophet} foi uma solução criada e adotada pelo Facebook para solução de problemas de previsão no nicho de negócios. A ideia era criar um modelo capaz de utilizar características comuns na maioria dos problemas de previsão para tentar melhorar a acertividade em relação à modelos considerados automáticos como o ARIMA. Então, para facilitar a utilização do modelo por analistas, que na maior parte dos casos, não possui conhecimento detalhado sobre a série temporal que está sendo analisada, o Prophet propõe um modelo que tenha hiperparâmetros intuitivos para alcançar maior escalabilidade no momento da otimização feita pelos analistas.
 
-O modelo é resultado da decomposição da série temporal em 3 principais componentes: tendência, sazonalidade e feriados. Esses componentes compõe o modelo aditivo apresentado na Equação \eqref{eq:prophet}.
+O modelo é resultado da decomposição da série temporal em três principais componentes: tendência, sazonalidade e feriados. Esses componentes compõe o modelo aditivo apresentado na Equação \eqref{eq:prophet}.
 
 \begin{equation}\label{eq:prophet}
     y(t) = g(t) + s(t) + h(t) + \epsilon_{t}\, ,
