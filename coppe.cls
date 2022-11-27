@@ -234,9 +234,6 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
   \clearpage
   \pagestyle{plain}
   %\makedisclaimerpage
-  \clearpage
-  \pagestyle{plain}
-  \makecatalog
 }
 \renewcommand\mainmatter{%
   \immediate\write\@auxout{%
@@ -315,6 +312,37 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
   \vspace*{4mm}
   \frontpage@maintext
   \vspace*{8mm}
+
+  \noindent Autor:\par
+  \begin{center}
+    \begin{flushright}
+      \vskip26\p@ \baselineskip12pt
+      \eqparbox{signture@list}{\hrulefill}\\
+      \eqparbox{signture@list}{%
+        \ \@authname
+        \ \@authsurn
+      }
+    \end{flushright}
+  \end{center}
+
+  \noindent\local@advisorstring:\par
+  \begin{center}
+    \begin{flushright}
+      \count1=0
+      \@whilenum \count1<\@advisor \do {
+        \vskip26\p@ \baselineskip12pt
+        \eqparbox{signture@list}{\hrulefill}\\
+        \eqparbox{signture@list}{%
+          \ \csname CoppeAdvisorTitle:\the\count1 \endcsname
+          \ \csname CoppeAdvisorName:\the\count1 \endcsname
+          \ \csname CoppeAdvisorSurname:\the\count1 \endcsname,
+          \ \csname CoppeAdvisorDegree:\the\count1 \endcsname
+        }\\
+        \advance\count1 by 1}
+    \end{flushright}
+  \end{center}
+
+
   \noindent\local@approvedname:\par
      \begin{center}
   \begin{flushright}
