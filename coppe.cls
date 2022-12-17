@@ -237,9 +237,6 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
   \clearpage
   \pagestyle{plain}
   %\makedisclaimerpage
-  \clearpage
-  \pagestyle{plain}
-  \makecatalog
 }
 \renewcommand\mainmatter{%
   \immediate\write\@auxout{%
@@ -318,6 +315,7 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
   \vspace*{4mm}
   \frontpage@maintext
   \vspace*{8mm}
+
   \noindent Autor:\par
   \begin{center}
     \begin{flushright}
@@ -346,6 +344,7 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
         \advance\count1 by 1}
     \end{flushright}
   \end{center}
+
 
   \noindent\local@approvedname:\par
   \begin{center}
