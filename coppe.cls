@@ -64,7 +64,7 @@
 \RequirePackage{tabularx}
 \RequirePackage{eqparbox}
 \RequirePackage[a4paper,bindingoffset=0.0cm,vcentering=true,%
-  top=2.5cm,bottom=2.5cm,left=3.0cm,right=3.0cm]{geometry}
+top=2.5cm,bottom=2.5cm,left=3.0cm,right=3.0cm]{geometry}
 \def\CoppeTeX{{\rm C\kern-.05em{\sc o\kern-.025em p\kern-.025em
 p\kern-.025em e}}\kern-.08em
 T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
@@ -130,44 +130,41 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
 }
 \newcommand\department[1]{%
   \ifthenelse{\equal{#1}{PEB}}
-  {\global\def\local@deptname{Engenharia Biom{\' e}dica}
-    \global\def\foreign@deptname{Biomedical Engineering}}{}
+    {\global\def\local@deptname{Engenharia Biom{\' e}dica}
+     \global\def\foreign@deptname{Biomedical Engineering}}{}
   \ifthenelse{\equal{#1}{PEC}}
-  {\global\def\local@deptname{Engenharia Civil}
-    \global\def\foreign@deptname{Civil Engineering}}{}
+    {\global\def\local@deptname{Engenharia Civil}
+     \global\def\foreign@deptname{Civil Engineering}}{}
   \ifthenelse{\equal{#1}{PEE}}
-  {\global\def\local@deptname{Engenharia El{\' e}trica}
-    \global\def\foreign@deptname{Electrical Engineering}}{}
+    {\global\def\local@deptname{Engenharia El{\' e}trica}
+     \global\def\foreign@deptname{Electrical Engineering}}{}
   \ifthenelse{\equal{#1}{PEM}}
-  {\global\def\local@deptname{Engenharia Mec{\^ a}nica}
-    \global\def\foreign@deptname{Mechanical Engineering}}{}
+    {\global\def\local@deptname{Engenharia Mec{\^ a}nica}
+     \global\def\foreign@deptname{Mechanical Engineering}}{}
   \ifthenelse{\equal{#1}{PEMM}}
-  {\global\def\local@deptname{Engenharia Metal{\' u}rgica e de Materiais}
-    \global\def\foreign@deptname{Metallurgical and Materials Engineering}}{}
+    {\global\def\local@deptname{Engenharia Metal{\' u}rgica e de Materiais}
+\global\def\foreign@deptname{Metallurgical and Materials Engineering}}{}
   \ifthenelse{\equal{#1}{PEN}}
-  {\global\def\local@deptname{Engenharia Nuclear}
-    \global\def\foreign@deptname{Nuclear Engineering}}{}
+    {\global\def\local@deptname{Engenharia Nuclear}
+     \global\def\foreign@deptname{Nuclear Engineering}}{}
   \ifthenelse{\equal{#1}{PENO}}
-  {\global\def\local@deptname{Engenharia Oce{\^ a}nica}
-    \global\def\foreign@deptname{Ocean Engineering}}{}
+    {\global\def\local@deptname{Engenharia Oce{\^ a}nica}
+     \global\def\foreign@deptname{Ocean Engineering}}{}
   \ifthenelse{\equal{#1}{PPE}}
-  {\global\def\local@deptname{Planejamento Energ{\' e}tico}
-    \global\def\foreign@deptname{Energy Planning}}{}
+    {\global\def\local@deptname{Planejamento Energ{\' e}tico}
+     \global\def\foreign@deptname{Energy Planning}}{}
   \ifthenelse{\equal{#1}{PEP}}
-  {\global\def\local@deptname{Engenharia de Produ{\c c}{\~ a}o}
-    \global\def\foreign@deptname{Production Engineering}}{}
+    {\global\def\local@deptname{Engenharia de Produ{\c c}{\~ a}o}
+     \global\def\foreign@deptname{Production Engineering}}{}
   \ifthenelse{\equal{#1}{PEQ}}
-  {\global\def\local@deptname{Engenharia Qu{\' i}mica}
-    \global\def\foreign@deptname{Chemical Engineering}}{}
+    {\global\def\local@deptname{Engenharia Qu{\' i}mica}
+     \global\def\foreign@deptname{Chemical Engineering}}{}
   \ifthenelse{\equal{#1}{PESC}}
-  {\global\def\local@deptname{Engenharia de Sistemas e Computa{\c c}{\~ a}o}
-    \global\def\foreign@deptname{Systems Engineering and Computer Science}}{}
+    {\global\def\local@deptname{Engenharia de Sistemas e Computa{\c c}{\~ a}o}
+     \global\def\foreign@deptname{Systems Engineering and Computer Science}}{}
   \ifthenelse{\equal{#1}{PET}}
-  {\global\def\local@deptname{Engenharia de Transportes}
-    \global\def\foreign@deptname{Transportation Engineering}}{}
-  \ifthenelse{\equal{#1}{DEL}}
-  {\global\def\local@deptname{Eletr{\^ o}nica e Computa{\c c}{\~ a}o}
-    \global\def\foreign@deptname{Eletronic and Computer}}{}
+    {\global\def\local@deptname{Engenharia de Transportes}
+     \global\def\foreign@deptname{Transportation Engineering}}{}
 }
 \renewcommand\title[1]{%
   \global\def\local@title{#1}%
@@ -203,11 +200,11 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
   \year=#2
 }
 \newcommand\local@monthname{\ifcase\month\or
-    Janeiro\or Fevereiro\or Mar{\c c}o\or Abril\or Maio\or Junho\or
-    Julho\or Agosto\or Setembro\or Outubro\or Novembro\or Dezembro\fi}
+  Janeiro\or Fevereiro\or Mar{\c c}o\or Abril\or Maio\or Junho\or
+  Julho\or Agosto\or Setembro\or Outubro\or Novembro\or Dezembro\fi}
 \newcommand\foreign@monthname{\ifcase\month\or
-    January\or February\or March\or April\or May\or June\or
-    July\or August\or September\or October\or November\or December\fi}
+  January\or February\or March\or April\or May\or June\or
+  July\or August\or September\or October\or November\or December\fi}
 \newcommand\place[3]{%
   \renewcommand\local@cityname{#1}
   \renewcommand\local@statename{#2}
@@ -347,20 +344,20 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
 
 
   \noindent\local@approvedname:\par
-  \begin{center}
-    \begin{flushright}
-      \count1=0
-      \@whilenum \count1<\@examiner \do {
-        \vskip26\p@ \baselineskip12pt
+     \begin{center}
+  \begin{flushright}
+        \count1=0
+        \@whilenum \count1<\@examiner \do {
+            \vskip26\p@ \baselineskip12pt
         \eqparbox{signture@list}{\hrulefill}\\
-        \eqparbox{signture@list}{%
-          \ \csname CoppeExaminerTitle:\the\count1 \endcsname
-          \ \csname CoppeExaminerName:\the\count1 \endcsname,
-          \ \csname CoppeExaminerSurname:\the\count1 \endcsname
+       \eqparbox{signture@list}{%
+        \ \csname CoppeExaminerTitle:\the\count1 \endcsname
+        \ \csname CoppeExaminerName:\the\count1 \endcsname,
+        \ \csname CoppeExaminerSurname:\the\count1 \endcsname
         }\\
-        \advance\count1 by 1}
-    \end{flushright}
-  \end{center}
+           \advance\count1 by 1}
+  \end{flushright}
+     \end{center}
   \vspace*{\fill}
   \frontpage@bottomtext}
 
@@ -395,51 +392,51 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
   \pagenumbering{alph}
   \config@hypersetup
   \begin{titlepage}
-    \begin{flushleft}
-      \vspace*{1.5mm}
-      \setlength\baselineskip{0pt}
-      \setlength\parskip{1mm}
-      \makebox[20mm][c]{\hspace{4.8cm}\includegraphics[width=64.5mm]{img/poli-logo.pdf}}
-    \end{flushleft}
-    \vspace{1.05cm}
-    \begin{center}
-      \nohyphens{\MakeUppercase\local@title}\par
-      \vspace*{3cm}
-      \nohyphens{\@authname\ \@authsurn}\par
-    \end{center}
-    \vspace*{2.1cm}
-    \begin{flushright}
-      \begin{minipage}{8.45cm}
-        \frontcover@maintext
-      \end{minipage}\par
-      \vspace*{7.5mm}
-      \nohyphens{%
-        \begin{tabularx}{8.45cm}[b]{@{}l@{ }>{\raggedright\arraybackslash}X@{}}
-          \local@advisorstring: &
-          \count1=0
-          \toks@={}
-          \@whilenum \count1<\@advisor \do{%
-            \ifcase\count1 % same as \ifnum0=\count1
-              \toks@=\expandafter{\csname CoppeAdvisorName:\the\count1%
-                \expandafter\endcsname\expandafter\space%
-                \csname CoppeAdvisorSurname:\the\count1\endcsname\\}
-            \else
-              \toks@=\expandafter\expandafter\expandafter{%
-                \expandafter\the\expandafter\toks@%
-          \expandafter          & \expandafter\space                          %
-                \csname CoppeAdvisorName:\the\count1\expandafter\endcsname%
-          \expandafter\space\csname CoppeAdvisorSurname:\the\count1\endcsname \\
-              }%
-            \fi
-            \advance\count1 by 1}
-          \the\toks@
-        \end{tabularx}}\par
-    \end{flushright}
-    \vspace*{\fill}
-    \begin{center}
-      \local@cityname\par
-      \local@monthname\ de \number\year
-    \end{center}
+  \begin{flushleft}
+  \vspace*{1.5mm}
+  \setlength\baselineskip{0pt}
+  \setlength\parskip{1mm}
+  \makebox[20mm][c]{\hspace{4.8cm}\includegraphics[width=64.5mm]{img/poli-logo.pdf}}
+  \end{flushleft}
+  \vspace{1.05cm}
+  \begin{center}
+  \nohyphens{\MakeUppercase\local@title}\par
+  \vspace*{3cm}
+  \nohyphens{\@authname\ \@authsurn}\par
+  \end{center}
+  \vspace*{2.1cm}
+  \begin{flushright}
+  \begin{minipage}{8.45cm}
+  \frontcover@maintext
+  \end{minipage}\par
+  \vspace*{7.5mm}
+  \nohyphens{%
+  \begin{tabularx}{8.45cm}[b]{@{}l@{ }>{\raggedright\arraybackslash}X@{}}
+    \local@advisorstring: &
+    \count1=0
+    \toks@={}
+    \@whilenum \count1<\@advisor \do{%
+    \ifcase\count1 % same as \ifnum0=\count1
+      \toks@=\expandafter{\csname CoppeAdvisorName:\the\count1%
+        \expandafter\endcsname\expandafter\space%
+        \csname CoppeAdvisorSurname:\the\count1\endcsname\\}
+    \else
+      \toks@=\expandafter\expandafter\expandafter{%
+        \expandafter\the\expandafter\toks@%
+        \expandafter&\expandafter\space%
+        \csname CoppeAdvisorName:\the\count1\expandafter\endcsname%
+        \expandafter\space\csname CoppeAdvisorSurname:\the\count1\endcsname\\
+      }%
+    \fi
+    \advance\count1 by 1}
+    \the\toks@
+  \end{tabularx}}\par
+  \end{flushright}
+  \vspace*{\fill}
+  \begin{center}
+  \local@cityname\par
+  \local@monthname\ de \number\year
+  \end{center}
   \end{titlepage}
   \global\let\maketitle\relax%
   \global\let\and\relax}
@@ -546,33 +543,33 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
 %%%%%%%%%
 \newcommand\config@hypersetup{%
 \begingroup
-% changes to \toks@ and \count@ are kept local;
-% it's not necessary for them, but it is usually the case
-% for \count1, because the first ten counters are written
-% to the DVI file, thus you got lucky because of PDF output
-\toks@={}% in this special case not necessary
-\count@=0 %
-\@whilenum\count@<\value{keywords}\do{%
-  % * a keyword separator is not necessary,
-  %    if there is just one keyword
-  % * \csname CoppeKeyword:\the\count@\endcsname must be expanded
-  %    at least once, to get rid of the loop depended \count@
-  \ifcase\count@ % same as \ifnum0=\count@
-    \toks@=\expandafter{\csname CoppeKeyword:\the\count@\endcsname}%
-  \else
-    \toks@=\expandafter\expandafter\expandafter{%
-      \expandafter\the\expandafter\toks@
-      \expandafter;\expandafter\space
-      \csname CoppeKeyword:\the\count@\endcsname
-    }%
-  \fi
-  \advance\count@ by 1 %
-}%
-\edef\x{\endgroup
-  \noexpand\hypersetup{%
-    pdfkeywords={\the\toks@}%
+  % changes to \toks@ and \count@ are kept local;
+  % it's not necessary for them, but it is usually the case
+  % for \count1, because the first ten counters are written
+  % to the DVI file, thus you got lucky because of PDF output
+  \toks@={}% in this special case not necessary
+  \count@=0 %
+  \@whilenum\count@<\value{keywords}\do{%
+    % * a keyword separator is not necessary,
+    %    if there is just one keyword
+    % * \csname CoppeKeyword:\the\count@\endcsname must be expanded
+    %    at least once, to get rid of the loop depended \count@
+    \ifcase\count@ % same as \ifnum0=\count@
+      \toks@=\expandafter{\csname CoppeKeyword:\the\count@\endcsname}%
+    \else
+      \toks@=\expandafter\expandafter\expandafter{%
+        \expandafter\the\expandafter\toks@
+        \expandafter;\expandafter\space
+        \csname CoppeKeyword:\the\count@\endcsname
+      }%
+    \fi
+    \advance\count@ by 1 %
   }%
-}%
+  \edef\x{\endgroup
+    \noexpand\hypersetup{%
+      pdfkeywords={\the\toks@}%
+    }%
+  }%
 \x
 \hypersetup{%
   pdfauthor={\@authname\ \@authsurn},
@@ -589,134 +586,134 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
     \setlength{\fboxsep}{5mm}
     \framebox[120mm][c]{\makebox[5mm][c]{}%
       \begin{minipage}[c]{105mm}
-        \setlength{\parindent}{5mm}
-        \noindent\sloppy\nohyphens\@authsurn,
-        \nohyphens\@authname\par
-        \nohyphens{\local@title/\@authname\ \@authsurn. -- \local@cityname:
-          UFRJ/POLI -- COPPE, \number\year.}\par
-        \pageref{front:pageno},
-        \pageref{LastPage}
-        p.\@ifundefined{r@cat:lofflag}{}{\pageref{cat:lofflag}} $29,7$cm.\par
-        % There is an issue here. When the last entry must be split between lines,
-        % the spacing between it and the next paragraph becomes smaller.
-        % Should we manually introduce a fixed space? But how could we know that
-        % a name was split? Is this happening yet?
-        \nohyphens{%
-          \begin{tabularx}{100mm}[b]{@{}l@{ }X@{}}
-            \local@advisorstring: &
-            \count1=0
-            \toks@={}
-            \@whilenum \count1<\@advisor \do{%
-              \ifcase\count1 % same as \ifnum0=\count1
-                \toks@=\expandafter{\csname CoppeAdvisorName:\the\count1%
-                  \expandafter\endcsname\expandafter\space%
-                  \csname CoppeAdvisorSurname:\the\count1\endcsname\\}
-              \else
-                \toks@=\expandafter\expandafter\expandafter{%
-                  \expandafter\the\expandafter\toks@
-            \expandafter          & \expandafter\space
-                  \csname CoppeAdvisorName:\the\count1\expandafter\endcsname%
-            \expandafter\space\csname CoppeAdvisorSurname:\the\count1\endcsname \\
-                }%
-              \fi
-              \advance\count1 by 1}
-            \the\toks@
-          \end{tabularx}}\par
-        %\nohyphens{\local@doctype\ ({\MakeLowercase\@degreename}) --
-        \nohyphens{Projeto ({\MakeLowercase\@degreename}) --
-          UFRJ/ Escola Polit{\'e}cnica/ Curso de Engenharia de Computa{\c c}{\~ a}o e Informa{\c c}{\~ a}o, \number\year.}\par
-        \bibname: p. \pageref{bib:begin} -- \pageref{bib:end}.\par
+      \setlength{\parindent}{5mm}
+      \noindent\sloppy\nohyphens\@authsurn,
+      \nohyphens\@authname\par
+      \nohyphens{\local@title/\@authname\ \@authsurn. -- \local@cityname:
+      UFRJ/POLI -- COPPE, \number\year.}\par
+      \pageref{front:pageno},
+      \pageref{LastPage}
+      p.\@ifundefined{r@cat:lofflag}{}{\pageref{cat:lofflag}} $29,7$cm.\par
+      % There is an issue here. When the last entry must be split between lines,
+      % the spacing between it and the next paragraph becomes smaller.
+      % Should we manually introduce a fixed space? But how could we know that
+      % a name was split? Is this happening yet?
+      \nohyphens{%
+      \begin{tabularx}{100mm}[b]{@{}l@{ }X@{}}
+        \local@advisorstring: &
         \count1=0
-        \count2=1
-        \nohyphens{\@whilenum \count1<\value{keywords} \do {%
-            \number\count2. \csname CoppeKeyword:\the\count1 \endcsname.
-            \advance\count1 by 1
-            \advance\count2 by 1}
-          I. \csname CoppeAdvisorSurname:0\endcsname,%
-          \ \csname CoppeAdvisorName:0\endcsname%
-          \ifthenelse{\@advisor>1}{\ \emph{et~al.}{}}.
-          II. \local@universityname, Escola Polit{\'e}cnica/ Curso de Engenharia de Computa{\c c}{\~ a}o e Informa{\c c}{\~ a}o.
-          III. T{\' i}tulo.}
-      \end{minipage}}
+        \toks@={}
+        \@whilenum \count1<\@advisor \do{%
+        \ifcase\count1 % same as \ifnum0=\count1
+          \toks@=\expandafter{\csname CoppeAdvisorName:\the\count1%
+          \expandafter\endcsname\expandafter\space%
+          \csname CoppeAdvisorSurname:\the\count1\endcsname\\}
+        \else
+          \toks@=\expandafter\expandafter\expandafter{%
+            \expandafter\the\expandafter\toks@
+            \expandafter&\expandafter\space
+            \csname CoppeAdvisorName:\the\count1\expandafter\endcsname%
+            \expandafter\space\csname CoppeAdvisorSurname:\the\count1\endcsname\\
+          }%
+        \fi
+        \advance\count1 by 1}
+        \the\toks@
+      \end{tabularx}}\par
+      %\nohyphens{\local@doctype\ ({\MakeLowercase\@degreename}) --
+      \nohyphens{Projeto ({\MakeLowercase\@degreename}) --
+      UFRJ/ Escola Polit{\'e}cnica/ Curso de Engenharia de Computa{\c c}{\~ a}o e Informa{\c c}{\~ a}o, \number\year.}\par
+      \bibname: p. \pageref{bib:begin} -- \pageref{bib:end}.\par
+      \count1=0
+      \count2=1
+      \nohyphens{\@whilenum \count1<\value{keywords} \do {%
+        \number\count2. \csname CoppeKeyword:\the\count1 \endcsname.
+        \advance\count1 by 1
+        \advance\count2 by 1}
+      I. \csname CoppeAdvisorSurname:0\endcsname,%
+      \ \csname CoppeAdvisorName:0\endcsname%
+      \ifthenelse{\@advisor>1}{\ \emph{et~al.}{}}.
+      II. \local@universityname, Escola Polit{\'e}cnica/ Curso de Engenharia de Computa{\c c}{\~ a}o e Informa{\c c}{\~ a}o.
+      III. T{\' i}tulo.}
+    \end{minipage}}
   \end{center}
   \vspace*{\fill}}
 \newcommand\dedication[1]{
   \gdef\@dedic{#1}
-  \cleardoublepage
-  \vspace*{\fill}
-  \begin{flushright}
-    \begin{minipage}{60mm}
-      \raggedleft \it \normalsize \@dedic
-    \end{minipage}
-  \end{flushright}}
+    \cleardoublepage
+    \vspace*{\fill}
+    \begin{flushright}
+      \begin{minipage}{60mm}
+        \raggedleft \it \normalsize \@dedic
+      \end{minipage}
+    \end{flushright}}
 
 \newenvironment{abstract}{%
-\clearpage
-\thispagestyle{plain}
-\abstract@toptext\par
-\vspace*{8.6mm}
-\begin{center}
-  \sloppy\nohyphens{\textbf{\MakeUppercase\local@title}}\par
-  \vspace*{13.2mm}
-  \textbf{ \@authname\ \@authsurn }\par
-  \vspace*{7mm}
-  \local@monthname/\number\year
-\end{center}\par
-\vspace*{\fill}
-\noindent%
-\begin{tabularx}{\textwidth}[b]{@{}l@{ }X@{}}
-  \local@advisorstring: &
-  \count1=0
-  \toks@={}
-  \@whilenum \count1<\@advisor \do{%
+  \clearpage
+  \thispagestyle{plain}
+  \abstract@toptext\par
+  \vspace*{8.6mm}
+  \begin{center}
+    \sloppy\nohyphens{\textbf{\MakeUppercase\local@title}}\par
+    \vspace*{13.2mm}
+    \textbf{ \@authname\ \@authsurn }\par
+    \vspace*{7mm}
+    \local@monthname/\number\year
+  \end{center}\par
+  \vspace*{\fill}
+  \noindent%
+  \begin{tabularx}{\textwidth}[b]{@{}l@{ }X@{}}
+    \local@advisorstring: &
+    \count1=0
+    \toks@={}
+    \@whilenum \count1<\@advisor \do{%
     \ifcase\count1 % same as \ifnum0=\count1
       \toks@=\expandafter{\csname CoppeAdvisorName:\the\count1%
-        \expandafter\endcsname\expandafter\space%
-        \csname CoppeAdvisorSurname:\the\count1\endcsname\\}
+      \expandafter\endcsname\expandafter\space%
+      \csname CoppeAdvisorSurname:\the\count1\endcsname\\}
     \else
       \toks@=\expandafter\expandafter\expandafter{%
         \expandafter\the\expandafter\toks@
-  \expandafter          & \expandafter\space
+        \expandafter&\expandafter\space
         \csname CoppeAdvisorName:\the\count1\expandafter\endcsname%
-  \expandafter\space\csname CoppeAdvisorSurname:\the\count1\endcsname \\
+        \expandafter\space\csname CoppeAdvisorSurname:\the\count1\endcsname\\
       }%
     \fi
     \advance\count1 by 1}
-  \the\toks@
-\end{tabularx}\par
-\vspace*{2mm}
-%\noindent\local@deptstring: \local@deptname\par
-\noindent\local@deptstring: Engenharia de Computa{\c c}{\~ a}o e Informa{\c c}{\~ a}o
-\vspace*{7mm}}{\vspace*{\fill}
+    \the\toks@
+  \end{tabularx}\par
+  \vspace*{2mm}
+  %\noindent\local@deptstring: \local@deptname\par
+  \noindent\local@deptstring: Engenharia de Computa{\c c}{\~ a}o e Informa{\c c}{\~ a}o
+  \vspace*{7mm}}{\vspace*{\fill}
 %%%%%%%%%%%%%%
-\textbf{Palavras-Chave:}
-\toks@={}% in this special case not necessary
-\count@=0 %
-\@whilenum\count@<\value{keywords}\do{%
-  % * a keyword separator is not necessary,
-  %    if there is just one keyword
-  % * \csname CoppeKeyword:\the\count@\endcsname must be expanded
-  %    at least once, to get rid of the loop depended \count@
-  \ifcase\count@ % same as \ifnum0=\count@
-    \toks@=\expandafter{\csname CoppeKeyword:\the\count@\endcsname}%
-  \else
-    \toks@=\expandafter\expandafter\expandafter{%
-      \expandafter\the\expandafter\toks@
-      \expandafter,\expandafter\space
-      \csname CoppeKeyword:\the\count@\endcsname
-    }%
-  \fi
-  \advance\count@ by 1 %
-}%
-\the\toks@.
-\vspace*{\fill}
+  \textbf{Palavras-Chave:}
+  \toks@={}% in this special case not necessary
+  \count@=0 %
+  \@whilenum\count@<\value{keywords}\do{%
+    % * a keyword separator is not necessary,
+    %    if there is just one keyword
+    % * \csname CoppeKeyword:\the\count@\endcsname must be expanded
+    %    at least once, to get rid of the loop depended \count@
+    \ifcase\count@ % same as \ifnum0=\count@
+      \toks@=\expandafter{\csname CoppeKeyword:\the\count@\endcsname}%
+    \else
+      \toks@=\expandafter\expandafter\expandafter{%
+        \expandafter\the\expandafter\toks@
+        \expandafter,\expandafter\space
+        \csname CoppeKeyword:\the\count@\endcsname
+      }%
+    \fi
+    \advance\count@ by 1 %
+  }%
+  \the\toks@.
+  \vspace*{\fill}
 %%%%%%%%%%%%%%
 }
 
 \newenvironment{foreignabstract}{%
-\clearpage
-\thispagestyle{plain}
-\begin{otherlanguage}{english}
+  \clearpage
+  \thispagestyle{plain}
+  \begin{otherlanguage}{english}
   \foreignabstract@toptext\par
   \vspace*{8.6mm}
   \begin{center}
@@ -733,166 +730,166 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
     \count1=0
     \toks@={}
     \@whilenum \count1<\@advisor \do{%
-      \ifcase\count1 % same as \ifnum0=\count1
-        \toks@=\expandafter{\csname CoppeAdvisorName:\the\count1%
-          \expandafter\endcsname\expandafter\space%
-          \csname CoppeAdvisorSurname:\the\count1\endcsname\\}
-      \else
-        \toks@=\expandafter\expandafter\expandafter{%
-          \expandafter\the\expandafter\toks@
-    \expandafter            & \expandafter\space
-          \csname CoppeAdvisorName:\the\count1\expandafter\endcsname%
-    \expandafter\space\csname CoppeAdvisorSurname:\the\count1\endcsname \\
-        }%
-      \fi
-      \advance\count1 by 1}
+    \ifcase\count1 % same as \ifnum0=\count1
+      \toks@=\expandafter{\csname CoppeAdvisorName:\the\count1%
+      \expandafter\endcsname\expandafter\space%
+      \csname CoppeAdvisorSurname:\the\count1\endcsname\\}
+    \else
+      \toks@=\expandafter\expandafter\expandafter{%
+        \expandafter\the\expandafter\toks@
+        \expandafter&\expandafter\space
+        \csname CoppeAdvisorName:\the\count1\expandafter\endcsname%
+        \expandafter\space\csname CoppeAdvisorSurname:\the\count1\endcsname\\
+      }%
+    \fi
+    \advance\count1 by 1}
     \the\toks@
   \end{tabularx}\par
   \vspace*{2mm}
   %\noindent\foreign@deptstring: \foreign@deptname\par
   \noindent\foreign@deptstring: Computer and Information Engineering
   \vspace*{7mm}}{%
-\end{otherlanguage}
-\vspace*{\fill}
+  \end{otherlanguage}
+  \vspace*{\fill}
 
 %%%%%%%%%%%%%%
-\textbf{Keywords:}
-\toks@={}% in this special case not necessary
-\count@=0 %
-\@whilenum\count@<\value{foreignkeywords}\do{%
-  % * a keyword separator is not necessary,
-  %    if there is just one keyword
-  % * \csname CoppeKeyword:\the\count@\endcsname must be expanded
-  %    at least once, to get rid of the loop depended \count@
-  \ifcase\count@ % same as \ifnum0=\count@
-    \toks@=\expandafter{\csname ForeignKeyword:\the\count@\endcsname}%
-  \else
-    \toks@=\expandafter\expandafter\expandafter{%
-      \expandafter\the\expandafter\toks@
-      \expandafter,\expandafter\space
-      \csname ForeignKeyword:\the\count@\endcsname
-    }%
-  \fi
-  \advance\count@ by 1 %
-}%
-\the\toks@.
+  \textbf{Keywords:}
+  \toks@={}% in this special case not necessary
+  \count@=0 %
+  \@whilenum\count@<\value{foreignkeywords}\do{%
+    % * a keyword separator is not necessary,
+    %    if there is just one keyword
+    % * \csname CoppeKeyword:\the\count@\endcsname must be expanded
+    %    at least once, to get rid of the loop depended \count@
+    \ifcase\count@ % same as \ifnum0=\count@
+      \toks@=\expandafter{\csname ForeignKeyword:\the\count@\endcsname}%
+    \else
+      \toks@=\expandafter\expandafter\expandafter{%
+        \expandafter\the\expandafter\toks@
+        \expandafter,\expandafter\space
+        \csname ForeignKeyword:\the\count@\endcsname
+      }%
+    \fi
+    \advance\count@ by 1 %
+  }%
+  \the\toks@.
 \vspace*{\fill}
 %%%%%%%%%%%%%%
 
-\global\let\@author\@empty
-\global\let\@date\@empty
-\global\let\foreign@title\@empty
-\global\let\foreign@title\relax
-\global\let\local@title\@empty
-\global\let\local@title\relax
-\global\let\author\relax
-\global\let\author\relax
-\global\let\date\relax}
+  \global\let\@author\@empty
+  \global\let\@date\@empty
+  \global\let\foreign@title\@empty
+  \global\let\foreign@title\relax
+  \global\let\local@title\@empty
+  \global\let\local@title\relax
+  \global\let\author\relax
+  \global\let\author\relax
+  \global\let\date\relax}
 \renewcommand\listoffigures{%
   \immediate\write\@auxout{%
-    \string\newlabel{cat:lofflag}{{}{:~il.;}{}{page.\roman{page}}{}}}
-  \if@twocolumn
-    \@restonecoltrue\onecolumn
-  \else
-    \@restonecolfalse
-  \fi
-  \chapter*{\listfigurename}%
-  \addcontentsline{toc}{chapter}{\listfigurename}%
-  \@mkboth{\MakeUppercase\listfigurename}%
-  {\MakeUppercase\listfigurename}%
-  \@starttoc{lof}%
-  \if@restonecol\twocolumn\fi
-}
+  \string\newlabel{cat:lofflag}{{}{:~il.;}{}{page.\roman{page}}{}}}
+    \if@twocolumn
+      \@restonecoltrue\onecolumn
+    \else
+      \@restonecolfalse
+    \fi
+    \chapter*{\listfigurename}%
+      \addcontentsline{toc}{chapter}{\listfigurename}%
+      \@mkboth{\MakeUppercase\listfigurename}%
+              {\MakeUppercase\listfigurename}%
+    \@starttoc{lof}%
+    \if@restonecol\twocolumn\fi
+    }
 \renewcommand\listoftables{%
-  \if@twocolumn
-    \@restonecoltrue\onecolumn
-  \else
-    \@restonecolfalse
-  \fi
-  \chapter*{\listtablename}%
-  \addcontentsline{toc}{chapter}{\listtablename}%
-  \@mkboth{%
-    \MakeUppercase\listtablename}%
-  {\MakeUppercase\listtablename}%
-  \@starttoc{lot}%
-  \if@restonecol\twocolumn\fi
-}
+    \if@twocolumn
+      \@restonecoltrue\onecolumn
+    \else
+      \@restonecolfalse
+    \fi
+    \chapter*{\listtablename}%
+      \addcontentsline{toc}{chapter}{\listtablename}%
+      \@mkboth{%
+          \MakeUppercase\listtablename}%
+         {\MakeUppercase\listtablename}%
+    \@starttoc{lot}%
+    \if@restonecol\twocolumn\fi
+    }
 \newcommand\printlosymbols{%
-  \renewcommand\glossaryname{\listsymbolname}%
-  \@input@{\jobname.los}}
+\renewcommand\glossaryname{\listsymbolname}%
+\@input@{\jobname.los}}
 \def\makelosymbols{%
   \newwrite\@losfile
   \immediate\openout\@losfile=\jobname.syx
   \def\symbl{\@bsphack\begingroup
-    \@sanitize
-    \@wrlos}\typeout
+             \@sanitize
+             \@wrlos}\typeout
   {Writing index of symbols file \jobname.syx}%
   \let\makelosymbols\@empty
 }
 \@onlypreamble\makelosymbols
 \AtBeginDocument{%
-  \@ifpackageloaded{hyperref}{%
-    \def\@wrlos#1#2{%
-      \protected@write\@losfile{}%
+\@ifpackageloaded{hyperref}{%
+  \def\@wrlos#1#2{%
+    \protected@write\@losfile{}%
       {\string\indexentry{[#1] #2|hyperpage}{\thepage}}%
-      \endgroup
-      \@esphack}}{%
-    \def\@wrlos#1#2{%
-      \protected@write\@losfile{}%
+    \endgroup
+    \@esphack}}{%
+  \def\@wrlos#1#2{%
+    \protected@write\@losfile{}%
       {\string\indexentry{[#1] #2}{\thepage}}%
-      \endgroup
-      \@esphack}}}
+    \endgroup
+    \@esphack}}}
 \newcommand\printloabbreviations{%
-  \renewcommand\glossaryname{\listabbreviationname}%
-  \@input@{\jobname.lab}}
+\renewcommand\glossaryname{\listabbreviationname}%
+\@input@{\jobname.lab}}
 \def\makeloabbreviations{%
   \newwrite\@labfile
   \immediate\openout\@labfile=\jobname.abx
   \def\abbrev{\@bsphack\begingroup
-    \@sanitize
-    \@wrlab}\typeout
+              \@sanitize
+              \@wrlab}\typeout
   {Writing index of abbreviations file \jobname.abx}%
   \let\makeloabbreviations\@empty
 }
 \@onlypreamble\makeloabbreviations
 \AtBeginDocument{%
-  \@ifpackageloaded{hyperref}{%
-    \def\@wrlab#1#2{%
-      \protected@write\@labfile{}%
+\@ifpackageloaded{hyperref}{%
+  \def\@wrlab#1#2{%
+    \protected@write\@labfile{}%
       {\string\indexentry{[#1] #2|hyperpage}{\thepage}}%
-      \endgroup
-      \@esphack}}{%
-    \def\@wrlab#1#2{%
-      \protected@write\@labfile{}%
+    \endgroup
+    \@esphack}}{%
+  \def\@wrlab#1#2{%
+    \protected@write\@labfile{}%
       {\string\indexentry{[#1] #2}{\arabic{page}}}%
-      \endgroup
-      \@esphack}}}
+    \endgroup
+    \@esphack}}}
 \newdimen\bibindent%
 \setlength\bibindent{1.5em}%
 \renewenvironment{thebibliography}[1]%
-{\chapter*{\bibname}%
-  \addcontentsline{toc}{chapter}{\bibname}%
-  \immediate\write\@auxout{%
-    \string\newlabel{bib:begin}{{}{\arabic{page}}{}{page.\arabic{page}}{}}}%
-  \list{\@biblabel{\@arabic\c@enumiv}}%
-  {\setlength{\labelwidth}{0ex}%
-    \setlength{\leftmargin}{9.0ex}%
-    \setlength{\itemindent}{-9.0ex}%
-    \advance\leftmargin\labelsep%
-    \@openbib@code%
-    \usecounter{enumiv}%
-    \let\p@enumiv\@empty%
-    \renewcommand\theenumiv{\@arabic\c@enumiv}}%
-  \sloppy%
-  \clubpenalty4000%
-  \@clubpenalty \clubpenalty%
-  \widowpenalty4000%
-  \sfcode`\.\@m}%
-{\def\@noitemerr%
-  {\@latex@warning{Empty `thebibliography' environment}}%
-  \immediate\write\@auxout{%
-    \string\newlabel{bib:end}{{}{\arabic{page}}{}{page.\arabic{page}}{}}}%
-  \endlist}
+     {\chapter*{\bibname}%
+      \addcontentsline{toc}{chapter}{\bibname}%
+      \immediate\write\@auxout{%
+      \string\newlabel{bib:begin}{{}{\arabic{page}}{}{page.\arabic{page}}{}}}%
+      \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\setlength{\labelwidth}{0ex}%
+            \setlength{\leftmargin}{9.0ex}%
+            \setlength{\itemindent}{-9.0ex}%
+            \advance\leftmargin\labelsep%
+            \@openbib@code%
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty%
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+      \sloppy%
+      \clubpenalty4000%
+      \@clubpenalty \clubpenalty%
+      \widowpenalty4000%
+      \sfcode`\.\@m}%
+     {\def\@noitemerr%
+       {\@latex@warning{Empty `thebibliography' environment}}%
+      \immediate\write\@auxout{%
+      \string\newlabel{bib:end}{{}{\arabic{page}}{}{page.\arabic{page}}{}}}%
+      \endlist}
 \newenvironment{theglossary}{%
   \if@twocolumn%
     \@restonecoltrue\onecolumn%
@@ -905,13 +902,13 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
   \addcontentsline{toc}{chapter}{\glossaryname}
   \list{}
   {\setlength{\listparindent}{0in}%
-    \setlength{\labelwidth}{1.0in}%
-    \setlength{\leftmargin}{1.5in}%
-    \setlength{\labelsep}{0.5in}%
-    \setlength{\itemindent}{0in}}%
-  \sloppy}%
-{\if@restonecol\twocolumn\fi%
-  \endlist}
+   \setlength{\labelwidth}{1.0in}%
+   \setlength{\leftmargin}{1.5in}%
+   \setlength{\labelsep}{0.5in}%
+   \setlength{\itemindent}{0in}}%
+   \sloppy}%
+  {\if@restonecol\twocolumn\fi%
+\endlist}
 \renewenvironment{theindex}{%
   \if@twocolumn
     \@restonecolfalse
@@ -927,7 +924,7 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
   \columnseprule \z@
   \columnsep 35\p@
   \let\item\@idxitem}
-{\if@restonecol\onecolumn\else\clearpage\fi}
+  {\if@restonecol\onecolumn\else\clearpage\fi}
 \newcommand\glossaryname{Glossary}
 \newcommand\listabbreviationname{Lista de Abreviaturas}
 \newcommand\listsymbolname{Lista de S{\' i}mbolos}
@@ -947,12 +944,12 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
 %TODO
 \newcommand\frontcover@maintext{
   \sloppy\nohyphens{\local@doctype\ de \@degreename\
-    \ifthenelse{\boolean{maledoc}}{apresentado}{apresentada}
-    ao curso de Engenharia de Computa{\c c}{\~ a}o e Informa{\c c}{\~ a}o da
-    Escola Polit{\' e}cnica da Universidade Federal do Rio de
-    Janeiro como parte dos requisitos necess{\' a}rios para a
-    obten{\c c}{\~ a}o do grau de \local@degname\ de
-    Computa{\c c}{\~ a}o e Informa{\c c}{\~ a}o.}
+  \ifthenelse{\boolean{maledoc}}{apresentado}{apresentada}
+  ao curso de Engenharia de Computa{\c c}{\~ a}o e Informa{\c c}{\~ a}o da
+  Escola Polit{\' e}cnica da Universidade Federal do Rio de
+  Janeiro como parte dos requisitos necess{\' a}rios para a
+  obten{\c c}{\~ a}o do grau de \local@degname\ de
+  Computa{\c c}{\~ a}o e Informa{\c c}{\~ a}o.}
 }
 %%%%%%%%%%%
 %CHANGED
@@ -960,15 +957,15 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
   \noindent {\MakeUppercase\local@doctype}
   \ifthenelse{\boolean{maledoc}}{SUBMETIDO}{SUBMETIDA}
   \sloppy\nohyphens{AO CORPO DOCENTE DO CURSO DE
-    ENGENHARIA DE COMPUTA{\c C}{\~ A}O E INFORMA{\c C}{\~ A}O DA ESCOLA POLIT{\' E}CNICA DA
-    UNIVERSIDADE FEDERAL DO RIO DE JANEIRO COMO PARTE DOS REQUISITOS NECESS{\' A}RIOS PARA A
-    OBTEN{\c C}{\~ A}O DO GRAU DE {\MakeUppercase\local@degname} DE
-    COMPUTA{\c C}{\~ A}O E INFORMA{\c C}{\~ A}O.\par}%
+  ENGENHARIA DE COMPUTA{\c C}{\~ A}O E INFORMA{\c C}{\~ A}O DA ESCOLA POLIT{\' E}CNICA DA
+  UNIVERSIDADE FEDERAL DO RIO DE JANEIRO COMO PARTE DOS REQUISITOS NECESS{\' A}RIOS PARA A
+  OBTEN{\c C}{\~ A}O DO GRAU DE {\MakeUppercase\local@degname} DE
+  COMPUTA{\c C}{\~ A}O E INFORMA{\c C}{\~ A}O.\par}%
 }
 \newcommand\frontpage@bottomtext{%
   \begin{center}
-    {\MakeUppercase{\local@cityname, \local@statename\ -- \local@countryname}}\par
-    {\MakeUppercase\local@monthname\ DE \number\year}
+  {\MakeUppercase{\local@cityname, \local@statename\ -- \local@countryname}}\par
+  {\MakeUppercase\local@monthname\ DE \number\year}
   \end{center}%
 }
 %%%%%%%%%%%
@@ -984,12 +981,12 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
 
 }
 \newcommand\disclaimerpage@maintext{
-  Este exemplar {\' e} de propriedade da Universidade Federal do Rio de Janeiro, que poder{\' a} inclu{\' i}-lo em base de dados, armazenar em computador, microfilmar ou adotar qualquer forma de arquivamento.
+Este exemplar {\' e} de propriedade da Universidade Federal do Rio de Janeiro, que poder{\' a} inclu{\' i}-lo em base de dados, armazenar em computador, microfilmar ou adotar qualquer forma de arquivamento.
 
-    {\' E} permitida a men{\c c}{\~ a}o, reprodu{\c c}{\~ a}o parcial ou integral e a transmiss{\~ a}o entre bibliotecas deste trabalho, sem modifica{\c c}{\~ a}o de seu texto, em qualquer meio que esteja ou venha a ser fixado, para pesquisa acad{\^ e}mica, coment{\' a}rios e cita{\c c}{\~ o}es, desde que sem finalidade comercial e que seja feita a refer{\^ e}ncia bibliogr{\' a}fica completa.
+{\' E} permitida a men{\c c}{\~ a}o, reprodu{\c c}{\~ a}o parcial ou integral e a transmiss{\~ a}o entre bibliotecas deste trabalho, sem modifica{\c c}{\~ a}o de seu texto, em qualquer meio que esteja ou venha a ser fixado, para pesquisa acad{\^ e}mica, coment{\' a}rios e cita{\c c}{\~ o}es, desde que sem finalidade comercial e que seja feita a refer{\^ e}ncia bibliogr{\' a}fica completa.
 
-  Os conceitos expressos neste trabalho s{\~ a}o de responsabilidade do(s) autor(es) e
-  do(s) orientador(es).
+Os conceitos expressos neste trabalho s{\~ a}o de responsabilidade do(s) autor(es) e
+do(s) orientador(es).
 }
 %%%%%%%%%%%
 
@@ -997,13 +994,13 @@ T\kern-.1667em\lower.5ex\hbox{E}\kern-.125emX\spacefactor1000}
   \noindent Resumo \ifthenelse{\boolean{maledoc}}{do}{da}
   \local@doctype\ de \@degreename\  \ifthenelse{\boolean{maledoc}}{apresentado}{apresentada}
   \sloppy\nohyphens{{\` a} Escola Polit{\' e}cnica/DEL/UFRJ como parte dos requisitos
-    necess{\' a}rios para a obten{\c c}{\~ a}o do grau de
-    \local@degname\ de Computa{\c c}{\~ a}o e Informa{\c c}{\~ a}o.}
+  necess{\' a}rios para a obten{\c c}{\~ a}o do grau de
+  \local@degname\ de Computa{\c c}{\~ a}o e Informa{\c c}{\~ a}o.}
 }
 \newcommand\foreignabstract@toptext{%
   \noindent \sloppy\nohyphens{Abstract of the \foreign@doctype\ presented to
-    Poli/DEL/UFRJ as a partial fulfillment of the requirements for the
-    degree of Computer and Information \foreign@degname\@.}
+  Poli/DEL/UFRJ as a partial fulfillment of the requirements for the
+  degree of Computer and Information \foreign@degname\@.}
 }
 %% 
 %%
