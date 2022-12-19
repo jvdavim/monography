@@ -73,6 +73,8 @@ O exemplo da Figura~\ref{fig:rew_discr} mostra o discriminador utilizando uma m�
 
 Além da função de agregação, é fato a permanência da necessidade de transformação da entrada para valores binários na Regression WiSARD. Para tal, existem diferentes técnicas de binarização que serão apresentadas na Seção~\ref{sec:input_repr}.
 
+O processamento de uma Regression WiSARD, portanto, se limita ao mapeamento pseudoaleatório da entrada nos endreços dos neurônios realizado na etapa de inicialização do modelo mais o acesso a uma posição de memória para cada valor observado do conjunto de treinamento devidamente binarizado. Isso faz com que o tempo de treinamento ou inferência e uso de recurso computacional sejam significativamente menores quando comparado a de outros modelos, como concluído em \cite{KOLCZ1996855}.
+
 \section{Representação da entrada} \label{sec:input_repr}
 Tanto a WiSARD quanto a Regression WiSARD possuem como requisito a representação binária da entrada. Como grande parte dos problemas do mundo real não são representados de forma binária, então é imprescindível a utilização de uma técnica de binarização que minimize a perda de informação para o modelo. Existem diversas técnicas já desenvolvidas que possuem vantagens e desvantagens quando utilizadas como preprocessamento para o treinamento de RNSPs, como o Limiar, a Transformação Termômetro, Filtro de Marr–Hildreth, Filtro Laplaciano, entre outros. Um estudo comparativo de tais métodos pode ser encontrado em Kappaun et al., 2016 \cite{binenctec}.
 
